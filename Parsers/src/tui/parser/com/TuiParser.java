@@ -12,6 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import rita.blowup.com.DateEdit;
 import term.filter.parser.TermFilter;
 
@@ -25,7 +26,7 @@ public class TuiParser {
     private static final String website = "http://www.tui.ua/";
     private static final int    source = 1;
     
-    public TuiParser(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+    public TuiParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
         tours = new ArrayList <TourObject>();
         Document tuiDoc = null;
         try {
@@ -48,7 +49,9 @@ public class TuiParser {
                 String link = website + x.select("a[class = all-link]").first().attr("href");
                 
                 TourObject tObj = new TourObject();
+                tObj.setSource(source);
                 tObj.setCountry(country, countryStand, bananLog);
+                tObj.setTown(town, cityStand, "Tui: ", bananLog);
                 tObj.setDepartCity(getDepCity(time));
                 tObj.setDuration(getDuration(time));
                 tObj.departDate = getDepDate(depDate);
@@ -58,11 +61,9 @@ public class TuiParser {
                     continue;
 
                 tObj.setStars(stars);
-                tObj.setTown(town, cityStand, "Tui: ", bananLog);
                 tObj.setHotel(getHotel(hotel));
                 tObj.setPrice(getPrice(price));
                 tObj.setLink(link);
-                tObj.setSource(source);
                 tObj.setRoomType("DBL");
                 tours.add(tObj);
             }
@@ -71,9 +72,10 @@ public class TuiParser {
             //System.out.println("Failed to connect!");
             bananLog.write(null, "Failed to connect!\n");
         }
-        catch (NullPointerException ex) {
+        catch (Exception ex) {
             //System.out.println("Caught Null Pointer Exception!");
             bananLog.write(null, "Caught Null Pointer Exception!\n");
+            bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
         }
     }
     

@@ -17,6 +17,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
+
 import com.sun.swing.internal.plaf.basic.resources.basic;
 
 import pair.parser.Pair;
@@ -33,7 +35,7 @@ public class HTParser {
     private static final String website = "http://ht.kiev.ua/tours/type1.html";
     private static final int    source = 3;
     
-    public HTParser(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+    public HTParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
 
     	bananLog.write(null, "HTParser srart!");
     	
@@ -51,11 +53,11 @@ public class HTParser {
         }
         catch(Exception ex) {
 //          ex.printStackTrace();
-			bananLog.write(null, "Exeption: " + ex.getStackTrace().toString() + "\n");
+        	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
         }
     }
     
-    private void fillTour(String url, TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+    private void fillTour(String url, TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
         
         // Init block 
         Document tourDoc = null;
@@ -86,6 +88,7 @@ public class HTParser {
             tObj.setCountry(country.text().trim().toUpperCase(), countryStand, bananLog);
             
             tObj.setTown(city.text().trim().toUpperCase(), cityStand, "HT.kiev.ua: ", bananLog);
+            tObj.setSource(source);
             
             String hotelTemp = hotel.text();
             try {
@@ -118,15 +121,15 @@ public class HTParser {
             tObj.setRoomType(roomType.text().substring(0, roomType.text().indexOf('-')).trim().toUpperCase());
             tObj.setPrice(Integer.parseInt(price.text().substring(0, price.text().length() - 4)));
             tObj.setLink(url);
-            tObj.setSource(source);
             
             //tObj.print();
             
             tours.add(tObj);
         }
-        catch(IOException ex) {
-            ex.printStackTrace();
-			bananLog.write(null, "Exeption: " + ex.getStackTrace().toString() + "\n");
+        catch(Exception ex) {
+            //ex.printStackTrace();
+			bananLog.write(null, "Exeption: " + bananLog.bananStackTraceToString(ex) + "\n");
+			//bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
         }
     }
 }

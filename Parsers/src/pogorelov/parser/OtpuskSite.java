@@ -14,6 +14,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import term.filter.parser.TermFilter;
 import main.parser.com.*;
 /**
@@ -39,12 +40,12 @@ public class OtpuskSite extends AbstractSite {
 		setURL("http://www.otpusk.com");
 	}
 	
-	public List<TourObject> getToursList(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+	public List<TourObject> getToursList(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
 		this.parseHTML(countryStand, cityStand, bananLog);
 		return listOfHotTours;
 	}
 	
-	public void parseHTML(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+	public void parseHTML(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
 		try {
 			
 			//System.out.println("Connection to " + this.URL + "...");
@@ -85,7 +86,8 @@ public class OtpuskSite extends AbstractSite {
 
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
 		}
 	}
 	

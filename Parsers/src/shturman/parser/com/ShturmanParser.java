@@ -16,6 +16,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
+
 import rita.blowup.com.DateEdit;
 import term.filter.parser.TermFilter;
 
@@ -33,7 +35,7 @@ public class ShturmanParser {
     private static double euro;
     private static int days = 14;
     
-    public ShturmanParser(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+    public ShturmanParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
         
     	bananLog.write(null, "Shturman start!\n");
     	
@@ -84,6 +86,7 @@ public class ShturmanParser {
                         Elements info = z.select("td[style *= font-size: 10px;]");
                     try {
                         TourObject tObj = new TourObject();
+                        tObj.setSource(source);
     
                         tObj.departDate = getDate(info.get(2).text());
                         if(tObj.departDate == null)
@@ -91,7 +94,6 @@ public class ShturmanParser {
                         if(!(DateEdit.before(tObj.departDate, last)) || DateEdit.before(tObj.departDate, new Date()))
                             continue;
                         
-                        tObj.setSource(source);
                         tObj.setLink(path);
                         tObj.setCountry(tempCountry, countryStand, bananLog);
                         tObj.setHotel(getHotel(info.get(1).text()));
@@ -116,13 +118,9 @@ public class ShturmanParser {
                 }
             }
         }
-        catch (IOException ex) {
+        catch (Exception ex) {
 //            System.out.println("Failed to connect!");
-        	bananLog.write(null, "Failed to connect!\n");
-        }
-        catch (NullPointerException ex) {
-//            System.out.println("Null Pointer Exception!");
-            bananLog.write(null, "Null Pointer Exception!\n");
+        	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
         }
     }
     

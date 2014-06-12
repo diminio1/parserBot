@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import term.filter.parser.TermFilter;
 import main.parser.com.*;
 /**
@@ -24,12 +25,12 @@ abstract class AbstractSite {
 		this.URL = s;
 	}
 	
-	public List<TourObject> getToursList(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+	public List<TourObject> getToursList(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
 		parseHTML(countryStand, cityStand, bananLog);
 		return listOfHotTours;
 	}
 	
-	public abstract void parseHTML(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog);
+	public abstract void parseHTML(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog);
 	
 	public static int findNumberOfWrappers(String s, String regex) {
 		Pattern pattern = Pattern.compile(regex);

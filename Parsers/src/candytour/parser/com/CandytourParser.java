@@ -18,6 +18,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import rita.blowup.com.DateEdit;
 import rita.blowup.com.Parsable;
 import rita.blowup.com.UniversalParser;
@@ -33,7 +34,7 @@ public class CandytourParser {
     private static final String website = "http://candytour.com.ua/cgi-bin/myAccount/myAccount.cgi?action=dp&vs=2/scId=6&p=hottour&showAll=1";
     private static final int    source  = 14;
     
-    public CandytourParser(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+    public CandytourParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
         tours = new ArrayList<TourObject>();
         Document tourDoc = null;
         try {
@@ -230,13 +231,16 @@ public class CandytourParser {
 //            }
         }
         catch(IOException ex) {
-            System.out.println("IOException");
+//            System.out.println("IOException");
+        	bananLog.write(null, ex.getMessage().toString() + " \n" +  ex.getStackTrace().toString() + " \n");
         }
         catch(NullPointerException ex) {
-            System.out.println("NullPointerException");            
+//            System.out.println("NullPointerException");
+        	bananLog.write(null, ex.getMessage().toString() + " \n" +  ex.getStackTrace().toString() + " \n");
         }
         catch(Exception ex) {
-            System.out.println("Exception");            
+//            System.out.println("Exception"); 
+        	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
         }
     }
 

@@ -10,6 +10,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import term.filter.parser.TermFilter;
 import main.parser.com.*;
 /**
@@ -33,7 +34,7 @@ public class TurtessSite extends AbstractSite {
 		setURL("http://www.turtess.com");
 	}
 	
-	public void parseHTML(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+	public void parseHTML(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
 		try {
 			//System.out.println("Connection to " + this.URL + "...");
 			Document doc = Jsoup.connect("http://www.turtess.com/ru/price/hotproposal/index/source/hot/countryId/all").timeout(50000).get();
@@ -62,7 +63,8 @@ public class TurtessSite extends AbstractSite {
 			
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
+			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
 		}
 	}
 	

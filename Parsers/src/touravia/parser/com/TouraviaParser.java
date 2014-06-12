@@ -12,6 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import rita.blowup.com.DateEdit;
 import term.filter.parser.TermFilter;
 
@@ -27,7 +28,7 @@ public class TouraviaParser {
     
     private static final String userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36";
     
-    public TouraviaParser(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+    public TouraviaParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
         tours = new ArrayList<TourObject>();
         Document tourDoc = null;
         try {
@@ -67,6 +68,7 @@ public class TouraviaParser {
                     link = "http://touravia.info" + link;
                     
                     TourObject tObj = new TourObject();
+                    tObj.setSource(source);
                     tObj.setCountry(country, countryStand, bananLog);
 
                     tObj.setHotel(getHotel(hotel));
@@ -85,7 +87,6 @@ public class TouraviaParser {
                     if (tObj.price == 0)
                         continue;
                     
-                    tObj.setSource(source);
                     tObj.setStars(getStars(hotel));
                     
                     tours.add(tObj);
@@ -100,9 +101,10 @@ public class TouraviaParser {
             //System.out.println("Caught IOException");
             bananLog.write(null, "Caught IOException!\n");
         }
-        catch (Exception ex) {
+        catch (Exception e) {
             //System.out.println("Caught Exception");
             bananLog.write(null, "Caught Exception!\n");
+            bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
         }
     }
     

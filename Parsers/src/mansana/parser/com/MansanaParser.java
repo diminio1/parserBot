@@ -19,6 +19,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import rita.blowup.com.DateEdit;
 import rita.blowup.com.Parsable;
 import rita.blowup.com.UniversalParser;
@@ -34,7 +35,7 @@ public class MansanaParser {
     private static final String website = "http://www.mansana.com/hot_propositions.html";
     private static final int    source = 13;
 
-    public MansanaParser(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+    public MansanaParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
         tours = new ArrayList<TourObject>();
         Document tourDoc = null;
         
@@ -256,13 +257,14 @@ public class MansanaParser {
             }
         }
         catch(IOException ex) {
-            System.out.println("IOException");
+            //System.out.println("IOException");
         }
         catch(NullPointerException ex) {
-            System.out.println("NullPointerException");            
+            //System.out.println("NullPointerException");            
         }
         catch(Exception ex) {
-            System.out.println("Exception");            
+            //System.out.println("Exception");  
+        	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
         }
     }
 }

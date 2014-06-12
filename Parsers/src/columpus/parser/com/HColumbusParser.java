@@ -13,6 +13,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import rita.blowup.com.DateEdit;
 import term.filter.parser.TermFilter;
 
@@ -29,7 +30,7 @@ public class HColumbusParser {
     private static Date last;
     private static int  days = 30; 
     
-    public HColumbusParser(TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+    public HColumbusParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
     	
     	bananLog.write(null, "HColumbus start!\n");
     	
@@ -47,13 +48,15 @@ public class HColumbusParser {
                 fillTour(s, countryStand, cityStand, bananLog);
             }
         }
-        catch (IOException ex) {
+        catch (Exception ex) {
             //System.out.println("Failed to connect!");
         	bananLog.write(null, "Failed to connect!\n");
+        	
+        	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
         }
     }
     
-        private void fillTour(String url, TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+        private void fillTour(String url, TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
         
         // Init block 
         Document tourDoc = null;
@@ -136,6 +139,7 @@ public class HColumbusParser {
             tObj.setCountry(country.text().trim().toUpperCase(), countryStand, bananLog);
             
             tObj.setTown(city.text().trim().toUpperCase(), cityStand, "HColumbus: ", bananLog);
+            tObj.setSource(source);
             
             tObj.setHotel(getHotel(hotel.text()).trim().toUpperCase());
             if(hotel.text().contains("-"))
@@ -157,7 +161,6 @@ public class HColumbusParser {
 
             tObj.setLink(url);
             
-            tObj.setSource(source);
             
             tours.add(tObj);
         }
@@ -168,6 +171,7 @@ public class HColumbusParser {
         catch (NullPointerException ex) {
 //            System.out.println("Null Pointer Exception!");
             bananLog.write(null, "Null Pointer Exception!\n");
+            bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
         }
     }
         

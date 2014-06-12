@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.writers.FileWriter;
 
+import banan.file.writer.BananFileWriter;
 import pair.parser.Pair;
 import term.filter.parser.TermFilter;
 import main.parser.com.TourObject;
@@ -21,47 +22,53 @@ public class PoehalisnamiParser {
 	
 	private static final int    source = 8;
 	
-	public PoehalisnamiParser (TermFilter countryStand, TermFilter cityStand, FileWriter bananLog){
-		
-		bananLog.write(null, "PoehaliSnami start!\n");
-		
-		tours = new ArrayList<TourObject>();
-		
-		Document poehalisnamiTourDoc = null;
-		
+	public PoehalisnamiParser (TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog){
+
 		try {
-			poehalisnamiTourDoc = Jsoup.connect("http://www.poehalisnami.ua/").timeout(50000).get();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-			bananLog.write(null, "Exeption: " + e.getStackTrace().toString() + "\n");
-		}
+			
+			bananLog.write(null, "PoehaliSnami start!\n");
+			
+			tours = new ArrayList<TourObject>();
+			
+			Document poehalisnamiTourDoc = null;
+			
+			try {
+				poehalisnamiTourDoc = Jsoup.connect("http://www.poehalisnami.ua/").timeout(50000).get();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+				bananLog.write(null, "Exeption: " + e.getStackTrace().toString() + "\n");
+			}
+			
+			if(poehalisnamiTourDoc != null){
+			
+				// get block with the same over
+				Elements overBloks = poehalisnamiTourDoc.select("div[class = over]");
 		
-		if(poehalisnamiTourDoc != null){
+				if (overBloks != null){
+				
+					parseBlock(overBloks, countryStand, cityStand, bananLog);
+				}
+				else{
+					//System.out.println("No block !!!");
+					bananLog.write(null, "No block 1!\n");
+				}
+				
+				// get block with the same country
+				Elements countryBloks = poehalisnamiTourDoc.select("div[class = country]");
 		
-			// get block with the same over
-			Elements overBloks = poehalisnamiTourDoc.select("div[class = over]");
-	
-			if (overBloks != null){
-			
-				parseBlock(overBloks, countryStand, cityStand, bananLog);
+				if (countryBloks != null){
+				
+					parseBlock(countryBloks, countryStand, cityStand, bananLog);
+				}
+				else{
+					//System.out.println("Bad block !!!");
+					bananLog.write(null, "No block 2!\n");
+				}
 			}
-			else{
-				//System.out.println("No block !!!");
-				bananLog.write(null, "No block 1!\n");
-			}
-			
-			// get block with the same country
-			Elements countryBloks = poehalisnamiTourDoc.select("div[class = country]");
-	
-			if (countryBloks != null){
-			
-				parseBlock(countryBloks, countryStand, cityStand, bananLog);
-			}
-			else{
-				//System.out.println("Bad block !!!");
-				bananLog.write(null, "No block 2!\n");
-			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
 		}
 	}
 	
