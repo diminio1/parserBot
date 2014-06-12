@@ -1,37 +1,29 @@
 TEZtour start!
-TEZtour :КЕМЕР [(236281, 109)]
+TEZtour :ИНЖЕКУМ - АЛАНЬЯ [(94732, 109)]
 TEZtour :КОСТА БРАВА [(438390, 35)]
-TEZtour :БАРСЕЛОНА [(20626, 35)]
 TEZtour :ИНЖЕКУМ - АЛАНЬЯ [(94732, 109)]
-TEZtour :ХУРГАДА [(552, 61)]
-TEZtour :МАРМАРИС [(57199, 109)]
 TEZtour :ТЕНЕРИФЕ-КОСТА АДЕХЕ [(182721, 35)]
-TEZtour :МАРМАРИС [(57199, 109)]
-TEZtour :ИНЖЕКУМ - АЛАНЬЯ [(94732, 109)]
+TEZtour :КЕМЕР [(236281, 109)]
+TEZtour :КЕМЕР [(236281, 109)]
 TEZtour :ШАРМ-ЭЛЬ-ШЕЙХ [(223979, 61)]
-TEZtour :КЕМЕР [(236281, 109)]
-TEZtour :КЕМЕР [(236281, 109)]
-TEZtour :ИНЖЕКУМ - АЛАНЬЯ [(94732, 109)]
+TEZtour :МАРМАРИС [(57199, 109)]
+TEZtour :МАРМАРИС [(57199, 109)]
+TEZtour :МАРМАРИС [(57199, 109)]
 TEZtour :БОДРУМ [(39745, 109)]
+TEZtour :ХУРГАДА [(552, 61)]
+TEZtour :ИНЖЕКУМ - АЛАНЬЯ [(94732, 109)]
+TEZtour :БАРСЕЛОНА [(20626, 35)]
 TEZtour :ШАРМ-ЭЛЬ-ШЕЙХ [(223979, 61)]
 PoehaliSnami start!
-Poehaly s namy: ХАММАМЕТ [(124377, 108)]
-Poehaly s namy: БУДВА [(96674, 133)]
-Poehaly s namy: АЙЯ-НАПА [(156060, 117)]
-Poehaly s namy: О. КРИТ [(438359, 18)]
-Poehaly s namy: БУДВА [(96674, 133)]
+Poehaly s namy: БЕЧИЧИ [(188740, 133)]
 Poehaly s namy: БУДВА [(96674, 133)]
 Poehaly s namy: ХУРГАДА [(552, 61)]
 Poehaly s namy: ПАРИЖ [(15389, 12)]
-Poehaly s namy: НЕСЕБР []
 Poehaly s namy: БОДРУМ [(39745, 109)]
-Poehaly s namy: БЕЛЕК [(297327, 109)]
-Poehaly s namy: МАЛГРАТ ДЕ МАР []
 Poehaly s namy: ПОРЕЧ [(52206, 202)]
 Poehaly s namy: КАРЛОВЫ ВАРЫ [(55408, 114)]
+Poehaly s namy: МАРМАРИС [(57199, 109)]
 Poehaly s namy: ХУРГАДА [(552, 61)]
-Poehaly s namy: СЕВЕРНЫЙ МАЛЕ АТОЛЛ [(33469, 52)]
-Poehaly s namy: ДУБАЙ [(22522, 14)]
 Poehaly s namy: РИМ [(15878, 13)]
 Poehaly s namy: ГЕНУЯ [(52933, 13)]
 Poehaly s namy: КОБЛЕВО []
@@ -46,86 +38,45 @@ Poehaly s namy: БЕРДЯНСК [(82600, 112)]
 Poehaly s namy: ЗАКАРПАТЬЕ []
 Poehaly s namy: КОБЛЕВО []
 Poehaly s namy: БЕРДЯНСК [(82600, 112)]
-Poehaly s namy: ЗАКАРПАТЬЕ []
+Poehaly s namy: КАРПАТЫ [(438375, 112)]
 Poehaly s namy: ОДЕССА [(29790, 112)]
 Poehaly s namy: ОДЕССА [(29790, 112)]
 Poehaly s namy: ОДЕССА [(29790, 112)]
-WARNING: No html element roomType!
-WARNING: No html element depCity!
 Poehaly s namy: ОДЕССА [(29790, 112)]
 Poehaly s namy: ЗАТОКА []
 Poehaly s namy: ЗАТОКА []
-WARNING: No html element roomType!
-WARNING: No html element depCity!
 Hottours start!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ВСЕ О ЗАМКАХ И ЦВЕТАХ… …БАВАРИЯ И НИДЕРЛАНДЫ… []
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ КОЛОРИТНАЯ БОЛГАРИЯ []
-The problem: АВТОБУСНЫЕ ТУРЫ ЛЕТНЯЯ СКАЗКА
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ЛЕТНЯЯ СКАЗКА []
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ РАДУЖНЫЕ КРАСКИ БОЛГАРИИ []
-The problem: АВТОБУСНЫЕ ТУРЫ МОЕ ВДОХНОВЕНИЕ
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ МОЕ ВДОХНОВЕНИЕ []
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ЛУЧШИЕ ПОДРУЖКИ ЧЕШСКОГО КОРОЛЕВСТВА []
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ КОЛОРИТНАЯ БОЛГАРИЯ []
-The problem: АВТОБУСНЫЕ ТУРЫ РИМ ПРЕКРАСЕН ВСЕГДА!
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ РИМ ПРЕКРАСЕН ВСЕГДА! []
-The problem: АВТОБУСНЫЕ ТУРЫ ТОЛЬКО ЧУДЕСА... И НИЧЕГО ЛИШНЕГО
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ТОЛЬКО ЧУДЕСА... И НИЧЕГО ЛИШНЕГО []
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ИТАЛЬЯНСКИЙ ЦВЕТОК В КОРОНЕ ИСПАНСКОГО СОЛНЦА []
-The problem: АВТОБУСНЫЕ ТУРЫ ТРИ ПЛЮС ДВА…И…СКАНДИНАВИЯ…
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ТРИ ПЛЮС ДВА…И…СКАНДИНАВИЯ… []
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ В ПОРЫВЕ ИСПАНСКОГО ВОСТОРГА []
-The problem: АВТОБУСНЫЕ ТУРЫ СИЕСТА У ГРЕКОВ
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ СИЕСТА У ГРЕКОВ []
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ИТАЛЬЯНСКОЕ ВДОХНОВЕНИЕ! []
-The problem: АВТОБУСНЫЕ ТУРЫ ИЗУМРУДНЫЕ БЕРЕГА
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ИЗУМРУДНЫЕ БЕРЕГА []
-The problem: АВТОБУСНЫЕ ТУРЫ ФРАНЦУЗCКИЙ КАПРИЗ
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ФРАНЦУЗCКИЙ КАПРИЗ []
-The problem: АВТОБУСНЫЕ ТУРЫ МУЗЫКА ПРИБОЯ
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ МУЗЫКА ПРИБОЯ []
-The problem: АВТОБУСНЫЕ ТУРЫ КАРНАВАЛ ЭМОЦИЙ
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ КАРНАВАЛ ЭМОЦИЙ []
-The problem: АВТОБУСНЫЕ ТУРЫ ЛЮБОВЬ, ПАРИЖ И ГОЛУБИ…
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ЛЮБОВЬ, ПАРИЖ И ГОЛУБИ… []
-The problem: АВТОБУСНЫЕ ТУРЫ Я В ВОСТОРГЕ! ЭТО... РИМ!
-NO COUNTRY!
-Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ Я В ВОСТОРГЕ! ЭТО... РИМ! []
+Hottour.com.ua: АВТОБУСНЫЕ ТУРЫ ОДНАЖДЫ В ИТАЛИИ. []
+Hottour.com.ua: БОЛГАРИЯ РАВДА [(201478, 121)]
+Hottour.com.ua: ЕГИПЕТ ШАРМ-ЭЛЬ-ШЕЙХ [(223979, 61)]
+Hottour.com.ua: ШВЕЙЦАРИЯ ШВЕЙЦАРИЯ - ЭТО РАЙ []
 SMGP start!
 Smgp: ШАРМ-ЭЛЬ-ШЕЙХ ЮЖНЫЙ СИНАЙ [(223979, 61)]
 Smgp: ХУРГАДА КРАСНОЕ МОРЕ [(552, 61)]
+Smgp: ХУРГАДА КРАСНОЕ МОРЕ [(552, 61)]
+Smgp: ХУРГАДА КРАСНОЕ МОРЕ [(552, 61)]
 Smgp: HILTON LONG BEACH RESORT ХУРГАДА [(552, 61)]
-Smgp: ХУРГАДА КРАСНОЕ МОРЕ [(552, 61)]
-Smgp: ХУРГАДА КРАСНОЕ МОРЕ [(552, 61)]
 Smgp: HOTEL SUNFLOWER HOTEL SUNFLOWER []
 Smgp: IBIS MILANO CENTRO IBIS MILANO CENTRO []
 Smgp: ПАТТАЙЯ ПАТТАЙЯ [(31541, 9)]
-Smgp: АЛАНЬЯ АЛАНЬЯ [(94732, 109)]
 Smgp: КЕМЕР КЕМЕР [(236281, 109)]
 Smgp: МАРМАРИС МАРМАРИС [(57199, 109)]
+Smgp: КЕМЕР КЕМЕР [(236281, 109)]
 Smgp: АНТАЛЬЯ АНТАЛЬЯ [(56556, 109)]
 Smgp: АЛАНЬЯ АЛАНЬЯ [(94732, 109)]
 Smgp: БЕЛЬДИБИ АНТАЛЬЯ [(56556, 109), (438394, 109)]
-Smgp: КЕМЕР КЕМЕР [(236281, 109)]
-Smgp: ИРАКЛИО ПЕРИФЕРИЯ КРИТ [(438359, 18)]
-Smgp: ИРАКЛИО ПЕРИФЕРИЯ КРИТ [(438359, 18)]
+Smgp: СОЛНЕЧНЫЙ БЕРЕГ ЧЕРНОМОРСКОЕ ПОБЕРЕЖЬЕ [(438371, 121)]
+Smgp: ЗОЛОТЫЕ ПЕСКИ ЧЕРНОМОРСКОЕ ПОБЕРЕЖЬЕ [(438377, 121)]
+Smgp: СВ. КОНСТАНТИН И ЕЛЕНА СВ. КОНСТАНТИН И ЕЛЕНА [(95388, 121)]
+Smgp: ЗОЛОТЫЕ ПЕСКИ ЧЕРНОМОРСКОЕ ПОБЕРЕЖЬЕ [(438377, 121)]
 Smgp: ФАЛИРАКИ РОДОС [(438360, 18)]
 Smgp: РОДОС РОДОС [(438360, 18)]
 Smgp: ИРАКЛИО ПЕРИФЕРИЯ КРИТ [(438359, 18)]
 Smgp: DAYS INN AQABA DAYS INN AQABA [(438383, 191)]
-Smgp: ШАРДЖА ОАЭ [(21553, 14)]
+Smgp: ПЕТРОВАЦ БУДВАНСКА РИВЬЕРА [(188752, 133)]
+Smgp: БУДВА БУДВАНСКА РИВЬЕРА [(96674, 133)]
 Smgp: ДУБАИ ОАЭ [(22522, 14)]
+Smgp: ШАРДЖА ОАЭ [(21553, 14)]
 Smgp: ШАРДЖА ОАЭ [(21553, 14)]
 Smgp: РАС-ЭЛЬ-ХЕЙМА ОАЭ []
 HTParser srart!HT.kiev.ua: О. КО ЧАНГ [(438399, 9)]
@@ -134,8 +85,8 @@ HT.kiev.ua: ПАТТАЙЯ [(31541, 9)]
 HT.kiev.ua: КЕМЕР [(236281, 109)]
 HT.kiev.ua: МАРМАРИС [(57199, 109)]
 HT.kiev.ua: КЕМЕР [(236281, 109)]
-HT.kiev.ua: ЗОЛОТЫЕ ПЕСКИ [(438377, 121)]
 HT.kiev.ua: НЕСЕБР []
+HT.kiev.ua: СОЛНЕЧНЫЙ БЕРЕГ [(438371, 121)]
 HT.kiev.ua: СОЛНЕЧНЫЙ БЕРЕГ [(438371, 121)]
 HT.kiev.ua: СИНГАПУР [(15865, 42)]
 HT.kiev.ua: СИНГАПУР [(15865, 42)]
@@ -158,8 +109,8 @@ HT.kiev.ua: ПУНТА КАНА [(227670, 170)]
 HT.kiev.ua: ПУНТА КАНА [(227670, 170)]
 HT.kiev.ua: ПУНТА КАНА [(227670, 170)]
 HT.kiev.ua: О. МАЙОРКА [(438388, 35)]
-HT.kiev.ua: КОСТА ДОРАДА [(438387, 35)]
 HT.kiev.ua: КОСТА БРАВА [(438390, 35)]
+HT.kiev.ua: КОСТА ДОРАДА [(438387, 35)]
 HT.kiev.ua: ЛИМАССОЛ [(31521, 117)]
 HT.kiev.ua: ЛИМАССОЛ [(31521, 117)]
 HT.kiev.ua: ЛИМАССОЛ [(31521, 117)]
@@ -202,8 +153,9 @@ HT.kiev.ua: О. БАЛИ [(438384, 45)]
 HT.kiev.ua: МАСКАТ [(22520, 122)]
 HT.kiev.ua: БУДВА [(96674, 133)]
 HT.kiev.ua: СВЯТОЙ СТЕФАН []
-HT.kiev.ua: БЕЧИЧИ [(188740, 133)]
+HT.kiev.ua: БУДВА [(96674, 133)]
 Shturman start!
+Shturman: О. КРИТ [(438359, 18)]
 Shturman: О. КРИТ [(438359, 18)]
 No town is mentioned in this tour!
 Shturman:  []
@@ -243,19 +195,101 @@ No town is mentioned in this tour!
 Shturman:  []
 No town is mentioned in this tour!
 Shturman:  []
-Shturman: KEMER [(236281, 109)]
-Shturman: KEMER [(236281, 109)]
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
 Shturman: KEMER [(236281, 109)]
 Shturman: KEMER [(236281, 109)]
 Shturman: ALANYA [(94732, 109)]
-For input string: ".201" 
-java.lang.NumberFormatException.forInputString(Unknown Source)
-java.lang.Integer.parseInt(Unknown Source)
-java.lang.Integer.parseInt(Unknown Source)
-shturman.parser.com.ShturmanParser.getDate(ShturmanParser.java:183)
-shturman.parser.com.ShturmanParser.<init>(ShturmanParser.java:91)
-main.parser.com.Main.main(Main.java:121)
- 
+Shturman: KEMER [(236281, 109)]
+Shturman: KEMER [(236281, 109)]
+Shturman: ALANYA [(94732, 109)]
+Shturman: ALANYA [(94732, 109)]
+Shturman: ALANYA [(94732, 109)]
+Shturman: ALANYA [(94732, 109)]
+Shturman: KEMER [(236281, 109)]
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+No town is mentioned in this tour!
+Shturman:  []
+Shturman: HURGHADА []
+Shturman: HURGHADA [(552, 61)]
+Shturman: HURGHADA [(552, 61)]
 HColumbus start!
 No information about depart date is mentioned!
 HColumbus: ЧЕРНОГОРИЯ, БУДВА [(96674, 133)]
@@ -280,23 +314,18 @@ HColumbus: ЕГИПЕТ. МАКАДИ БЕЙ [(438391, 61)]
 HColumbus: ЕГИПЕТ. МАКАДИ БЕЙ [(438391, 61)]
 HColumbus: ОАЭ, УММ АЛЬ КУВЕЙН []
 HColumbus: ЛЬВОВ,ДРЕЗДЕН,БЕРЛИН, КРАКОВ, ВЕЛИЧКА,ЛЬВОВ [(52515, 110), (16517, 29), (49724, 110), (49780, 29)]
-HColumbus: ТУНИС, МОНАСТИР [(422, 108)]
 HColumbus: ЧЕРНОГОРИЯ, БУДВА [(96674, 133)]
 HColumbus: ЧЕРНОГОРИЯ,БУДВА [(96674, 133)]
 HColumbus: ВЬЕТНАМ,НЯЧАНГ [(105601, 11)]
 HColumbus: ЧЕРНОГРИЯ,БУДВА [(96674, 133)]
-HColumbus: БОЛГАРИЯ, ЗОЛОТЫЕ ПЕСКИ [(438377, 121)]
 HColumbus: ГРЕЦИЯ, ОСТРОВ КРИТ [(51276, 18), (438359, 18)]
 HColumbus: ЧЕРНОГОРИЯ, БУДВА [(96674, 133)]
 HColumbus: ГРЕЦИЯ, О. КРИТ [(51276, 18), (438359, 18)]
-HColumbus: БОЛГАРИЯ, ЗОЛОТЫЕ ПЕСКИ [(438377, 121)]
 HColumbus: ЧЕРНОГРИЯ, БЕЧИЧИ [(188740, 133)]
 HColumbus: ЧЕРНОГРИЯ, БЕЧИЧИ [(188740, 133)]
-HColumbus: ЧЕРНОГОРИЯ, БУДВА [(96674, 133)]
 HColumbus: ЧЕРНОГОРИЯ, БУДВА [(96674, 133)]
 HColumbus: ЛЬВОВ - БЕРЛИН - АМСТЕРДАМ - БРЮССЕЛЬ - ПРАГА - ЛЬВОВ [(14266, 56), (16517, 29), (21235, 114), (14435, 33)]
 HColumbus: БОЛГРАРИЯ, СОЛНЕЧНЫЙ БЕРЕГ [(438371, 121)]
-HColumbus: БОЛГАРИЯ, ДЮНИ [(246317, 121)]
 HColumbus: ЛЬВОВ - ДРУСКИНИНКАЙ - ВИЛЬНЮС - ТРАКАЙ - РИГА - ЕЛГАВА - ТАЛЛИН - ЮРМАЛА - КАУНАС - ЛЬВОВ [(60564, 111), (52154, 111), (30315, 111), (29624, 140)]
 HColumbus: ЕГИПЕТ, ШАРМ ЭЛЬ ШЕЙХ [(223979, 61)]
 HColumbus: ВЕНГРИЯ: БУДАПЕШТ, ЭГЕР; АВСТРИЯ: ВЕНА [(21973, 118), (54251, 118), (15104, 127)]
@@ -307,13 +336,13 @@ HColumbus: ЕГИПЕТ, ШАРМ ЭЛЬ ШЕЙХ [(223979, 61)]
 HColumbus: ОАЭ, АДЖМАН [(322022, 14)]
 HColumbus: ЧЕРНОГОРИЯ, ПЕТРОВАЦ [(188752, 133)]
 HColumbus: ЧЕРНОГОРИЯ, БУДВА [(96674, 133)]
-HColumbus: ЧЕРНОГОРИЯ, БУДВА [(96674, 133)]
 HColumbus: ЧЕРНОГОРИЯ, ПЕТРОВАЦ [(188752, 133)]
 HColumbus: ЧЕРНОГОРИЯ, БЕЧИЧИ [(188740, 133)]
 HColumbus: ГРЕЦИЯ, О. РОДОС [(438360, 18), (51276, 18)]
 HColumbus: ГРЕЦИЯ, О. КРИТ [(51276, 18), (438359, 18)]
 HColumbus: ГРЕЦИЯ, О. КРИТ [(51276, 18), (438359, 18)]
 HColumbus: ЛЬВОВ - КРАКОВ - ПРАГА - ДРЕЗДЕН - ВЕНА - БУДАПЕШТ - ЛЬВОВ [(21973, 118), (15104, 127), (21235, 114), (49724, 110), (49780, 29)]
+Failed to connect!
 HColumbus: ЕГИПЕТ,ХУРАГДА []
 HColumbus: ЕГИПЕТ,СОМА БЕЙ [(438358, 61)]
 HColumbus: ЕГИПЕТ, ШАРМ-ЭЛЬ-ШЕЙХ [(223979, 61)]
@@ -340,12 +369,10 @@ HColumbus: ЕГИПЕТ, ШАРМ-ЭЛЬ- ШЕЙХ []
 HColumbus: ЕГИПЕТ, ХУРГАДА [(552, 61)]
 HColumbus: ЧЕРНОГОРИЯ,ПРЖНО [(438404, 133)]
 HColumbus: ЧЕРНОГРИЯ, БЕЧИЧИ [(188740, 133)]
-HColumbus: ЧЕРНОГРИЯ, БЕЧИЧИ [(188740, 133)]
 HColumbus: ЕГИПЕТ, ШАРМ ЭЛЬ ШЕЙХ [(223979, 61)]
 HColumbus: ОАЭ, ДУБАЙ [(22522, 14)]
 HColumbus: ОАЭ, РАС АЛЬ ХАЙМА []
 HColumbus: ЛАНЦУТ - БЕРЛИН – АМСТЕРДАМ – ГААГА – ДЕЛФТ - ЗААНСЕ СХАНС – ВОЛЕНДАМ – БРЮССЕЛЬ – ПАРИЖ – ЛЮКСЕМБУРГ - КЕЛЬН – ЭРФУРТ – КРАКОВ - ВЕЛИЧКА [(59483, 33), (52515, 110), (14266, 56), (15389, 12), (288416, 33), (50354, 33), (16517, 29), (14435, 33), (49724, 110), (50621, 145), (50312, 29), (236350, 12)]
-HColumbus: ЧЕРНОГРИЯ, БУДВА [(96674, 133)]
 HColumbus: ОАЭ, ШАРДЖА [(21553, 14)]
 No information about depart date is mentioned!
 HColumbus: ЛЬВОВ – КРАКОВ – ВЕЛИЧКА – ЗАКОПАНЕ/ВРОЦЛАВ/ВАРШАВА – ЛЬВОВ [(52515, 110), (52346, 110), (49922, 110), (32365, 110), (49724, 110)]
@@ -357,7 +384,7 @@ HColumbus: ЛЬВОВ – ПРАГА – МЮНХЕН – ЗАМОК НОЙШВ�
 HColumbus: КИЕВ - ЛЬВОВ - ВЕНА - ЧЕШСКИЙ КРУМЛОВ - ПРАГА - ЛЬВОВ - КИЕВ [(15104, 127), (21235, 114)]
 HColumbus: КРАКОВ – ПРАГА – ВЕНА [(15104, 127), (21235, 114), (49724, 110)]
 Tui: СОЛНЕЧНЫЙ БЕРЕГ [(438371, 121)]
-Tui: ХУРГАДА [(552, 61)]
+Tui: ШАРМ ЭЛЬ ШЕЙХ [(223979, 61)]
 Tui: МАРМАРИС [(57199, 109)]
 Tui: МАРМАРИС [(57199, 109)]
 Tui: ПЛАЙА ДЕ ПАЛЬМА, АРЕНАЛЬ, КАН ПАСТИЛЬЯ [(25997, 35)]
@@ -413,16 +440,19 @@ Mansana: КОСТА БРАВА [(438390, 35)]
 Mansana: КОСТА БРАВА [(438390, 35)]
 Mansana: КОСТА БРАВА [(438390, 35)]
 Mansana: КОСТА БРАВА [(438390, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
-Mansana: ТЕНЕРИФЕ [(182721, 35)]
 Mansana: КОСТА ДОРАДА [(438387, 35)]
+Mansana: КОСТА ДОРАДА [(438387, 35)]
+Mansana: КОСТА ДОРАДА [(438387, 35)]
+Mansana: КОСТА ДОРАДА [(438387, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
+Mansana: ТЕНЕРИФЕ [(182721, 35)]
 Mansana: ПРОТАРАС [(438362, 117)]
 Mansana: ПРОТАРАС [(438362, 117)]
 Mansana: ПРОТАРАС [(438362, 117)]
@@ -474,48 +504,38 @@ Mansana: НАБЕЛЬ [(424, 108)]
 Mansana: МОНАСТИР [(422, 108)]
 Mansana: МОНАСТИР [(422, 108)]
 Mansana: СУСС [(438373, 108)]
-Mansana: АНТАЛИЯ [(56556, 109)]
-Mansana: КЕМЕР [(236281, 109)]
+Mansana: КОГАЛЛА [(108118, 132)]
+Mansana: КОГАЛЛА [(108118, 132)]
+Mansana: КОГАЛЛА [(108118, 132)]
 Mansana: БЕРУВЕЛА [(438366, 132)]
 Mansana: БЕРУВЕЛА [(438366, 132)]
 Mansana: БЕРУВЕЛА [(438366, 132)]
 Mansana: БЕРУВЕЛА [(438366, 132)]
+Mansana: БЕНТОТА [(108117, 132)]
 Mansana: БЕНТОТА [(108117, 132)]
 Mansana: БЕНТОТА [(108117, 132)]
 Mansana: БЕНТОТА [(108117, 132)]
 Mansana: КАЛУТАРА [(108083, 132)]
 Mansana: КАЛУТАРА [(108083, 132)]
-Mansana: ВАДДУВА [(241469, 132)]
-Mansana: ВАДДУВА [(241469, 132)]
-Mansana: ВАДДУВА [(241469, 132)]
 Mansana: НЕГОМБО [(105968, 132)]
-Mansana: МАРАВИЛА [(106021, 132)]
-Mansana: ХИККАДУВА [(438363, 132)]
-Mansana: АХУНГАЛА []
 Mansana: ДИКВЕЛЛА [(108094, 132)]
+Mansana: ВАДДУВА [(241469, 132)]
+Mansana: ВАДДУВА [(241469, 132)]
+Mansana: ВАДДУВА [(241469, 132)]
+Mansana: МАРАВИЛА [(106021, 132)]
+Mansana: АХУНГАЛА []
 Mansana: ТРИНКОМАЛЕ []
-Otpusk: ЗОЛОТЫЕ ПЕСКИ [(438377, 121)]
-Otpusk: КЕМЕР [(236281, 109)]
-Otpusk: О. КРИТ – АГИОС НИКОЛАОС [(438359, 18), (167984, 18)]
-Otpusk: ПАФОС [(23043, 117)]
-Otpusk: О. МАЙОРКА [(438388, 35)]
-Otpusk: ШАРМ ЭЛЬ ШЕЙХ [(223979, 61)]
-Otpusk: Польша (Варшава, Гданьск) — Швеция (Стокгольм) — Норвегия (Осло) — Швеция (Гетеборг) — Дания (Копенгаген) [(35601, 110), (12832, 22), (16547, 125), (32365, 110), (14355, 15)]
 Turne: БАЛЧИК [(72274, 121)]
 Turne: ЗОЛОТЫЕ ПЕСКИ [(438377, 121)]
-Turne: ЗОЛОТЫЕ ПЕСКИ [(438377, 121)]
 Turne: СОЛНЕЧНЫЙ БЕРЕГ [(438371, 121)]
-Turne: ЗОЛОТЫЕ ПЕСКИ [(438377, 121)]
-Turne: О. КРИТ [(438359, 18)]
-Turne: О. КРИТ [(438359, 18)]
+Turne: О. РОДОС [(438360, 18)]
 Turne: БАТУМИ [(247583, 124)]
-Turne: ХУРГАДА [(552, 61)]
 Turne: МАКАДИ БЕЙ [(438391, 61)]
 Turne: ХУРГАДА [(552, 61)]
 Turne: ХУРГАДА [(552, 61)]
 Turne: ХУРГАДА [(552, 61)]
 Turne: ШАРМ-ЭЛЬ-ШЕЙХ [(223979, 61)]
-Turne: ШАРМ-ЭЛЬ-ШЕЙХ [(223979, 61)]
+Turne: ХУРГАДА [(552, 61)]
 Turne: О. МАЙОРКА [(438388, 35)]
 Turne: О. МАЙОРКА [(438388, 35)]
 Turne: ПРОТАРАС [(438362, 117)]
@@ -526,12 +546,14 @@ Turne: КЕМЕР [(236281, 109)]
 Turne: АЛАНЬЯ [(94732, 109)]
 Turne: КЕМЕР [(236281, 109)]
 Turne: БОДРУМ [(39745, 109)]
-Turne: БУДВА [(96674, 133)]
-Turne: РАФАИЛОВИЧИ []
+Turne: БОДРУМ [(39745, 109)]
+Turne: МАРМАРИС [(57199, 109)]
 Turne: БУДВА [(96674, 133)]
 Turne: БУДВА [(96674, 133)]
 Turne: БУДВА [(96674, 133)]
 Turne: СВЕТИ СТЕФАН [(438376, 133)]
+Turne: РАФАИЛОВИЧИ []
+Turne: ПЕТРОВАЦ [(188752, 133)]
 Turne: БУДВА [(96674, 133)]
 Hotel is null on baseCreation!!!
 Hotel is null on baseCreation!!!
@@ -541,16 +563,6 @@ Hotel is null on baseCreation!!!
 Hotel is null on baseCreation!!!
 Hotel is null on baseCreation!!!
 Hotel is null on baseCreation!!!
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Hotel is null on baseCreation!!!
-Hotel is null on baseCreation!!!
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Hotel is null on baseCreation!!!
-Hotel is null on baseCreation!!!
-Hotel is null on baseCreation!!!
-Hotel is null on baseCreation!!!
 Hotel is null on baseCreation!!!
 Hotel is null on baseCreation!!!
 Hotel is null on baseCreation!!!
@@ -558,331 +570,9 @@ No city on baseCraetion!!!
 Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
 Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'FB', '', '2014-06-23', 225, 1, '', NULL, NULL, 36, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-23', 225, 1, '', NULL, NULL, 37, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-23', 285, 1, '', NULL, NULL, 38, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-23', 325, 1, '', NULL, NULL, 39, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'RO', '', '2014-06-23', 328, 1, '', NULL, NULL, 40, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'FB', '', '2014-06-23', 412, 1, '', NULL, NULL, 41, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'FB', '', '2014-06-23', 485, 1, '', NULL, NULL, 42, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-23', 590, 1, '', NULL, NULL, 43, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'FB', '', '2014-06-23', 670, 1, '', NULL, NULL, 44, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'RO', '', '2014-06-23', 750, 1, '', NULL, NULL, 45, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'FB', '', '2014-06-23', 755, 1, '', NULL, NULL, 46, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-23', 850, 1, '', NULL, NULL, 47, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-23', 880, 1, '', NULL, NULL, 48, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-23', 1100, 1, '', NULL, NULL, 49, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-23', 1250, 1, '', NULL, NULL, 50, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
 Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
 Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'BB', '', '2014-06-20', 250, 1, '', NULL, NULL, 52, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-Referential integrity constraint violation: "CONSTRAINT_276: PUBLIC.TOUR FOREIGN KEY(SOURCE_ID) REFERENCES PUBLIC.SOURCE(SOURCE_ID) (0)"; SQL statement:
-INSERT INTO TOUR VALUES ('', 'RO', '', '2014-06-23', 260, 1, '', NULL, NULL, 53, 0); [23506-173] 
-org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
-org.h2.message.DbException.get(DbException.java:171)
-org.h2.message.DbException.get(DbException.java:148)
-org.h2.constraint.ConstraintReferential.checkRowOwnTable(ConstraintReferential.java:368)
-org.h2.constraint.ConstraintReferential.checkRow(ConstraintReferential.java:310)
-org.h2.table.Table.fireConstraints(Table.java:880)
-org.h2.table.Table.fireAfterRow(Table.java:897)
-org.h2.command.dml.Insert.insertRows(Insert.java:129)
-org.h2.command.dml.Insert.update(Insert.java:86)
-org.h2.command.CommandContainer.update(CommandContainer.java:79)
-org.h2.command.Command.executeUpdate(Command.java:235)
-org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:193)
-main.parser.com.Main.createBase(Main.java:550)
-main.parser.com.Main.main(Main.java:161)
- 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-No city on baseCraetion!!! 
-No city on baseCraetion!!! 
-No city on baseCraetion!!! 
-No city on baseCraetion!!! 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
-No city on baseCraetion!!! 
-No city on baseCraetion!!! 
 Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
 Hotel is null on baseCreation!!!
@@ -890,7 +580,16 @@ No city on baseCraetion!!!
 Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
 Hotel is null on baseCreation!!!
+Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
+Hotel is null on baseCreation!!!
+No city on baseCraetion!!! 
+Hotel is null on baseCreation!!!
+Hotel is null on baseCreation!!!
+Hotel is null on baseCreation!!!
+Hotel is null on baseCreation!!!
+Hotel is null on baseCreation!!!
+Hotel is null on baseCreation!!!
 Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
 Hotel is null on baseCreation!!!
@@ -898,15 +597,38 @@ No city on baseCraetion!!!
 Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
 No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
+No city on baseCraetion!!! 
 No city on baseCraetion!!! 
 No city on baseCraetion!!! 
 No city on baseCraetion!!! 
@@ -1042,8 +764,6 @@ No city on baseCraetion!!!
 No city on baseCraetion!!! 
 No city on baseCraetion!!! 
 No city on baseCraetion!!! 
-No city on baseCraetion!!! 
-Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 
 Hotel is null on baseCreation!!!
 No city on baseCraetion!!! 

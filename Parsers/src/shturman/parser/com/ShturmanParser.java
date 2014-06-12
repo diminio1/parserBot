@@ -174,6 +174,9 @@ public class ShturmanParser {
     }
     
     private Date getDate(String src) {
+    	
+    	try {
+			
         String res = src; 
         res = res.replace("\u00a0", " ");
         if (res.contains("Вылет"))
@@ -185,6 +188,14 @@ public class ShturmanParser {
         int day = Integer.parseInt(res.substring(0, 2));
         Date depDate = new Date(year, month, day);
         return depDate;
+        
+    	} catch (NumberFormatException e) {
+    		// TODO: handle exception
+    		return null;
+    	} catch (Exception ex){
+    		
+    		return null;   		
+    	}
     }
     
     private int getStars(String src, FileWriter bananLog) {

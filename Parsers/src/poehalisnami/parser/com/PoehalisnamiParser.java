@@ -47,7 +47,7 @@ public class PoehalisnamiParser {
 		
 				if (overBloks != null){
 				
-					parseBlock(overBloks, countryStand, cityStand, bananLog);
+					parseBlock(overBloks, "div[class = gray_x]", countryStand, cityStand, bananLog);
 				}
 				else{
 					//System.out.println("No block !!!");
@@ -59,7 +59,7 @@ public class PoehalisnamiParser {
 		
 				if (countryBloks != null){
 				
-					parseBlock(countryBloks, countryStand, cityStand, bananLog);
+					parseBlock(countryBloks, "div[class = block425]", countryStand, cityStand, bananLog);
 				}
 				else{
 					//System.out.println("Bad block !!!");
@@ -72,7 +72,7 @@ public class PoehalisnamiParser {
 		}
 	}
 	
-	public void parseBlock (Elements blocks, TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
+	public void parseBlock (Elements blocks, String linkFrom, TermFilter countryStand, TermFilter cityStand, FileWriter bananLog) {
 		
 		for (Element block : blocks) {
 			
@@ -80,7 +80,7 @@ public class PoehalisnamiParser {
 			
 			if (block.hasText()) {
 			
-				Elements sourceLinks   = block.select("div[class = gray_x]");
+				Elements sourceLinks   = block.select(linkFrom);
 				Elements countries     = block.select("span[id *= _spnCountryName]");
 				Elements cities        = block.select("span[id *= _spnResortName]");
 				Elements prices        = block.select("a[class = price_orang]");
