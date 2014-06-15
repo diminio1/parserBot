@@ -22,7 +22,7 @@ import banan.file.writer.BananFileWriter;
 import pair.parser.Pair;
 import rita.blowup.com.DateEdit;
 import main.parser.com.TourObject;
-import main.parser.com.Main;
+import main.parser.com.Parsers;
 import term.filter.parser.TermFilter;;
 
 public class TEZTourParser{  

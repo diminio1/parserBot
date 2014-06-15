@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="dist/Parsers.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/dimon/Downloads/Parsers/libs/h2-1.3.173.jar"/>
-	<classpathentry kind="lib" path="/home/dimon/Downloads/Parsers/libs/jsoup-1.7.2.jar"/>
-	<classpathentry kind="lib" path="/home/dimon/Downloads/Parsers/libs/log4j-facade.jar"/>
-	<classpathentry kind="lib" path="/home/dimon/Downloads/Parsers/libs/tinylog.jar"/>
+	<classpathentry kind="lib" path="/home/dimka/anan/parserBot/Parsers/libs/h2-1.3.173.jar"/>
+	<classpathentry kind="lib" path="/home/dimka/anan/parserBot/Parsers/libs/jsoup-1.7.2.jar"/>
+	<classpathentry kind="lib" path="/home/dimka/anan/parserBot/Parsers/libs/log4j-facade.jar"/>
+	<classpathentry kind="lib" path="/home/dimka/anan/parserBot/Parsers/libs/tinylog.jar"/>
+	<classpathentry kind="lib" path="/home/dimka/anan/parserBot/Parsers/dist/Parsers.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

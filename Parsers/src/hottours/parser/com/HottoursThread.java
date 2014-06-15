@@ -2,7 +2,7 @@ package hottours.parser.com;
 
 import java.sql.SQLException;
 
-import main.parser.com.Main;
+import main.parser.com.Parsers;
 
 public class HottoursThread extends Thread {
 
@@ -11,7 +11,7 @@ public class HottoursThread extends Thread {
 		
 //		HottoursParser obj = new HottoursParser();
 		
-		Main main = new Main();
+		Parsers main = new Parsers();
 		
 //		try {
 //			main.createBase(obj.tours);

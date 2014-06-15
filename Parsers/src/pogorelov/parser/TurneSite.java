@@ -138,7 +138,7 @@ public class TurneSite extends AbstractSite {
 			if(link != null) {
 				String departCity = getDepartCity(link.substring(6,  link.length()-2), null);
 				if(departCity == null) {
-					tour.setDepartCity(null);
+					tour.setDepartCity("КИЕВ");
 				} else {
 					tour.setDepartCity(departCity.toUpperCase());
 				}

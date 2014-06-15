@@ -16,7 +16,7 @@ import banan.file.writer.BananFileWriter;
 import pair.parser.Pair;
 import term.filter.parser.TermFilter;
 import main.parser.com.TourObject;
-import main.parser.com.Main;
+import main.parser.com.Parsers;
 
 public class HottoursParser {
 

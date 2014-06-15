@@ -2,7 +2,7 @@ package smgp.parser.com;
 
 import java.sql.SQLException;
 
-import main.parser.com.Main;
+import main.parser.com.Parsers;
 
 public class SmgpThread extends Thread {
 
@@ -11,7 +11,7 @@ public class SmgpThread extends Thread {
 		
 //		SmgpParser obj = new SmgpParser();
 		
-		Main main = new Main();
+		Parsers main = new Parsers();
 		
 //		try {
 //			main.createBase(obj.tours);

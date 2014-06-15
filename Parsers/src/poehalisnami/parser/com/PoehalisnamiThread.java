@@ -2,7 +2,7 @@ package poehalisnami.parser.com;
 
 import java.sql.SQLException;
 
-import main.parser.com.Main;
+import main.parser.com.Parsers;
 
 public class PoehalisnamiThread extends Thread{
 
@@ -11,7 +11,7 @@ public class PoehalisnamiThread extends Thread{
 		
 //		PoehalisnamiParser obj = new PoehalisnamiParser();
 		
-		Main main = new Main();
+		Parsers main = new Parsers();
 		
 //		try {
 //			main.createBase(obj.tours);
