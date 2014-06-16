@@ -16,10 +16,6 @@ import banan.file.writer.BananFileWriter;
 import rita.blowup.com.DateEdit;
 import term.filter.parser.TermFilter;
 
-/**
- *
- * @author Маргарита
- */
 public class TouraviaParser {
     
     public ArrayList <TourObject> tours;
@@ -110,11 +106,13 @@ public class TouraviaParser {
     
     private String getHotel(String src) {
         String res = "" + src;
+        
         if (res.contains("("))
         {
             int k = res.indexOf("(");
             res = res.substring(0, k).trim();
         }
+        
         int pos = res.lastIndexOf(" ");
         return res.substring(0, pos).replace('\'', '"');
     }
@@ -137,18 +135,25 @@ public class TouraviaParser {
     }
     
     private int getNumber(String src) {
-        String res = src.trim();
-        if (res.equals(""))
+        
+    	String res = src.trim();
+        
+    	if (res.equals(""))
             return 0;
-        int k = res.charAt(0);
-        while (!(k >= 48 && k <= 57)) {
+        
+    	int k = res.charAt(0);
+        
+    	while (!(k >= 48 && k <= 57)) {
             res = res.substring(1);
             k = res.charAt(0);
         }
+        
         for (int i = 0; i < res.length(); ++ i) {
             int p = res.charAt(i);
+        
             if(!(p >= 48 && p <= 57)) {
                 res = res.substring(0, i);
+            
                 try {
                     return Integer.parseInt(res);
                 }
@@ -157,15 +162,18 @@ public class TouraviaParser {
                 }
             }
         }
+
         return Integer.parseInt(res);
     }
     
     private int getDuration (String src) {
         String res = "" + src;
+        
         if (res.contains("/")) {
             int k = res.indexOf("/");
             res = res.substring(k);
         }
+        
         return getNumber(res);
     }
     

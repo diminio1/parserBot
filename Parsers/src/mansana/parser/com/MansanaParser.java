@@ -256,12 +256,6 @@ public class MansanaParser {
                 }
             }
         }
-        catch(IOException ex) {
-            //System.out.println("IOException");
-        }
-        catch(NullPointerException ex) {
-            //System.out.println("NullPointerException");            
-        }
         catch(Exception ex) {
             //System.out.println("Exception");  
         	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
