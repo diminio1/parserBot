@@ -66,7 +66,7 @@ public class TouraviaParser {
                     TourObject tObj = new TourObject();
                     tObj.setSource(source);
                     tObj.setCountry(country, countryStand, bananLog);
-
+                    
                     tObj.setHotel(getHotel(hotel));
                     tObj.setDepartCity("КИЕВ");
                     tObj.departDate = getDepDate(depDate);

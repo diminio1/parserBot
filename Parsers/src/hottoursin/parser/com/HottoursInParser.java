@@ -70,6 +70,7 @@ public class HottoursInParser {
 	        			continue;
 	            
 	        		tObj.setCountry(country, countryStand, bananLog);
+	        		tObj.setTown(country, cityStand, "Hottours.in.ua: ", bananLog);
 	        		tObj.setLink(url);
 	        		tObj.setPrice(myPrice);
 	        		tObj.setSource(source);

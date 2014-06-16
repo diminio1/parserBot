@@ -18,7 +18,6 @@ import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.LoggingLevel;
 import org.pmw.tinylog.writers.FileWriter;
 
-import otpusk.parser.com.OtpuskParser;
 import banan.file.writer.BananFileWriter;
 import candytour.parser.com.CandytourParser;
 import columpus.parser.com.HColumbusParser;
@@ -55,7 +54,6 @@ public class Parsers {
 	private static CandytourParser    candyTourParser;
 	private static MansanaParser      mansanaParser;
 	private static HottoursInParser   hottoursInParser;
-	private static OtpuskParser       otpParser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
@@ -145,8 +143,6 @@ public class Parsers {
 							System.out.println("mansanaParser finish!");
 							hottoursInParser   = new HottoursInParser(countryStand, cityStand, bananLog);
 							System.out.println("hottoursInParser finish!");
-							otpParser          = new OtpuskParser(countryStand, cityStand, bananLog);
-							System.out.println("otpuskParser finish!");
 							
 							//by pogorelov
 							List<TourObject> listToursTmp = new ArrayList<>();
