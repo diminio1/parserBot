@@ -14,9 +14,6 @@ import java.util.List;
 
 import mansana.parser.com.MansanaParser;
 
-import org.h2.jdbcx.JdbcDataSource;
-import org.h2.jdbcx.JdbcDataSourceFactory;
-import org.h2.store.Data;
 import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.LoggingLevel;
 import org.pmw.tinylog.writers.FileWriter;
