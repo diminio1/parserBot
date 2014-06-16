@@ -6,8 +6,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -121,12 +123,12 @@ public class TEZTourParser{
 							i ++;
 						}
 						
-						String monthTmp = new String(monthTmpBuf.toString());
+						String monthTmp = new String(monthTmpBuf.toString()).trim();
 						
 							 if (monthTmp.equals("Янв")) {tour.departDate.setMonth(0); } else if (monthTmp.equals("Фвр")) {tour.departDate.setMonth(1);}  
 					    else if (monthTmp.equals("Мрт")) {tour.departDate.setMonth(2); } else if (monthTmp.equals("Апр")) {tour.departDate.setMonth(3);}
 					    else if (monthTmp.equals("Май")) {tour.departDate.setMonth(4); } else if (monthTmp.equals("Июн")) {tour.departDate.setMonth(5);}
-					    else if (monthTmp.equals("Июл")) {tour.departDate.setMonth(6); } else if (monthTmp.equals("Авг")) {tour.departDate.setMonth(7); }
+					    else if (monthTmp.equals("Июл")) {tour.departDate.setMonth(6);} else if (monthTmp.equals("Авг")) {tour.departDate.setMonth(7);}
 				        else if (monthTmp.equals("Снт")) {tour.departDate.setMonth(8); } else if (monthTmp.equals("Окт")) {tour.departDate.setMonth(9);}
 					    else if (monthTmp.equals("Нбр")) {tour.departDate.setMonth(10);} else if (monthTmp.equals("Дек")) {tour.departDate.setMonth(11);}
 						     

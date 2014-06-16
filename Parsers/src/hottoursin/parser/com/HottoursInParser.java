@@ -82,6 +82,7 @@ public class HottoursInParser {
 		        }
 		        catch(Exception ex) {
 		            bananLog.write(null, "Caught Exception!\n");
+		            bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
 		        }
 
 	        }
@@ -93,7 +94,7 @@ public class HottoursInParser {
             bananLog.write(null, "Caught NullPointerException!\n");
 	    }
 	    catch(Exception ex) {
-            bananLog.write(null, "Caught Exception!\n");
+	    	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
 	    }
 	}
 }

@@ -83,7 +83,14 @@ public class Parsers {
 					
 					try {
 						
-					
+						String dateInWhile = formatter.format(new java.util.Date());
+						
+						bananLog.write(LoggingLevel.INFO, "\n");
+						bananLog.write(LoggingLevel.INFO, "\n");
+						bananLog.write(LoggingLevel.INFO, "\n");
+						
+						bananLog.write(LoggingLevel.INFO, "PARSERS START AT " + dateInWhile + "\n");
+						
 						Statement selectCountry = null;
 						ResultSet countryResult = null;
 						Statement selectCity    = null;
@@ -116,6 +123,7 @@ public class Parsers {
 							
 							} catch (Exception e) {
 								// TODO: handle exception
+								bananLog.write(LoggingLevel.INFO, "Cannot connect to Base!" + "\n");
 							}
 	//						connCountryCityStand.close();
 							
