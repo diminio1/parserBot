@@ -490,7 +490,7 @@ public class SmgpParser {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
+			bananLog.write(null, /*e.getMessage().toString() + " \n" +*/  bananLog.bananStackTraceToString(e) + " \n");
 		}
 	}
 }

@@ -47,20 +47,26 @@ public class UniversalParser {
             TourObject tObj = new TourObject();
                 
             tObj.setCountry((String)country.get(countryStr), countryStand, bananLog);
-                
-            tObj.setHotel((String)hotel.get(hotelStr));
-
+            
+            try {
+            	tObj.setHotel((String)hotel.get(hotelStr));
+            }
+            catch(NullPointerException ex) {
+            	tObj.setHotel(null);
+            }
+            
             tObj.setDepartCity((String)departCity.get(departCityStr));
                 
             tObj.setDuration((int)duration.get(durationStr));
                 
             tObj.departDate = (Date)departDate.get(departDateStr);
             
-            if(tObj.departDate == null)
-                return null;
-            if((DateEdit.before(tObj.departDate, new Date())))
-                return null;
-                
+            if(tObj.departDate == null) {
+            	return null;
+            }
+            if((DateEdit.before(tObj.departDate, new Date()))) {
+            	return null;
+            }
             tObj.setStars((int)stars.get(starsStr));
                 
             tObj.setTown((String)town.get(townStr), cityStand, message, bananLog);

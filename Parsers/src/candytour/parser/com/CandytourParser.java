@@ -95,7 +95,7 @@ public class CandytourParser {
                             return new Date(Integer.parseInt(src.substring(n - 4)) - 1900, Integer.parseInt(src.substring(3,5)) - 1, Integer.parseInt(src.substring(0,2)));                    
                         }
                         catch (Exception ex) {
-                            return new Date();
+                            return new Date(0, 0, 1);
                         }
                     }
                 }, departDate, new Parsable() {

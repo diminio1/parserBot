@@ -116,7 +116,9 @@ public class MansanaParser {
                                 return res;
                             }
                             catch(Exception ex) {
-                                return "";
+                            	if (src.equals(""))
+                            		return null;
+                                return src.replace("3", "").replace("2", "").replace("5", "").replace("4", "").replace("*", "").replace("+", "").trim().toUpperCase().replace('\'', '"');
                             }
                         }
                     }, hotelStr, new Parsable() {

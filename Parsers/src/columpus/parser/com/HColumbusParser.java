@@ -142,7 +142,7 @@ public class HColumbusParser {
             tObj.setSource(source);
             
             tObj.setHotel(getHotel(hotel.text()).trim().toUpperCase());
-            if(hotel.text().contains("-"))
+            if(hotel.text().contains("-") || hotel.text().equals("3*")|| hotel.text().equals("4*")|| hotel.text().equals("5*")|| hotel.text().equals("2*"))
                 tObj.setHotel(null);
             
             tObj.setDepartCity("КИЕВ");

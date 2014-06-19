@@ -4,6 +4,7 @@ import pair.parser.Pair;
 import term.filter.parser.TermFilter;
 import touravia.parser.com.TouraviaParser;
 import tui.parser.com.TuiParser;
+import turne.parser.com.TurneParser;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -18,6 +19,7 @@ import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.LoggingLevel;
 import org.pmw.tinylog.writers.FileWriter;
 
+import otpusk.parser.com.OtpuskParser;
 import banan.file.writer.BananFileWriter;
 import candytour.parser.com.CandytourParser;
 import columpus.parser.com.HColumbusParser;
@@ -47,13 +49,15 @@ public class Parsers {
 	private static ShturmanParser     shturmanParser;
 	private static HColumbusParser    hColumbusParser;
 	private static TuiParser          tuiParser;
-	private static OtpuskSite         otpuskParser;
-	private static TurneSite          turneParser;
+	//private static OtpuskSite         otpuskParser;
+	//private static TurneSite          turneParser;
 	private static TurtessSite		  turtessParser;
 	private static TouraviaParser     touraviaParser;
 	private static CandytourParser    candyTourParser;
 	private static MansanaParser      mansanaParser;
 	private static HottoursInParser   hottoursInParser;
+	private static OtpuskParser       otpuskParser;
+	private static TurneParser          turneParser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
@@ -151,16 +155,20 @@ public class Parsers {
 							System.out.println("mansanaParser finish!");
 							hottoursInParser   = new HottoursInParser(countryStand, cityStand, bananLog);
 							System.out.println("hottoursInParser finish!");
-							
+							otpuskParser       = new OtpuskParser(countryStand, cityStand, bananLog);
+							System.out.println("otpuskParser finish! ");
+							turneParser       = new TurneParser(countryStand, cityStand, bananLog);
+							System.out.println("turneParser finish! ");
+				
 							//by pogorelov
 							List<TourObject> listToursTmp = new ArrayList<>();
 							
-							otpuskParser      = new OtpuskSite();
-							listToursTmp.addAll(otpuskParser.getToursList(countryStand, cityStand, bananLog));
-							turneParser       = new TurneSite();
-							listToursTmp.addAll(turneParser.getToursList(countryStand, cityStand, bananLog));
-							turtessParser     = new TurtessSite();
-							listToursTmp.addAll(turtessParser.getToursList(countryStand, cityStand, bananLog));
+							//otpuskParser      = new OtpuskSite();
+							//listToursTmp.addAll(otpuskParser.getToursList(countryStand, cityStand, bananLog));
+							//turneParser       = new TurneSite();
+							//listToursTmp.addAll(turneParser.getToursList(countryStand, cityStand, bananLog));
+							//turtessParser     = new TurtessSite();
+							//listToursTmp.addAll(turtessParser.getToursList(countryStand, cityStand, bananLog));
 							
 							ArrayList<TourObject> allTours = new ArrayList <TourObject> ();
 							
@@ -176,6 +184,8 @@ public class Parsers {
 							allTours.addAll(candyTourParser.tours);
 							allTours.addAll(mansanaParser.tours);
 							allTours.addAll(hottoursInParser.tours);
+							allTours.addAll(otpuskParser.tours);
+							allTours.addAll(turneParser.tours);
 							
 							//add pogorelovs
 							allTours.addAll(listToursTmp);

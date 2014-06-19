@@ -24,33 +24,33 @@ public class DateEdit {
     }
     
     public static int getMonth(String src) {
-        if (src.contains("января"))
+        if (src.contains("янв"))
             return 0;
-        if (src.contains("февраля"))
+        if (src.contains("фев"))
             return 1;
-        if (src.contains("марта"))
+        if (src.contains("март"))
             return 2;
-        if (src.contains("апреля"))
+        if (src.contains("апр"))
             return 3;
         if (src.contains("мая"))
             return 4;
-        if (src.contains("июня"))
+        if (src.contains("июн"))
             return 5;
-        if (src.contains("июля"))
+        if (src.contains("июл"))
             return 6;
-        if (src.contains("августа"))
+        if (src.contains("авг"))
             return 7;
-        if (src.contains("сентября"))
+        if (src.contains("сен"))
             return 8;
-        if (src.contains("октября"))
+        if (src.contains("окт"))
             return 9;
-        if (src.contains("ноября"))
+        if (src.contains("ноя"))
             return 10;
-        if (src.contains("декабря"))
+        if (src.contains("дек"))
             return 11;
         return -1;
     }
-    
+
     public static Date add(Date d, int i) {
         int day = d.getDate();
         int mon = d.getMonth();
