@@ -260,7 +260,14 @@ public class MansanaParser {
         }
         catch(Exception ex) {
             //System.out.println("Exception");  
-        	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
         }
     }
 }

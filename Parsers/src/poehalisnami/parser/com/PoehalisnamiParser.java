@@ -18,7 +18,7 @@ import exception.parser.ua.ParserException;
 public class PoehalisnamiParser {
 
 	public ArrayList <TourObject> tours;
-	ParserException ex;
+//	ParserException ex;
 	
 	private static final int    source = 8;
 	
@@ -66,9 +66,16 @@ public class PoehalisnamiParser {
 					bananLog.write(null, "No block 2!\n");
 				}
 			}
-		} catch (Exception e) {
+		} catch (Exception ex) {
 			// TODO: handle exception
-			bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
 		}
 	}
 	

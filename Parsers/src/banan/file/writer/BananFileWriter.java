@@ -8,8 +8,7 @@ public class BananFileWriter extends FileWriter {
 		
 		super(input);
 	}
-	
-	
+		
 	public String bananStackTraceToString(Throwable e) {
 	    StringBuilder sb = new StringBuilder();
 	    for (StackTraceElement element : e.getStackTrace()) {

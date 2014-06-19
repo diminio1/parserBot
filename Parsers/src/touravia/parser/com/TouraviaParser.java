@@ -97,10 +97,17 @@ public class TouraviaParser {
             //System.out.println("Caught IOException");
             bananLog.write(null, "Caught IOException!\n");
         }
-        catch (Exception e) {
+        catch (Exception ex) {
             //System.out.println("Caught Exception");
             bananLog.write(null, "Caught Exception!\n");
-            bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
         }
     }
     

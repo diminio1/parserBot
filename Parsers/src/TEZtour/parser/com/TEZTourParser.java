@@ -338,7 +338,13 @@ public class TEZTourParser{
 		} catch (Exception e) {
 			// TODO: handle exception
 			
-			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
+			if(e.getMessage() != null){
+			
+				bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
+			}
+			else{
+				bananLog.write(null, bananLog.bananStackTraceToString(e) + " \n");
+			}
 		}
 	}
 }

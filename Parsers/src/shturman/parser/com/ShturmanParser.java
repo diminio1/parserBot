@@ -120,7 +120,14 @@ public class ShturmanParser {
         }
         catch (Exception ex) {
 //            System.out.println("Failed to connect!");
-        	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
         }
     }
     

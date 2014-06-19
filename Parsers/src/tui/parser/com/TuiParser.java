@@ -75,7 +75,14 @@ public class TuiParser {
         catch (Exception ex) {
             //System.out.println("Caught Null Pointer Exception!");
             bananLog.write(null, "Caught Null Pointer Exception!\n");
-            bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
         }
     }
     

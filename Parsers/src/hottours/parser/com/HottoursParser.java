@@ -27,8 +27,7 @@ public class HottoursParser {
 	public HottoursParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
 		
 		try {
-			
-		
+					
 			bananLog.write(null, "Hottours start!\n");
 			
 			tours = new ArrayList<TourObject>();
@@ -40,7 +39,14 @@ public class HottoursParser {
 			}
 			catch (IOException e) {
 				//e.printStackTrace();
-				bananLog.write(null, "Exeption: " + e.getStackTrace().toString() + "\n");
+	        	if(e.getMessage() != null){
+					
+					bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
+				}
+				else{
+					
+					bananLog.write(null, bananLog.bananStackTraceToString(e) + " \n");
+				}
 			}
 			
 			if (hotTourDoc != null){
@@ -393,10 +399,17 @@ public class HottoursParser {
 					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (Exception ex) {
 			// TODO: handle exception
 			
-			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
 		}
 	}
 }

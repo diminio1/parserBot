@@ -21,7 +21,7 @@ import exception.parser.ua.ParserException;;
 public class SmgpParser {
 
 	public ArrayList <TourObject> tours;
-	ParserException ex;
+//	ParserException ex;
 	private static final int    source = 11;
 	
 	@SuppressWarnings("deprecation")
@@ -488,9 +488,16 @@ public class SmgpParser {
 					}
 				}
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			bananLog.write(null, /*e.getMessage().toString() + " \n" +*/  bananLog.bananStackTraceToString(e) + " \n");
+		} catch (Exception ex) {
+			
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
 		}
 	}
 }

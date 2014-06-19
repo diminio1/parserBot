@@ -232,15 +232,36 @@ public class CandytourParser {
         }
         catch(IOException ex) {
 //            System.out.println("IOException");
-        	bananLog.write(null, ex.getMessage().toString() + " \n" +  ex.getStackTrace().toString() + " \n");
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
         }
         catch(NullPointerException ex) {
-//            System.out.println("NullPointerException");
-        	bananLog.write(null, ex.getMessage().toString() + " \n" +  ex.getStackTrace().toString() + " \n");
+        	
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
         }
         catch(Exception ex) {
 //            System.out.println("Exception"); 
-        	bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+        	if(ex.getMessage() != null){
+				
+				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
+			}
+			else{
+				
+				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
+			}
         }
     }
 
