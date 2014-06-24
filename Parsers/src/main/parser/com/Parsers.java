@@ -57,12 +57,14 @@ public class Parsers {
 	private static MansanaParser      mansanaParser;
 	private static HottoursInParser   hottoursInParser;
 	private static OtpuskParser       otpuskParser;
-	private static TurneParser          turneParser;
+	private static TurneParser        turneParser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
 	
 	private static BananFileWriter bananLog;
+	
+//	private static SimpleDateFormat df = new SimpleDateFormat("MM-dd-HH:mm:ss");
 	
 	public static void startParsing(final Connection conn) {
 		new Thread(new Runnable()
@@ -93,7 +95,7 @@ public class Parsers {
 						bananLog.write(LoggingLevel.INFO, "\n");
 						bananLog.write(LoggingLevel.INFO, "\n");
 						
-						bananLog.write(LoggingLevel.INFO, "PARSERS START AT " + dateInWhile + "\n");
+						bananLog.write(LoggingLevel.INFO, /*df.format(new java.util.Date()) + */" PARSERS START AT " + dateInWhile + "\n");
 						
 						Statement selectCountry = null;
 						ResultSet countryResult = null;
@@ -128,6 +130,8 @@ public class Parsers {
 							} catch (Exception e) {
 								// TODO: handle exception
 								bananLog.write(LoggingLevel.INFO, "Cannot connect to Base!" + "\n");
+								bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
+								
 							}
 	//						connCountryCityStand.close();
 							
@@ -153,8 +157,8 @@ public class Parsers {
 							System.out.println("candyTourParser finish!");
 							mansanaParser      = new MansanaParser(countryStand, cityStand, bananLog);
 							System.out.println("mansanaParser finish!");
-							hottoursInParser   = new HottoursInParser(countryStand, cityStand, bananLog);
-							System.out.println("hottoursInParser finish!");
+//							hottoursInParser   = new HottoursInParser(countryStand, cityStand, bananLog);
+//							System.out.println("hottoursInParser finish!");
 							otpuskParser       = new OtpuskParser(countryStand, cityStand, bananLog);
 							System.out.println("otpuskParser finish! ");
 							turneParser       = new TurneParser(countryStand, cityStand, bananLog);
@@ -183,7 +187,7 @@ public class Parsers {
 							allTours.addAll(touraviaParser.tours);
 							allTours.addAll(candyTourParser.tours);
 							allTours.addAll(mansanaParser.tours);
-							allTours.addAll(hottoursInParser.tours);
+//							allTours.addAll(hottoursInParser.tours);
 							allTours.addAll(otpuskParser.tours);
 							allTours.addAll(turneParser.tours);
 							
@@ -304,7 +308,7 @@ public class Parsers {
 //			  bananLog.write(LoggingLevel.INFO, "Exception: " + ex.getMessage() + "\n");
 //		  }
 		
-		  conn.setAutoCommit(false);
+
 		  
 		  PreparedStatement select = null;
 		  
@@ -374,6 +378,8 @@ public class Parsers {
 //			  select = conn.prepareStatement("delete from TOUR where TOUR_ID = " + tmpTour.tourId +";");
 //			  select.execute();
 //		  }
+		  
+		  conn.setAutoCommit(false);
 		  
 		  select = conn.prepareStatement("truncate TOURS_TO_CITIES;");
 		  select.execute();
@@ -665,6 +671,7 @@ public class Parsers {
 	      }
 	      
 	      conn.commit();
+		  conn.setAutoCommit(true);
 //	      conn.close();
 	      
 	      System.out.println("ALL IS DONE!");

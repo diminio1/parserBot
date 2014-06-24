@@ -77,7 +77,7 @@ public class TouraviaParser {
                         continue;
                     
                     tObj.setDuration(getDuration(duration));
-                    tObj.setLink(link);
+                    tObj.setLink(site);
                     tObj.setNutrition(getNutrition(nutrition));
                     tObj.setPrice(getNumber(price));
                     if (tObj.price == 0)
