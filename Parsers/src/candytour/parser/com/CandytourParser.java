@@ -146,7 +146,7 @@ public class CandytourParser {
                                 res = res.substring(1);
                                 k = res.charAt(0);
                             }
-                            return Integer.parseInt(res);
+                            return Integer.parseInt(res) / 2;
                         }
                         catch (IndexOutOfBoundsException ex) {
                             return 0;
