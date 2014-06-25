@@ -194,10 +194,10 @@ public class TouraviaParser {
             return "HB";
         if (res.equals("ПО ПРОГРАММЕ"))
             return "FB";
-        if (res.equals("ВСЕ ВКЛЮЧЕНО"))
-            return "AI";
         if (res.equals("УЛЬТРА ВСЕ ВКЛЮЧЕНО"))
             return "UAI";
+        if (res.equals("ВСЕ ВКЛЮЧЕНО"))
+            return "AI";
         return "";
 
     }

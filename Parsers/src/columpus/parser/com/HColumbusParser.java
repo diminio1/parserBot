@@ -256,16 +256,16 @@ public class HColumbusParser {
         String res = src.trim().toUpperCase();
         if (res.equals("БЕЗ ПИТАНИЯ"))
             return "RO";
-        if (res.equals("ЗАВТРАКИ"))
-            return "BB";
         if (res.equals("ЗАВТРАКИ+УЖИНЫ"))
             return "HB";
+        if (res.equals("ЗАВТРАКИ"))
+            return "BB";
         if (res.equals("ПО ПРОГРАММЕ"))
             return "FB";
-        if (res.equals("ВСЕ ВКЛЮЧЕНО"))
-            return "AI";
         if (res.equals("УЛЬТРА ВСЕ ВКЛЮЧЕНО"))
             return "UAI";
+        if (res.equals("ВСЕ ВКЛЮЧЕНО"))
+            return "AI";
         return "";
     }
     

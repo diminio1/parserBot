@@ -188,10 +188,10 @@ public class CandytourParser {
                             return "HB";
                         if (res.contains("FB"))
                             return "FB";
-                        if (res.contains("AI") || res.contains("AL") || res.contains("All"))
-                            return "AI";
                         if (res.contains("UAI") || res.contains("UAL") || res.contains("UAll"))
                             return "UAI";
+                        if (res.contains("AI") || res.contains("AL") || res.contains("All"))
+                            return "AI";
                         return "";
                     }
                 }, info, new Parsable() {

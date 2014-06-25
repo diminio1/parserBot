@@ -33,9 +33,10 @@ public class HottoursInParser {
 	        for (Element x: tourBlocks) {
 	        	try {
 	        		String url = "hottours.in.ua/" + x.select("a").attr("href");
-	        		String country = x.select("h3").select("a").text().toUpperCase();
+	        		String country = x.select("div[class = head3]").text().toUpperCase();
 	        		String info = x.select("p").text();
 	        		String test = "";
+	        		
 	        		for (int i = 0; i < info.length() - 4; ++i) {
 	        			test = info.substring(i, i + 5);
 	        			if (Pattern.matches("[0-9][0-9].[0-9][0-9]", test)) {
@@ -58,6 +59,13 @@ public class HottoursInParser {
 	        		if (!(Pattern.matches("[0-9][0-9].[0-9][0-9]", test)))
 	        			continue;
 	                
+	        		String duration = "";
+	        		
+	        		if (info.contains("дней") || info.contains("ночей")) {
+	        			int pos = info.indexOf(',');
+	        			duration = info.substring(pos + 1).trim();
+	        		}
+	        		
 	        		String price = x.select("div[class = price]").select("span").text().replace(" ", "");
 	        		price = price.substring(0, price.indexOf(","));
 	        		Currency c = new Currency();
@@ -74,7 +82,9 @@ public class HottoursInParser {
 	        		tObj.setLink(url);
 	        		tObj.setPrice(myPrice);
 	        		tObj.setSource(source);
-	               
+	        		tObj.setDuration(getDuration(duration));
+	        		tObj.setNutrition(getNutrition(info.toUpperCase()));
+	        		
 	        		tours.add(tObj);
 	            }
 		        catch(NullPointerException ex) {
@@ -111,4 +121,45 @@ public class HottoursInParser {
 			}
 	    }
 	}
+	
+	private int getDuration(String src) {
+        try {
+            String res = "" + src;
+            int k = res.charAt(0);
+            while (!(k >= 48 && k <= 57)) {
+            	res = res.substring(1);
+                k = res.charAt(0);
+            }
+            int l = res.charAt(1);
+            if ((l >= 48) && (l <= 57))
+                res = res.substring(0,2);
+            else
+                res = res.substring(0,1);
+            return Integer.parseInt(res);
+        }
+        catch (IndexOutOfBoundsException ex) {
+            return 0;
+        }
+        catch (NumberFormatException ex) {
+            return 0;
+        }
+	}
+	
+    private String getNutrition(String src) {
+        String res = src.trim().toUpperCase();
+        if (res.contains("БЕЗ ПИТАНИЯ"))
+            return "RO";
+        if (res.contains("ЗАВТРАКИ И УЖИНЫ"))
+            return "HB";
+        if (res.contains("ЗАВТРАКИ"))
+            return "BB";
+        if (res.contains("ПО ПРОГРАММЕ"))
+            return "FB";
+        if (res.contains("УЛЬТРА ВСЕ ВКЛЮЧЕНО"))
+            return "UAI";
+        if (res.contains("ВСЕ ВКЛЮЧЕНО"))
+            return "AI";
+        return null;
+    }
+
 }
