@@ -63,7 +63,7 @@ public class HColumbusParser {
         }
     }
     
-        private void fillTour(String url, TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
+    private void fillTour(String url, TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
         
         // Init block 
         Document tourDoc = null;
