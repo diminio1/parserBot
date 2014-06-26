@@ -78,7 +78,6 @@ public class TurneParser {
                 try {
                 	Document doc = Jsoup.connect(linkStr).timeout(100000).get();
                 	departCityStr = doc.select("div[class = tour_info]").select("tbody").select("tr:contains(из:)").select("td").get(1).ownText().trim().toUpperCase();
-                	System.out.println(departCityStr);              	
                 }
                 catch (Exception ex) {
                 	
