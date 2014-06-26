@@ -221,6 +221,8 @@ public class MansanaParser {
 
                         @Override
                         public Object get(String src) {
+                        	if ((src == null) || (src.equals("")))
+                        		return website;
                             return "" + src;
                         }
                     }, linkStr, new Parsable() {

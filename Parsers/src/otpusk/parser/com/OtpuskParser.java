@@ -37,14 +37,14 @@ public class OtpuskParser {
                 try {
                     String country = "";
                     try {
-                        country = x.select("span[class = t-locale st-i]").select("a").first().ownText().trim().toUpperCase();
+                        country = x.select("span[class = t-locale st-i]").text().trim().toUpperCase();
                     }
                     catch (Exception ex) {
                         country = "";
                     }
                     String town = "";
                     if (!country.equals(""))
-                        town = x.select("span[class = t-locale st-i]").select("a").get(1).ownText().trim().toUpperCase();
+                        town = "" + country;
                     
                     String persons = x.select("div[class = span4]").first().ownText();
                     

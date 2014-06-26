@@ -75,6 +75,15 @@ public class TurneParser {
                     
                 String priceStr = x.select("span[class = e-tour__price]").first().ownText();
                 
+                try {
+                	Document doc = Jsoup.connect(linkStr).timeout(100000).get();
+                	departCityStr = doc.select("div[class = tour_info]").select("tbody").select("tr:contains(из:)").select("td").get(1).ownText().trim().toUpperCase();
+                	System.out.println(departCityStr);              	
+                }
+                catch (Exception ex) {
+                	
+                }
+                
                 TourObject localTour = UniversalParser.parseTour(new Parsable() {
                 	@Override
                 	public Object get(String src) {
