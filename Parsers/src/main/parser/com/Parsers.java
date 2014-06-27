@@ -51,7 +51,7 @@ public class Parsers {
 	private static TuiParser          tuiParser;
 	//private static OtpuskSite         otpuskParser;
 	//private static TurneSite          turneParser;
-	private static TurtessSite		  turtessParser;
+	//private static TurtessSite		  turtessParser;
 	private static TouraviaParser     touraviaParser;
 	private static CandytourParser    candyTourParser;
 	private static MansanaParser      mansanaParser;
@@ -165,7 +165,7 @@ public class Parsers {
 							System.out.println("turneParser finish! ");
 				
 							//by pogorelov
-							List<TourObject> listToursTmp = new ArrayList<>();
+//							List<TourObject> listToursTmp = new ArrayList<>();
 							
 							//otpuskParser      = new OtpuskSite();
 							//listToursTmp.addAll(otpuskParser.getToursList(countryStand, cityStand, bananLog));
@@ -191,8 +191,8 @@ public class Parsers {
 							allTours.addAll(otpuskParser.tours);
 							allTours.addAll(turneParser.tours);
 							
-							//add pogorelovs
-							allTours.addAll(listToursTmp);
+//							//add pogorelovs
+//							allTours.addAll(listToursTmp);
 							
 							createBase(allTours, conn);
 						}
