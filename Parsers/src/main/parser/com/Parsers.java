@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import kenar.parser.com.KenarParser;
 import mansana.parser.com.MansanaParser;
 
 import org.pmw.tinylog.Configurator;
@@ -58,6 +59,7 @@ public class Parsers {
 	private static HottoursInParser   hottoursInParser;
 	private static OtpuskParser       otpuskParser;
 	private static TurneParser        turneParser;
+	private static KenarParser        kenarParser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
@@ -163,7 +165,9 @@ public class Parsers {
 							System.out.println("otpuskParser finish! ");
 							turneParser       = new TurneParser(countryStand, cityStand, bananLog);
 							System.out.println("turneParser finish! ");
-				
+							kenarParser       = new KenarParser(countryStand, cityStand, bananLog);
+							System.out.println("kenarParser finish! ");
+							
 							//by pogorelov
 //							List<TourObject> listToursTmp = new ArrayList<>();
 							
@@ -190,6 +194,7 @@ public class Parsers {
 							allTours.addAll(hottoursInParser.tours);
 							allTours.addAll(otpuskParser.tours);
 							allTours.addAll(turneParser.tours);
+							allTours.addAll(kenarParser.tours);
 							
 //							//add pogorelovs
 //							allTours.addAll(listToursTmp);
@@ -437,7 +442,7 @@ public class Parsers {
 	      	else {
 	//      		System.out.println("No country!!!");
 	 
-	      		bananLog.write(LoggingLevel.INFO, "No country on baseCraetion!!!\n");
+	      		bananLog.write(LoggingLevel.INFO, "No country on baseCreation!!!\n");
 	      		
 	      		HAS_COUNTRY = false;
 	      	}
@@ -465,7 +470,7 @@ public class Parsers {
 	      	else {
 	//      		System.out.println("No city!!!");
 	      		
-	      		bananLog.write(LoggingLevel.INFO, "No city on baseCraetion!!! \n");
+	      		bananLog.write(LoggingLevel.INFO, "No city on baseCreation!!! \n");
 	      		
 	      		HAS_CITY = false;
 	      	}
