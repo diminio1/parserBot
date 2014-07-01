@@ -56,7 +56,7 @@ public class Parsers {
 	private static TouraviaParser     touraviaParser;
 	private static CandytourParser    candyTourParser;
 	private static MansanaParser      mansanaParser;
-	private static HottoursInParser   hottoursInParser;
+	//private static HottoursInParser   hottoursInParser;
 	private static OtpuskParser       otpuskParser;
 	private static TurneParser        turneParser;
 	private static KenarParser        kenarParser;
@@ -159,8 +159,8 @@ public class Parsers {
 							System.out.println("candyTourParser finish!");
 							mansanaParser      = new MansanaParser(countryStand, cityStand, bananLog);
 							System.out.println("mansanaParser finish!");
-							hottoursInParser   = new HottoursInParser(countryStand, cityStand, bananLog);
-							System.out.println("hottoursInParser finish!");
+//							hottoursInParser   = new HottoursInParser(countryStand, cityStand, bananLog);
+//							System.out.println("hottoursInParser finish!");
 							otpuskParser       = new OtpuskParser(countryStand, cityStand, bananLog);
 							System.out.println("otpuskParser finish! ");
 							turneParser       = new TurneParser(countryStand, cityStand, bananLog);
@@ -191,7 +191,7 @@ public class Parsers {
 							allTours.addAll(touraviaParser.tours);
 							allTours.addAll(candyTourParser.tours);
 							allTours.addAll(mansanaParser.tours);
-							allTours.addAll(hottoursInParser.tours);
+							//allTours.addAll(hottoursInParser.tours);
 							allTours.addAll(otpuskParser.tours);
 							allTours.addAll(turneParser.tours);
 							allTours.addAll(kenarParser.tours);
