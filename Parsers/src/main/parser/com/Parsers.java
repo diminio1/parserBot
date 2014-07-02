@@ -4,6 +4,7 @@ import pair.parser.Pair;
 import term.filter.parser.TermFilter;
 import touravia.parser.com.TouraviaParser;
 import tui.parser.com.TuiParser;
+import tur777.parser.com.Tur777Parser;
 import turne.parser.com.TurneParser;
 
 import java.sql.*;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import kazkamandriv.parser.com.KazkamandrivParser;
 import kenar.parser.com.KenarParser;
 import mansana.parser.com.MansanaParser;
 
@@ -21,6 +23,7 @@ import org.pmw.tinylog.LoggingLevel;
 import org.pmw.tinylog.writers.FileWriter;
 
 import otpusk.parser.com.OtpuskParser;
+import apltravel.parser.com.ApltravelParser;
 import banan.file.writer.BananFileWriter;
 import candytour.parser.com.CandytourParser;
 import columpus.parser.com.HColumbusParser;
@@ -60,6 +63,9 @@ public class Parsers {
 	private static OtpuskParser       otpuskParser;
 	private static TurneParser        turneParser;
 	private static KenarParser        kenarParser;
+	private static ApltravelParser    apltravelParser;
+	private static KazkamandrivParser kazkamandrivParser;
+	private static Tur777Parser       tur777Parser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
@@ -162,11 +168,17 @@ public class Parsers {
 //							hottoursInParser   = new HottoursInParser(countryStand, cityStand, bananLog);
 //							System.out.println("hottoursInParser finish!");
 							otpuskParser       = new OtpuskParser(countryStand, cityStand, bananLog);
-							System.out.println("otpuskParser finish! ");
-							turneParser       = new TurneParser(countryStand, cityStand, bananLog);
-							System.out.println("turneParser finish! ");
-							kenarParser       = new KenarParser(countryStand, cityStand, bananLog);
-							System.out.println("kenarParser finish! ");
+							System.out.println("otpuskParser finish!");
+							turneParser        = new TurneParser(countryStand, cityStand, bananLog);
+							System.out.println("turneParser finish!");
+							kenarParser        = new KenarParser(countryStand, cityStand, bananLog);
+							System.out.println("kenarParser finish!");
+							apltravelParser    = new ApltravelParser(countryStand, cityStand, bananLog);
+							System.out.println("apltravelParser finish!");
+							kazkamandrivParser = new KazkamandrivParser(countryStand, cityStand, bananLog);
+							System.out.println("kazkamandrivParser finish!");
+							tur777Parser       = new Tur777Parser(countryStand, cityStand, bananLog);
+							System.out.println("tur777Parser finish!");
 							
 							//by pogorelov
 //							List<TourObject> listToursTmp = new ArrayList<>();
@@ -195,6 +207,9 @@ public class Parsers {
 							allTours.addAll(otpuskParser.tours);
 							allTours.addAll(turneParser.tours);
 							allTours.addAll(kenarParser.tours);
+							allTours.addAll(apltravelParser.tours);
+							allTours.addAll(kazkamandrivParser.tours);
+							allTours.addAll(tur777Parser.tours);
 							
 //							//add pogorelovs
 //							allTours.addAll(listToursTmp);

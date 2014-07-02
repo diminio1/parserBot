@@ -224,5 +224,4 @@ public class KenarParser {
         }
         while (!(tempLink.equals(url)));
     }
-
 }

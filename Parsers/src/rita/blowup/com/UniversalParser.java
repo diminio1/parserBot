@@ -78,9 +78,13 @@ public class UniversalParser {
             tObj.setSource(source);
                 
             tObj.setRoomType((String)roomType.get(roomTypeStr));
-                
+            if (tObj.roomType.equals(""))
+            	tObj.setRoomType(null);
+            
             tObj.setNutrition((String)nutrition.get(nutritionStr));
-                
+            if (tObj.nutrition.equals(""))
+            	tObj.setRoomType(null);                
+            
             return tObj;
         }
         catch (NullPointerException ex) {
