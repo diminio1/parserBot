@@ -97,11 +97,23 @@ public class SmgpParser {
 									
 										if(hotelStarLink.ownText().contains("*") || hotelStarLink.ownText().contains("(")){
 										
-											String hotelArr [] = hotelStarLink.ownText().toUpperCase().split("\\(");
 											
-											tour.setStars((int)hotelArr[1].charAt(0) - 48);
-											
-											tour.setHotel(hotelArr[0].trim().replace('\'', '"'));
+											if(hotelStarLink.ownText().matches(".*\\d.*")){
+										
+												String hotelArr [] = hotelStarLink.ownText().toUpperCase().split("\\(");
+												
+												tour.setStars((int)hotelArr[1].charAt(0) - 48);
+												
+												tour.setHotel(hotelArr[0].trim().replace('\'', '"'));
+												
+											}
+											else{
+												
+												String hotelArr [] = hotelStarLink.ownText().toUpperCase().split("\\(");
+												
+												tour.setHotel(hotelArr[0].trim().replace('\'', '"'));
+												
+											}
 										}
 										else{
 											
