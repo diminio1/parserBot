@@ -34,6 +34,7 @@ public class UniversalParser {
                                        Parsable departCity, String departCityStr,
                                        Parsable duration, String durationStr,
                                        Parsable price, String priceStr,
+                                       Parsable previousPrice, String previousPriceStr,
                                        Parsable stars, String starsStr,
                                        Parsable link, String linkStr,
                                        Parsable nutrition, String nutritionStr,
@@ -72,6 +73,8 @@ public class UniversalParser {
             tObj.setTown((String)town.get(townStr), cityStand, message, bananLog);
 
             tObj.setPrice((int)price.get(priceStr));
+            
+            tObj.setPreviousPrice((Integer)previousPrice.get(previousPriceStr));
                 
             tObj.setLink((String)link.get(linkStr));
                 

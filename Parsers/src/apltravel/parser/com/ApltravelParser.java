@@ -63,11 +63,13 @@ public class ApltravelParser {
             				String nutritionStr = info.text().trim().toUpperCase();                	    
             				String durationStr = info.text().substring(info.text().indexOf("ноч") - 3);
             				String stars = x.select("div[class = stars]").attr("style"); 
-            	    
+            				String discount = x.select("div[class = priceDiscount]").first().ownText();
+            				String priceStr = x.select("span[itemprop = price]").text().replace(" ", "");
+            				
             				int persons = 1;
             				if (info.text().contains("Тур на 2"))
             					persons = 2;
-            				String priceStr = x.select("span[itemprop = price]").text().replace(" ", "");
+            				
             				TourObject localTour = UniversalParser.parseTour(new Parsable() {
             					@Override
             					public Object get(String src) {	
@@ -156,6 +158,20 @@ public class ApltravelParser {
             					}
             				}, priceStr, new Parsable() {
 
+								@Override
+								public Object get(String src) {
+									try {
+										String res = src.replace(" ", "");
+			            				res = res.replace("-", "");
+			       						res = res.replace("%", "");
+			            				return Integer.parseInt(res);
+									}
+									catch(Exception ex) {
+										return null;
+									}
+								}
+            				}, discount, new Parsable() {
+
             					@Override
             					public Object get(String src) {
             						if (src.contains("42"))
@@ -210,7 +226,9 @@ public class ApltravelParser {
             				}, roomTypeStr, source, countryStand, cityStand, bananLog, "Apltravel: ");
                     
             				if (localTour != null) {
-            					localTour.price = localTour.price / persons; 
+            					localTour.price = localTour.price / persons;
+            					if (!(localTour.previousPrice == null))
+            						localTour.previousPrice = (int) ((double) localTour.price / (double) (100 - localTour.previousPrice) * 100); 
             					tours.add(localTour);
             				}
             				else {

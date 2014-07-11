@@ -69,8 +69,21 @@ public class KazkamandrivParser {
             		int duration = Integer.parseInt(durationStr.substring(0, durationStr.indexOf(" ")));
             	
             		String priceStr = x.select("td").get(4).select("strong").text();
-            		int price = Integer.parseInt(priceStr.substring(0, priceStr.indexOf(" ")));
-            		
+            		String previousPriceStr = x.select("td").get(4).select("s").text();
+            		int price;
+            		try {
+            			price = Integer.parseInt(priceStr.substring(0, priceStr.indexOf(" ")));
+            		}
+            		catch(Exception ex) {
+            			continue;
+            		}
+            		Integer previousPrice;
+            		try {
+            			previousPrice = Integer.parseInt(priceStr.substring(0, priceStr.indexOf(" ")));
+            		}
+            		catch(Exception ex) {
+            			previousPrice = null;
+            		}
             		TourObject localTour = new TourObject();
             		
             		localTour.setCountry(countryStr, countryStand, bananLog);
@@ -79,6 +92,7 @@ public class KazkamandrivParser {
             		localTour.setDuration(duration);
             		localTour.setLink(linkStr);
             		localTour.setPrice(price);
+            		localTour.setPreviousPrice(previousPrice);
             		localTour.setSource(source);
             		localTour.setTown(townStr, cityStand, "Kazkamandriv: ", bananLog);
             		
@@ -114,6 +128,8 @@ public class KazkamandrivParser {
                 String durationStr = x.select("p[class = iDate]").first().ownText();
                 
                 String priceStr = x.select("p[class = iPrice]").select("strong").text();
+                
+                String previousPriceStr = x.select("p[class = iPrice]").select("strike").text();
                 
                 TourObject localTour = UniversalParser.parseTour(new Parsable() {
                 	@Override
@@ -213,6 +229,23 @@ public class KazkamandrivParser {
                         }
                     }
                 }, priceStr, new Parsable() {
+
+                    @Override
+                    public Object get(String src) {
+                        try {
+                            String res = src.substring(0, src.indexOf(' '));
+                            Currency c = new Currency();
+                            int money = (int) (Integer.parseInt(res) * c.euro);
+                            return money;
+                        }
+                        catch (IndexOutOfBoundsException ex) {
+                            return 0;
+                        }
+                        catch (NumberFormatException ex) {
+                            return 0;
+                        }
+                    }
+                }, previousPriceStr, new Parsable() {
 
                     @Override
                     public Object get(String src) {

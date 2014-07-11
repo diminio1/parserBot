@@ -17,6 +17,7 @@ import pair.parser.Pair;
 import term.filter.parser.TermFilter;
 import main.parser.com.TourObject;
 import main.parser.com.Parsers;
+import money.currency.Currency;
 
 public class HottoursParser {
 
@@ -61,6 +62,8 @@ public class HottoursParser {
 				Elements durations          = hotTourDoc.select("span[class = night]");
 				Elements departCities       = hotTourDoc.select("span[class = departure]");
 				Elements prices             = hotTourDoc.select("span[class = cost]");
+				
+				Elements previousPrices     = hotTourDoc.select("span[class = old]");
 				
 				int counter = 0;
 				
@@ -396,6 +399,36 @@ public class HottoursParser {
 					}
 					else{
 						bananLog.write(null, "WARNING: No html element price!\n");
+					}
+				}
+				
+				counter = 0;
+				
+				for (Element previousPrice : previousPrices) {
+					
+					if(previousPrice != null){
+						
+						String tmp = previousPrice.select("s").text();
+						
+						tmp = tmp.replace("\u00a0", "");
+						
+						String priceTmp = tmp.replace("грн", "");
+						priceTmp = priceTmp.replace("$", "");
+						priceTmp = priceTmp.replace("€", "");
+						
+						Currency c = new Currency();
+						int price = Integer.parseInt(priceTmp);
+						if (tmp.contains("$"))
+							price = (int) (price * c.dollar);
+						if (tmp.contains("€"))
+							price = (int) (price * c.euro);
+						
+						tours.get(counter).setPreviousPrice(price);
+						
+						counter ++;
+					}
+					else{
+						bananLog.write(null, "WARNING: No html element previousPrice!\n");
 					}
 				}
 			}

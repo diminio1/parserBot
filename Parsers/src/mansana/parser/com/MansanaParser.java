@@ -207,6 +207,12 @@ public class MansanaParser {
 
                         @Override
                         public Object get(String src) {
+                        	return null;
+                        }
+                    }, priceStr, new Parsable() {
+
+                        @Override
+                        public Object get(String src) {
                             if (src.contains("3"))
                                 return 3;
                             if (src.contains("4"))

@@ -65,6 +65,7 @@ public class TuiParser {
                 tObj.setPrice(getPrice(price));
                 tObj.setLink(link);
                 tObj.setRoomType("DBL");
+                tObj.setPreviousPrice(null);
                 tours.add(tObj);
             }
         }

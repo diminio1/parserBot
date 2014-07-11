@@ -22,7 +22,8 @@ public class TourObject {
 	public String nutrition;
 	public String link;
 	public int          stars;
-	public int          price; 
+	public int          price;
+	public Integer      previousPrice;
 	public int          duration;
 	public Date         departDate;
 	public int          source;
@@ -31,19 +32,20 @@ public class TourObject {
 	
 	public TourObject () {
 		
-		hotel      = null;
-		country    = new ArrayList <Pair<Integer, Integer>> ();
-		town       = new ArrayList <Pair<Integer, Integer>> ();
-		departCity = new String();
-		roomType   = new String();
-		nutrition  = new String();
-		link       = new String();
-		stars      = 0;
-		price      = 0;
-		duration   = 0;
-		departDate = new Date();
-		source     = 0;
-		tourId    = 0;
+		hotel     	  = null;
+		country       = new ArrayList <Pair<Integer, Integer>> ();
+		town          = new ArrayList <Pair<Integer, Integer>> ();
+		departCity    = new String();
+		roomType      = new String();
+		nutrition     = new String();
+		link          = new String();
+		stars         = 0;
+		previousPrice = null;
+		price         = 0;
+		duration      = 0;
+		departDate    = new Date();
+		source        = 0;
+		tourId        = 0;
 	}
 	
 	public void setHotel(String h) {
@@ -195,6 +197,14 @@ public class TourObject {
 	
 	public Integer getPrice() {
 		return this.price;
+	}
+	
+	public void setPreviousPrice(Integer s) {
+		this.previousPrice = s;
+	}
+	
+	public Integer getPreviousPrice() {
+		return this.previousPrice;
 	}
 	
 	public void setDuration(Integer s) {

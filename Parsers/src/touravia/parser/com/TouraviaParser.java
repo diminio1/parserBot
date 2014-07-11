@@ -54,6 +54,8 @@ public class TouraviaParser {
                     
                     String price = y.select("div").get(2).select("span[class = text-danger]").text().trim();
                     
+                    String prevPrice = y.select("div").get(1).text().trim();
+                    
                     String duration = y.select("div").get(6).select("i").text().trim();
                     
                     String nutrition = y.select("div").get(7).select("strong").text().trim().toUpperCase();
@@ -83,6 +85,10 @@ public class TouraviaParser {
                     if (tObj.price == 0)
                         continue;
                     
+                    tObj.setPreviousPrice(getNumber(prevPrice));
+                    if (tObj.previousPrice == 0)
+                    	tObj.setPreviousPrice(null);
+
                     tObj.setStars(getStars(hotel));
                     
                     tours.add(tObj);

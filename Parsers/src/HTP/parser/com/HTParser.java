@@ -128,7 +128,8 @@ public class HTParser {
             tObj.setRoomType(roomType.text().substring(0, roomType.text().indexOf('-')).trim().toUpperCase());
             tObj.setPrice(Integer.parseInt(price.text().substring(0, price.text().length() - 4)));
             tObj.setLink(url);
-            
+            tObj.setPreviousPrice(null);
+
             //tObj.print();
             
             tours.add(tObj);

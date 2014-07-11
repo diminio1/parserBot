@@ -46,7 +46,7 @@ public class CandytourParser {
                 String price = x.select("div").get(1).select("span").text();
                 String hotel = x.select("span").get(2).text().trim().toUpperCase();
                 String info = x.select("span").get(3).text().trim().toUpperCase();
-//                String link = source + x.select("span").get(2).select("a").attr("href");
+                String previousPriceStr = x.select("div").get(1).select("s").text(); 
                 String link = website; 
                 
                 TourObject localTour = UniversalParser.parseTour(new Parsable() {
@@ -156,6 +156,19 @@ public class CandytourParser {
                         }
                     }
                 }, price, new Parsable() {
+
+					@Override
+					public Object get(String src) {
+						try {
+							String res = src.substring(src.indexOf(" ") + 1);
+							return Integer.parseInt(res);
+						}
+						catch (Exception ex) {
+							return 0;
+						}
+					}
+                	
+                }, previousPriceStr, new Parsable() {
 
                     @Override
                     public Object get(String src) {

@@ -79,6 +79,7 @@ public class TEZTourParser{
 				}
 				Elements links                      = tezDoc.select("a[class = button-link]");
 				Elements prices                     = tezDoc.select("span[class = best-price]");
+				Elements previousPrices             = tezDoc.select("span[class = old-price]");
 				Elements stars                      = tezDoc.select("span [class = raiting_u]");
 		//        Elements photoAdress       = tezDoc.select("img[src ^= /images/photos/]");
 				
@@ -275,10 +276,26 @@ public class TEZTourParser{
 						counter ++;
 					}
 					else{
-						bananLog.write(null, "WORNING! No html element proce! \n");
+						bananLog.write(null, "WORNING! No html element price! \n");
 					}
 				}
 				
+				counter = 0;
+				
+				for (Element previousPrice : previousPrices) {
+					
+					if (previousPrice != null) {
+						String tmp = previousPrice.text();
+						tmp = tmp.substring(0, tmp.indexOf(" "));
+						
+						tours.get(counter).setPreviousPrice(Integer.parseInt(tmp) / 2);
+						
+						counter ++;
+					}
+					else{
+						bananLog.write(null, "WORNING! No html element previousPrice! \n");
+					}
+				}
 				counter = 0;
 				
 				for (; counter < tours.size(); counter ++) {

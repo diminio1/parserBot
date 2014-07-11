@@ -106,6 +106,7 @@ public class ShturmanParser {
                         tObj.setDepartCity(getDepCity(depCity.text(), bananLog));
                         tObj.setNutrition(getNutrition(z.select("td[style *= width: 170px;]").text()));
                         tObj.setRoomType(getRoomType(z.text()));
+                        tObj.setPreviousPrice(null);
                         
                         tours.add(tObj);
                         }

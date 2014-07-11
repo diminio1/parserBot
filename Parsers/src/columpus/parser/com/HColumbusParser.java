@@ -162,6 +162,8 @@ public class HColumbusParser {
             
             tObj.setStars(getStars(hotel.text().trim().toUpperCase()));
             
+            tObj.setPreviousPrice(null);
+            
             tObj.setPrice(getPrice(price.text()));
             if (0 == tObj.price)
                 return;

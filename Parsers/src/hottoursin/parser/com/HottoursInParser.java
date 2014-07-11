@@ -84,6 +84,7 @@ public class HottoursInParser {
 	        		tObj.setSource(source);
 	        		tObj.setDuration(getDuration(duration));
 	        		tObj.setNutrition(getNutrition(info.toUpperCase()));
+	        		tObj.setPreviousPrice(null);
 	        		
 	        		tours.add(tObj);
 	            }
