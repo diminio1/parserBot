@@ -38,9 +38,6 @@ import shturman.parser.com.*;
 
 
 public class Parsers {
-
-	//private static Connection conn                 = null;
-	//private static Connection connCountryCityStand = null;
 	
 	private static boolean HAS_COUNTRY;
 	private static boolean HAS_CITY;
@@ -53,9 +50,6 @@ public class Parsers {
 	private static ShturmanParser     shturmanParser;
 	private static HColumbusParser    hColumbusParser;
 	private static TuiParser          tuiParser;
-	//private static OtpuskSite         otpuskParser;
-	//private static TurneSite          turneParser;
-	//private static TurtessSite		  turtessParser;
 	private static TouraviaParser     touraviaParser;
 	private static CandytourParser    candyTourParser;
 	private static MansanaParser      mansanaParser;
@@ -72,7 +66,6 @@ public class Parsers {
 	
 	private static BananFileWriter bananLog;
 	
-//	private static SimpleDateFormat df = new SimpleDateFormat("MM-dd-HH:mm:ss");
 	
 	public static void startParsing(final Connection conn) {
 		new Thread(new Runnable()
@@ -103,25 +96,13 @@ public class Parsers {
 						bananLog.write(LoggingLevel.INFO, "\n");
 						bananLog.write(LoggingLevel.INFO, "\n");
 						
-						bananLog.write(LoggingLevel.INFO, /*df.format(new java.util.Date()) + */" PARSERS START AT " + dateInWhile + "\n");
+						bananLog.write(LoggingLevel.INFO, " PARSERS START AT " + dateInWhile + "\n");
 						
 						Statement selectCountry = null;
 						ResultSet countryResult = null;
 						Statement selectCity    = null;
 						ResultSet cityResult    = null;
-						
-						
-						// create TermFilter Object for counties set
-	//					try {
-	//						Class.forName("org.h2.Driver");
-	//						connCountryCityStand = DriverManager.getConnection("jdbc:h2:~/countryCityH2db", "banan", "secret");
-	//						
-	//					} catch (Exception ex) {
-	//						//			  System.err.println("Exception: " + ex.getMessage());
-	//						
-	//						bananLog.write(LoggingLevel.INFO, "Exception: " + ex.getMessage() + "\n");
-	//					}
-						
+												
 						if (conn != null){
 							
 							try {
@@ -136,12 +117,10 @@ public class Parsers {
 								cityStand = new TermFilter(createBaseStand(cityResult, 1));
 							
 							} catch (Exception e) {
-								// TODO: handle exception
-								bananLog.write(LoggingLevel.INFO, "Cannot connect to Base!" + "\n");
-								bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
 								
+								bananLog.write(LoggingLevel.INFO, "Cannot connect to Base!" + "\n");
+								bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");								
 							}
-	//						connCountryCityStand.close();
 							
 							teztourParser      = new TEZTourParser(countryStand, cityStand, bananLog);
 							System.out.println("TEZ finish!");
@@ -180,16 +159,6 @@ public class Parsers {
 							tur777Parser       = new Tur777Parser(countryStand, cityStand, bananLog);
 							System.out.println("tur777Parser finish!");
 							
-							//by pogorelov
-//							List<TourObject> listToursTmp = new ArrayList<>();
-							
-							//otpuskParser      = new OtpuskSite();
-							//listToursTmp.addAll(otpuskParser.getToursList(countryStand, cityStand, bananLog));
-							//turneParser       = new TurneSite();
-							//listToursTmp.addAll(turneParser.getToursList(countryStand, cityStand, bananLog));
-							//turtessParser     = new TurtessSite();
-							//listToursTmp.addAll(turtessParser.getToursList(countryStand, cityStand, bananLog));
-							
 							ArrayList<TourObject> allTours = new ArrayList <TourObject> ();
 							
 							allTours.addAll(teztourParser.tours);
@@ -211,18 +180,6 @@ public class Parsers {
 							allTours.addAll(kazkamandrivParser.tours);
 							allTours.addAll(tur777Parser.tours);
 							
-							/*for (TourObject t: allTours) {
-								if (t.previousPrice == null) {
-									System.out.println("null");
-								}
-								else {
-									System.out.println(t.previousPrice);
-								}
-							}*/
-							
-//							//add pogorelovs
-//							allTours.addAll(listToursTmp);
-							
 							createBase(allTours, conn);
 						}
 						else{
@@ -232,7 +189,6 @@ public class Parsers {
 						try {
 							Thread.sleep(30 * 60000);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						
@@ -326,19 +282,7 @@ public class Parsers {
     private static void createBase (ArrayList <TourObject> tours, Connection conn) throws SQLException {
     
     try {
-		    	
-//		  try {
-//			  Class.forName("org.h2.Driver");
-//			  conn = DriverManager.getConnection("jdbc:h2:~/bananH2Db", "BUILDER", "");
-//				
-//		  } catch (Exception ex) {
-//	//		  System.err.println("Exception: " + ex.getMessage());
-//			  
-//			  bananLog.write(LoggingLevel.INFO, "Exception: " + ex.getMessage() + "\n");
-//		  }
-		
 
-		  
 		  PreparedStatement select = null;
 		  
 		  ArrayList <TourObject> exTours = new ArrayList <TourObject> ();
@@ -451,8 +395,6 @@ public class Parsers {
 		      		select  = conn.prepareStatement("select RATE from COUNTRY where COUNTRY_ID = ? " + "");
 		      		select.setInt(1, tours.get(i).country.get(countryCounter).getFirst().intValue() );
 		      		ResultSet resultRate = select.executeQuery();
-		      		
-//		      		System.out.println("THAT MATHER FACKER COUNTRY " + tours.get(i).country.get(countryCounter).getFirst());
 		      		resultRate.next();
 		      		
 		      		int rate = resultRate.getInt(1) + 1;
@@ -464,7 +406,6 @@ public class Parsers {
 		      	}
 	      	}
 	      	else {
-	//      		System.out.println("No country!!!");
 	 
 	      		bananLog.write(LoggingLevel.INFO, "No country on baseCreation!!!\n");
 	      		
@@ -484,15 +425,12 @@ public class Parsers {
 		      		
 		      		int rate  = resultRate.getInt(1) + 1;
 		      		
-//		      		System.out.println("THAT MATHER FACKER CITY" + rate);
-		      		
 		      		select = conn.prepareStatement("update CITY set RATE = " + rate + "where CITY_ID = " +
 		      										tours.get(i).town.get(cityCounter).getFirst() + ";");
 		      		select.executeUpdate();
 		      	}
 	      	}
 	      	else {
-	//      		System.out.println("No city!!!");
 	      		
 	      		bananLog.write(LoggingLevel.INFO, "No city on baseCreation!!! \n");
 	      		
@@ -557,30 +495,17 @@ public class Parsers {
 			            
 //		       		int tourId = i + tourNumber + 1;
 		       		
-		       		if (!(tours.get(i).previousPrice == null))
-		       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
-		       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
-								     				 	tours.get(i).link + "', '" +
-								     				 	tours.get(i).nutrition + "', '" + 
-								     				 	tours.get(i).roomType + "', '" +
-								     				 	bdDate + "', " +
-								     				 	tours.get(i).price + ", " +
-								     				 	tours.get(i).duration + ", '" +
-								     				 	tours.get(i).departCity + "', " + "NULL, " +
-								     				 	rowsHotelNum + ", " + tours.get(i).source + ", " + tours.get(i).previousPrice + ");");
-
-		       		else 
-		       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
-			       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
-									     				 tours.get(i).link + "', '" +
-									     			     tours.get(i).nutrition + "', '" + 
-									     			     tours.get(i).roomType + "', '" +
-									     			     bdDate + "', " +
-									     			     tours.get(i).price + ", " +
-									     			     tours.get(i).duration + ", '" +
-									     			     tours.get(i).departCity + "', " + "NULL, " +
-									     			     rowsHotelNum + ", " + tours.get(i).source + ", " + "NULL" + ");");
-
+		       		select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+		       				+ " depart_city, description, hotel_id, source_id) VALUES ('" + 
+								     				 tours.get(i).link + "', '" +
+								     			     tours.get(i).nutrition + "', '" + 
+								     			     tours.get(i).roomType + "', '" +
+								     			     bdDate + "', " +
+								     			     tours.get(i).price + ", " +
+								     			     tours.get(i).duration + ", '" +
+								     			     tours.get(i).departCity + "', " + "NULL, " +
+								     			     rowsHotelNum + ", " + tours.get(i).source + ");");
+		       		
 		       		try {
 						
 			       		select.execute();
@@ -595,14 +520,11 @@ public class Parsers {
 			     			tourId = rs.getInt(1);
 			     		}
 			       		
-//			     		System.out.println("CURRENT NUM of TOUR is " + tourId);
-			       		
 			       		//set country/city conn
 			       		if (HAS_COUNTRY) setToutToCountryConn(tours, tourId, select, i, conn);		       		
 			       		if (HAS_CITY)    setTourToCityConn(tours, tourId, select, i, conn);
 			       		
 		       		} catch (Exception e) {
-		       			// TODO: handle exception
 		       			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
 		       		}
 	
@@ -624,28 +546,16 @@ public class Parsers {
 			   		
 //			   		int tourId = i + tourNumber + 1;
 			   		
-			   		if (!(tours.get(i).previousPrice == null))
-			   			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
-		       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
-									 				 	tours.get(i).link + "', '" +
-									 				 	tours.get(i).nutrition + "', '" + 
-									 				 	tours.get(i).roomType + "', '" +
-									 				 	bdDate + "', " +
-									 				 	tours.get(i).price + ", " +
-									 				 	tours.get(i).duration + ", '" +
-									 				 	tours.get(i).departCity + "', " + "NULL, " +
-									 				 	rowsHotelNumElse + ", " + tours.get(i).source + ", " + tours.get(i).previousPrice + ");");
-			   		else
-			   			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
-			       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
-										 				 tours.get(i).link + "', '" +
-										 			     tours.get(i).nutrition + "', '" + 
-										 			     tours.get(i).roomType + "', '" +
-										 			     bdDate + "', " +
-										 			     tours.get(i).price + ", " +
-										 			     tours.get(i).duration + ", '" +
-										 			     tours.get(i).departCity + "', " + "NULL, " +
-										 			     rowsHotelNumElse + ", " + tours.get(i).source + ", " + "NULL" + ");");
+			   		select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+		       				+ " depart_city, description, hotel_id, source_id) VALUES ('" + 
+									 				 tours.get(i).link + "', '" +
+									 			     tours.get(i).nutrition + "', '" + 
+									 			     tours.get(i).roomType + "', '" +
+									 			     bdDate + "', " +
+									 			     tours.get(i).price + ", " +
+									 			     tours.get(i).duration + ", '" +
+									 			     tours.get(i).departCity + "', " + "NULL, " +
+									 			     rowsHotelNumElse + ", " + tours.get(i).source + ");");
 			   		try {
 						
 				   		select.execute();
@@ -660,20 +570,16 @@ public class Parsers {
 			     			tourId = rs.getInt(1);
 			     		}
 			       		
-//			     		System.out.println("CURRENT NUM of TOUR is " + tourId);
-			       		
 				   		//set country/city conn
 			       		if (HAS_COUNTRY) setToutToCountryConn(tours, tourId, select, i, conn);		       		
 			       		if (HAS_CITY)    setTourToCityConn(tours, tourId, select, i, conn);
 			       		
 			   		} catch (Exception e) {
-			   			// TODO: handle exception
 			   			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
 			   		}
 			   	}
 	      	}
 	      	else {
-	//      		System.out.println("Hotel is null!!!");
 	
 	      		bananLog.write(LoggingLevel.INFO, "Hotel is null on baseCreation!!!\n");
 	      		
@@ -685,9 +591,8 @@ public class Parsers {
 		            
 //	       		int tourId = i + tourNumber + 1;
 	       		
-	       		if (!(tours.get(i).previousPrice == null))
-	       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
-		       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
+	       		select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+		       				+ " depart_city, description, hotel_id, source_id) VALUES ('" + 
 							     				 tours.get(i).link + "', '" +
 							     			     tours.get(i).nutrition + "', '" + 
 							     			     tours.get(i).roomType + "', '" +
@@ -695,18 +600,7 @@ public class Parsers {
 							     			     tours.get(i).price + ", " +
 							     			     tours.get(i).duration + ", '" +
 							     			     tours.get(i).departCity + "', " + "NULL, " +
-							     			     "NULL, " + tours.get(i).source + ", " + tours.get(i).previousPrice + ");");
-	       		else
-	       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
-		       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
-							     				 tours.get(i).link + "', '" +
-							     			     tours.get(i).nutrition + "', '" + 
-							     			     tours.get(i).roomType + "', '" +
-							     			     bdDate + "', " +
-							     			     tours.get(i).price + ", " +
-							     			     tours.get(i).duration + ", '" +
-							     			     tours.get(i).departCity + "', " + "NULL, " +
-							     			     "NULL, " + tours.get(i).source + ", " + "NULL" + ");");
+							     			     "NULL, " + tours.get(i).source + ");");
 	       		
 	       		try {
 					
@@ -722,14 +616,11 @@ public class Parsers {
 		     			tourId = rs.getInt(1);
 		     		}
 		       		
-//		     		System.out.println("CURRENT NUM of TOUR is " + tourId);
-		       		
 		       		//set country/city conn
 		       		if (HAS_COUNTRY) setToutToCountryConn(tours, tourId, select, i, conn);		       		
 		       		if (HAS_CITY)    setTourToCityConn(tours, tourId, select, i, conn);
 		       		
 	       		} catch (Exception e) {
-	       			// TODO: handle exception
 	       			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
 	       		}
 	
@@ -738,11 +629,9 @@ public class Parsers {
 	      
 	      conn.commit();
 		  conn.setAutoCommit(true);
-//	      conn.close();
 	      
 	      System.out.println("ALL IS DONE!");
     } catch (Exception e) {
-    	// TODO: handle exception
     	bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
     }	
           	
@@ -753,25 +642,6 @@ public class Parsers {
     	if(tours != null){
     	
 	   		for (int count = 0; count < tours.get(i).country.size(); count ++) {
-	   			
-//	   			int intResultCountryConNum;
-//	   			
-//	   			if (tourNumber == 0 && count == 0 && i == 0){
-//	   				
-//	   				intResultCountryConNum = 0;
-//	   				intResultCountryConNum++;
-//	   			}
-//	   			else{
-//	   			
-//	       			select = conn.prepareStatement("SELECT PAIR_ID FROM ( SELECT * FROM TOURS_TO_COUNTRIES ORDER BY PAIR_ID LIMIT 1 OFFSET ( SELECT COUNT(*) FROM TOURS_TO_COUNTRIES ) - 1 );");
-//	       			ResultSet resultCountryConNum = select.executeQuery();
-//	       			
-//	       			resultCountryConNum.next();
-//	       			
-//	       			intResultCountryConNum = resultCountryConNum.getInt(1);
-//	       			
-//	       			intResultCountryConNum++;
-//	   			}
 	   			
 	   			select = conn.prepareStatement("INSERT INTO TOURS_TO_COUNTRIES (country_id, tour_id) VALUES (" +  
 						       					tours.get(i).country.get(count).getFirst() + ", " +
@@ -786,25 +656,6 @@ public class Parsers {
     	if(tours != null){
     		
        		for (int count = 0; count < tours.get(i).town.size(); count ++) {
-       			
-//       			int intResultCityConNum;
-//       			
-//       			if (tourNumber == 0 && count == 0 && i == 0){
-//       				
-//       				intResultCityConNum = 0;
-//       				intResultCityConNum++;
-//       			}
-//       			else{
-//       				
-//	       			select = conn.prepareStatement("SELECT PAIR_ID FROM ( SELECT * FROM TOURS_TO_CITIES ORDER BY PAIR_ID LIMIT 1 OFFSET ( SELECT COUNT(*) FROM TOURS_TO_CITIES ) - 1 );");
-//	       			ResultSet resultCityConNum = select.executeQuery();
-//		         	
-//	       			resultCityConNum.next();
-//	       			
-//	       			intResultCityConNum = resultCityConNum.getInt(1);
-//	       			
-//	       			intResultCityConNum++;
-//       			}
        			
        			select = conn.prepareStatement("INSERT INTO TOURS_TO_CITIES (city_id, tour_id) VALUES (" +  
        					 tours.get(i).town.get(count).getFirst() + ", " +
