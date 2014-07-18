@@ -22,6 +22,7 @@ import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.LoggingLevel;
 import org.pmw.tinylog.writers.FileWriter;
 
+import orion.parser.com.OrionParser;
 import otpusk.parser.com.OtpuskParser;
 import akkord.parser.com.AkkordParser;
 import apltravel.parser.com.ApltravelParser;
@@ -62,6 +63,7 @@ public class Parsers {
 	private static KazkamandrivParser kazkamandrivParser;
 	private static Tur777Parser       tur777Parser;
 	private static AkkordParser       akkordParser;
+	private static OrionParser        orionParser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
@@ -162,6 +164,8 @@ public class Parsers {
 							System.out.println("tur777Parser finish!");
 							akkordParser       = new AkkordParser(countryStand, cityStand, bananLog);
 							System.out.println("akkordParser finish!");
+							orionParser       = new OrionParser(countryStand, cityStand, bananLog);
+							System.out.println("orionParser finish!");
 							
 							ArrayList<TourObject> allTours = new ArrayList <TourObject> ();
 							
@@ -184,6 +188,7 @@ public class Parsers {
 							allTours.addAll(kazkamandrivParser.tours);
 							allTours.addAll(tur777Parser.tours);
 							allTours.addAll(akkordParser.tours);
+							allTours.addAll(orionParser.tours);
 							
 							createBase(allTours, conn);
 						}
