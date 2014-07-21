@@ -37,6 +37,7 @@ import poehalisnami.parser.com.*;
 import pogorelov.parser.*;
 import HTP.parser.com.HTParser;
 import shturman.parser.com.*;
+import silver.parser.com.SilverParser;
 
 
 public class Parsers {
@@ -64,6 +65,7 @@ public class Parsers {
 	private static Tur777Parser       tur777Parser;
 	private static AkkordParser       akkordParser;
 	private static OrionParser        orionParser;
+	private static SilverParser       silverParser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
@@ -166,6 +168,8 @@ public class Parsers {
 							System.out.println("akkordParser finish!");
 							orionParser       = new OrionParser(countryStand, cityStand, bananLog);
 							System.out.println("orionParser finish!");
+							silverParser       = new SilverParser(countryStand, cityStand, bananLog);
+							System.out.println("silverParser finish!");
 							
 							ArrayList<TourObject> allTours = new ArrayList <TourObject> ();
 							
@@ -189,6 +193,7 @@ public class Parsers {
 							allTours.addAll(tur777Parser.tours);
 							allTours.addAll(akkordParser.tours);
 							allTours.addAll(orionParser.tours);
+							allTours.addAll(silverParser.tours);
 							
 							createBase(allTours, conn);
 						}

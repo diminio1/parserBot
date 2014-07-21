@@ -206,7 +206,7 @@ public class AkkordParser {
                             return "TRPL";
                         if (res.contains("QDPL"))
                             return "QDPL";
-                        return "";                    
+                        return "DBL";                    
                     }
                 }, roomTypeStr, source, countryStand, cityStand, bananLog, "Akkord: ");
                     
