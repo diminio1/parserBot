@@ -17,6 +17,7 @@ import java.util.List;
 import kazkamandriv.parser.com.KazkamandrivParser;
 import kenar.parser.com.KenarParser;
 import mansana.parser.com.MansanaParser;
+import newstravel.parser.com.NewstravelParser;
 
 import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.LoggingLevel;
@@ -66,6 +67,7 @@ public class Parsers {
 	private static AkkordParser       akkordParser;
 	private static OrionParser        orionParser;
 	private static SilverParser       silverParser;
+	private static NewstravelParser   newstravelParser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
@@ -127,7 +129,7 @@ public class Parsers {
 								bananLog.write(LoggingLevel.INFO, "Cannot connect to Base!" + "\n");
 								bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");								
 							}
-							
+						
 							teztourParser      = new TEZTourParser(countryStand, cityStand, bananLog);
 							System.out.println("TEZ finish!");
 							poehalisnamiParser = new PoehalisnamiParser(countryStand, cityStand, bananLog);
@@ -170,6 +172,8 @@ public class Parsers {
 							System.out.println("orionParser finish!");
 							silverParser       = new SilverParser(countryStand, cityStand, bananLog);
 							System.out.println("silverParser finish!");
+							newstravelParser       = new NewstravelParser(countryStand, cityStand, bananLog);
+							System.out.println("newstravelParser finish!");
 							
 							ArrayList<TourObject> allTours = new ArrayList <TourObject> ();
 							
@@ -194,6 +198,7 @@ public class Parsers {
 							allTours.addAll(akkordParser.tours);
 							allTours.addAll(orionParser.tours);
 							allTours.addAll(silverParser.tours);
+							allTours.addAll(newstravelParser.tours);
 							
 							createBase(allTours, conn);
 						}
