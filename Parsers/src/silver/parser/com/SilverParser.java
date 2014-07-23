@@ -49,7 +49,7 @@ public class SilverParser {
                     
                 	String nutritionStr = infos.get(8).select("td").get(1).text().trim().toUpperCase();
             	    
-                	String dateStr = infos.get(12).select("td[class = dates]").select("tr").select("tr").first().text().trim().toLowerCase();
+                	String dateStr = infos.get(12).select("td[class = dates]").select("tr").first().text().trim().toLowerCase();
                 	    
                 	String hotelStr = "";
                 	            	
@@ -89,9 +89,12 @@ public class SilverParser {
                     	@Override
                     	public Object get(String src) {
                     		try {
+                    			int month = DateEdit.getMonth(src.toLowerCase());
+                    			if (-1 == month)
+                    				return new Date(Integer.parseInt(src.substring(6)) - 1900, Integer.parseInt(src.substring(3, 5)) - 1, Integer.parseInt(src.substring(0, 2)));
                     			int firstSpace = src.indexOf(" ");
                     			int year = Integer.parseInt(src.substring(firstSpace + 1, firstSpace + 5));
-                    			int month = DateEdit.getMonth(src.toLowerCase());
+                    			
                     			int date = 0;
                     			if (src.contains(",")) {
                     				int coma = src.indexOf(",");

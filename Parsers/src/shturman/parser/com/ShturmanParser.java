@@ -229,6 +229,8 @@ public class ShturmanParser {
             int pos = src.indexOf("дн");
             String str = src.substring(0, pos);
             str = str.replace("\u00a0", " ").trim();
+            str = str.replace("ночей", "ночей ");
+            str = str.replace("ночи", "ночи ");
             str = str.substring(str.lastIndexOf(" ") + 1);
             int k = str.charAt(0);
             while(!(k >= 48 && k <= 57))
