@@ -57,6 +57,8 @@ public class SilverParser {
                     
                     String previousPriceStr = "";
 
+                    String description = doc.select("div[class = txt]").text();
+                    
                     TourObject localTour = UniversalParser.parseTour(new Parsable() {
                 		@Override
                 		public Object get(String src) {
@@ -194,7 +196,7 @@ public class SilverParser {
                     			return "QDPL";
                     		return "DBL";                    
                     	}
-                    }, roomTypeStr, source, countryStand, cityStand, bananLog, "Silver: ");
+                    }, roomTypeStr, description, source, countryStand, cityStand, bananLog, "Silver: ");
                     
                     if (localTour != null) {
                     	tours.add(localTour);

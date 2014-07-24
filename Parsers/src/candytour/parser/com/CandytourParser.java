@@ -224,7 +224,7 @@ public class CandytourParser {
                             return "QDPL";
                         return "";                    
                     }
-                }, info, source, countryStand, cityStand, bananLog, "CandyTour: "
+                }, info, null, source, countryStand, cityStand, bananLog, "CandyTour: "
                         );
                 
                 if(localTour != null){

@@ -75,9 +75,12 @@ public class TurneParser {
                     
                 String priceStr = x.select("span[class = e-tour__price]").first().ownText();
                 
+                String description = null;
+                
                 try {
                 	Document doc = Jsoup.connect(linkStr).timeout(100000).get();
                 	departCityStr = doc.select("div[class = tour_info]").select("tbody").select("tr:contains(из:)").select("td").get(1).ownText().trim().toUpperCase();
+                	//description = doc.select("div[class = description]").text();
                 }
                 catch (Exception ex) {
                 	
@@ -223,7 +226,7 @@ public class TurneParser {
                             return "QDPL";
                         return "DBL";                    
                     }
-                }, roomTypeStr, source, countryStand, cityStand, bananLog, "Turne: ");
+                }, roomTypeStr, description, source, countryStand, cityStand, bananLog, "Turne: ");
                     
                 if (localTour != null) {
                   	localTour.price = localTour.price / persons; 

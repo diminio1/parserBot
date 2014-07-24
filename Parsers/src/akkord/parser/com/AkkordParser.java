@@ -208,7 +208,7 @@ public class AkkordParser {
                             return "QDPL";
                         return "DBL";                    
                     }
-                }, roomTypeStr, source, countryStand, cityStand, bananLog, "Akkord: ");
+                }, roomTypeStr, null, source, countryStand, cityStand, bananLog, "Akkord: ");
                     
                 if (localTour != null) {
                 	tours.add(localTour);

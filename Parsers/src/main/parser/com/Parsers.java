@@ -516,7 +516,10 @@ public class Parsers {
 //		       		int tourId = i + tourNumber + 1;
 		       		
 		       		if (!(tours.get(i).previousPrice == null))
-		       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+		       		{
+		       			if (!(tours.get(i).description == null)) {
+		       				
+		       				select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
 		       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
 								     				 	tours.get(i).link + "', '" +
 								     				 	tours.get(i).nutrition + "', '" + 
@@ -524,20 +527,51 @@ public class Parsers {
 								     				 	bdDate + "', " +
 								     				 	tours.get(i).price + ", " +
 								     				 	tours.get(i).duration + ", '" +
-								     				 	tours.get(i).departCity + "', " + "NULL, " +
+								     				 	tours.get(i).departCity + "', '" + 
+								     				 	tours.get(i).description + "', " +
 								     				 	rowsHotelNum + ", " + tours.get(i).source + ", " + tours.get(i).previousPrice + ");");
-
-		       		else 
-		       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
-			       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
-									     				 tours.get(i).link + "', '" +
-									     			     tours.get(i).nutrition + "', '" + 
-									     			     tours.get(i).roomType + "', '" +
-									     			     bdDate + "', " +
-									     			     tours.get(i).price + ", " +
-									     			     tours.get(i).duration + ", '" +
-									     			     tours.get(i).departCity + "', " + "NULL, " +
-									     			     rowsHotelNum + ", " + tours.get(i).source + ", " + "NULL" + ");");
+		       			}
+		       			else {
+		       				select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+				       			+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
+									     				 	tours.get(i).link + "', '" +
+									     				 	tours.get(i).nutrition + "', '" + 
+									     				 	tours.get(i).roomType + "', '" +
+									     				 	bdDate + "', " +
+									     				 	tours.get(i).price + ", " +
+									     				 	tours.get(i).duration + ", '" +
+									     				 	tours.get(i).departCity + "', " + "NULL, " +
+									     				 	rowsHotelNum + ", " + tours.get(i).source + ", " + tours.get(i).previousPrice + ");");
+				       			
+		       			}
+		       		}
+		       		else {
+		       			if (!(tours.get(i).description == null)) {
+		       				select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+		       						+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
+									     				 	tours.get(i).link + "', '" +
+									     				 	tours.get(i).nutrition + "', '" + 
+									     				 	tours.get(i).roomType + "', '" +
+									     				 	bdDate + "', " +
+									     				 	tours.get(i).price + ", " +
+									     				 	tours.get(i).duration + ", '" +
+									     				 	tours.get(i).departCity + "', '" +
+									     				 	tours.get(i).description + "', " +
+									     				 	rowsHotelNum + ", " + tours.get(i).source + ", " + "NULL" + ");");
+		       			}
+		       			else {
+			       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+			       					+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
+									     				 	tours.get(i).link + "', '" +
+									     				 	tours.get(i).nutrition + "', '" + 
+									     				 	tours.get(i).roomType + "', '" +
+									     				 	bdDate + "', " +
+									     				 	tours.get(i).price + ", " +
+									     				 	tours.get(i).duration + ", '" +
+									     				 	tours.get(i).departCity + "', " + "NULL, " +
+									     				 	rowsHotelNum + ", " + tours.get(i).source + ", " + "NULL" + ");");
+		       			}
+		       		}
 		       		try {
 						
 			       		select.execute();
@@ -578,7 +612,8 @@ public class Parsers {
 			   		
 //			   		int tourId = i + tourNumber + 1;
 			   		
-					if (!(tours.get(i).previousPrice == null))
+					if (!(tours.get(i).previousPrice == null)) {
+						if (tours.get(i).description == null) {
 			   			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
 		       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
 									 				 	tours.get(i).link + "', '" +
@@ -589,7 +624,24 @@ public class Parsers {
 									 				 	tours.get(i).duration + ", '" +
 									 				 	tours.get(i).departCity + "', " + "NULL, " +
 									 				 	rowsHotelNumElse + ", " + tours.get(i).source + ", " + tours.get(i).previousPrice + ");");
-			   		else
+						}
+						else {
+		       				select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+				       			+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
+										 				 	tours.get(i).link + "', '" +
+										 				 	tours.get(i).nutrition + "', '" + 
+										 				 	tours.get(i).roomType + "', '" +
+										 				 	bdDate + "', " +
+										 				 	tours.get(i).price + ", " +
+										 				 	tours.get(i).duration + ", '" +
+										 				 	tours.get(i).departCity + "', '" + 
+										 				 	tours.get(i).description + "', " +
+										 				 	rowsHotelNumElse + ", " + tours.get(i).source + ", " + tours.get(i).previousPrice + ");");
+							
+						}
+					}
+					else {
+						if (tours.get(i).description == null) {
 			   			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
 			       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
 										 				 tours.get(i).link + "', '" +
@@ -600,7 +652,25 @@ public class Parsers {
 										 			     tours.get(i).duration + ", '" +
 										 			     tours.get(i).departCity + "', " + "NULL, " +
 										 			     rowsHotelNumElse + ", " + tours.get(i).source + ", " + "NULL" + ");");
-			   		try {
+					
+						}
+						else {
+		       				select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+				       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
+										 				 tours.get(i).link + "', '" +
+										 			     tours.get(i).nutrition + "', '" + 
+										 			     tours.get(i).roomType + "', '" +
+										 			     bdDate + "', " +
+										 			     tours.get(i).price + ", " +
+										 			     tours.get(i).duration + ", '" +
+										 			     tours.get(i).departCity + "', '" + 
+										 			     tours.get(i).description + "', " +
+										 			     rowsHotelNumElse + ", " + tours.get(i).source + ", " + "NULL" + ");");
+						
+							
+						}
+					}
+					try {
 						
 				   		select.execute();
 				   		
@@ -635,7 +705,8 @@ public class Parsers {
 		            
 //	       		int tourId = i + tourNumber + 1;
 	       		
-	       		if (!(tours.get(i).previousPrice == null))
+	       		if (!(tours.get(i).previousPrice == null)) {
+	       			if (tours.get(i).description == null) {
 	       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
 		       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
 							     				 tours.get(i).link + "', '" +
@@ -645,8 +716,27 @@ public class Parsers {
 							     			     tours.get(i).price + ", " +
 							     			     tours.get(i).duration + ", '" +
 							     			     tours.get(i).departCity + "', " + "NULL, " +
-							     			     "NULL, " + tours.get(i).source + ", " + tours.get(i).previousPrice + ");");
-	       		else
+							     			     "NULL, " + tours.get(i).source + ", " + 
+							     			     tours.get(i).previousPrice + ");");
+	       			}
+	       			else {
+	       				select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+			       			+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
+							    				 tours.get(i).link + "', '" +
+							     			     tours.get(i).nutrition + "', '" + 
+							     			     tours.get(i).roomType + "', '" +
+							     			     bdDate + "', " +
+							     			     tours.get(i).price + ", " +
+							     			     tours.get(i).duration + ", '" +
+							     			     tours.get(i).departCity + "', '" + 
+							     			     tours.get(i).description + "', " +
+							     			     "NULL, " + tours.get(i).source + ", " + 
+							     			     tours.get(i).previousPrice + ");");
+	       				
+	       			}
+	       		}
+	       		else {
+	       			if (tours.get(i).description == null) {
 	       			select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
 		       				+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
 							     				 tours.get(i).link + "', '" +
@@ -657,7 +747,22 @@ public class Parsers {
 							     			     tours.get(i).duration + ", '" +
 							     			     tours.get(i).departCity + "', " + "NULL, " +
 							     			     "NULL, " + tours.get(i).source + ", " + "NULL" + ");");
-	       		
+	       			}
+	       			else {
+	       				select = conn.prepareStatement("INSERT INTO TOUR (url, nutrition, room_type, flight_date, price, duration,"
+			       			+ " depart_city, description, hotel_id, source_id, previous_price) VALUES ('" + 
+							     				 tours.get(i).link + "', '" +
+							     			     tours.get(i).nutrition + "', '" + 
+							     			     tours.get(i).roomType + "', '" +
+							     			     bdDate + "', " +
+							     			     tours.get(i).price + ", " +
+							     			     tours.get(i).duration + ", '" +
+							     			     tours.get(i).departCity + "', '" + 
+							     			     tours.get(i).description + "', " +
+							     			     "NULL, " + tours.get(i).source + ", " + "NULL" + ");");
+	       				
+	       			}
+	       		}
 	       		try {
 					
 		       		select.execute();

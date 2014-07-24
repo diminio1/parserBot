@@ -202,7 +202,7 @@ public class KenarParser {
                     			return "QDPL";
                     		return "DBL";                    
                     	}
-                    }, roomTypeStr, source, countryStand, cityStand, bananLog, "Kenar: ");
+                    }, roomTypeStr, null, source, countryStand, cityStand, bananLog, "Kenar: ");
                     
         			if (localTour != null) {
         				localTour.price /= 2;

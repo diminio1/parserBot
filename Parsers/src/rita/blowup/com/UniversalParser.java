@@ -39,6 +39,7 @@ public class UniversalParser {
                                        Parsable link, String linkStr,
                                        Parsable nutrition, String nutritionStr,
                                        Parsable roomType, String roomTypeStr,
+                                       String descriptionStr,
                                        int source,
                                        TermFilter countryStand,
                                        TermFilter cityStand,
@@ -79,6 +80,8 @@ public class UniversalParser {
             tObj.setLink((String)link.get(linkStr));
                 
             tObj.setSource(source);
+            
+            tObj.setDescription(descriptionStr);
                 
             tObj.setRoomType((String)roomType.get(roomTypeStr));
             if (tObj.roomType.equals(""))

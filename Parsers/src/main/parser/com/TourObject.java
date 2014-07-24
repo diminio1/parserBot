@@ -21,6 +21,7 @@ public class TourObject {
 	public String roomType;
 	public String nutrition;
 	public String link;
+	public String description;
 	public int          stars;
 	public int          price;
 	public Integer      previousPrice;
@@ -46,6 +47,7 @@ public class TourObject {
 		departDate    = new Date();
 		source        = 0;
 		tourId        = 0;
+		description   = null;
 	}
 	
 	public void setHotel(String h) {
@@ -155,6 +157,24 @@ public class TourObject {
 		return null;
 	}
 	
+	public void setDescription(String s) {
+		String res = "" + s;
+		if(s != null) {
+			if (res.length() >= 2048)
+				res = res.substring(0, 2047);
+			this.description = res;
+		}
+		else
+			this.description = null;
+	}
+	
+	public String getDescription() {
+		if(this.description != null){
+			return new String(this.description);
+		}
+		return null;
+	}
+
 	public void setNutrition(String s) {
 		if(s != null)
 		this.nutrition = s;

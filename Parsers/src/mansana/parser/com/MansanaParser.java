@@ -254,7 +254,7 @@ public class MansanaParser {
                                 return "QDPL";
                             return "";                    
                         }
-                    }, roomTypeStr, source, countryStand, cityStand, bananLog, "Mansana: ");
+                    }, roomTypeStr, null, source, countryStand, cityStand, bananLog, "Mansana: ");
                     
                     if (localTour != null){
                     

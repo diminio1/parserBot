@@ -223,7 +223,7 @@ public class ApltravelParser {
             							return "QDPL";
             						return "DBL";                    
             					}
-            				}, roomTypeStr, source, countryStand, cityStand, bananLog, "Apltravel: ");
+            				}, roomTypeStr, null, source, countryStand, cityStand, bananLog, "Apltravel: ");
                     
             				if (localTour != null) {
             					localTour.price = localTour.price / persons;

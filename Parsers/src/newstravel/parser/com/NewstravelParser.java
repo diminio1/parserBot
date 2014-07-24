@@ -62,7 +62,11 @@ public class NewstravelParser {
     				String durationStr = tour.get("travel_nights").toString();
     				String stars = tour.get("hotel_stars").toString(); 
     				String description = tour.get("description").toString();
-    				String priceStr = tour.get("price").toString();;
+    				description = description.substring(1, description.length() - 1);
+    				description = description.replace("n", " ").trim();
+    				description = description.replace("\\", "");
+    				description = description.replace("\u00a0", " ");
+    				String priceStr = tour.get("price").toString();
     				
     				TourObject localTour = UniversalParser.parseTour(new Parsable() {
 
@@ -207,7 +211,7 @@ public class NewstravelParser {
 							return "DBL";
 						}
     					
-    				}, roomTypeStr, source, countryStand, cityStand, bananLog, "Newstravel: ");
+    				}, roomTypeStr, description, source, countryStand, cityStand, bananLog, "Newstravel: ");
     				if (localTour != null) {
     					tours.add(localTour);
     				}

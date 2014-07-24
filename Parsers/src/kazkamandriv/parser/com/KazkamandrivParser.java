@@ -296,7 +296,7 @@ public class KazkamandrivParser {
                             return "QDPL";
                         return "DBL";                    
                     }
-                }, roomTypeStr, source, countryStand, cityStand, bananLog, "Kazkamandriv: ");
+                }, roomTypeStr, null, source, countryStand, cityStand, bananLog, "Kazkamandriv: ");
                     
                 if (localTour != null) {
                   	localTour.price = localTour.price; 

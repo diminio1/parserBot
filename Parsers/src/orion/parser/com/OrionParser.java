@@ -193,7 +193,7 @@ public class OrionParser {
                     			return "QDPL";
                     		return "DBL";                    
                     	}
-                    }, roomTypeStr, source, countryStand, cityStand, bananLog, "Orion: ");
+                    }, roomTypeStr, null, source, countryStand, cityStand, bananLog, "Orion: ");
                     
                     if (localTour != null) {
                     	tours.add(localTour);

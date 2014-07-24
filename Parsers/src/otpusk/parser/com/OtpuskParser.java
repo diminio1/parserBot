@@ -54,6 +54,7 @@ public class OtpuskParser {
                     String price = x.select("a[class = hottour-price]").text();
                     String link = website + x.select("a[class = hottour-title]").attr("href");
                     
+                    
                     Document tourDoc = Jsoup.connect(link).timeout(100000).get();
                     
                     if (country.equals("")) {
@@ -79,6 +80,8 @@ public class OtpuskParser {
                     catch (Exception ex) {
                         roomType = "";
                     }
+                    
+                    String description = tourDoc.select("p[itemprop = description]").text();
                     
                     TourObject tObj = UniversalParser.parseTour(new Parsable() {
 
@@ -186,7 +189,7 @@ public class OtpuskParser {
                         public Object get(String src) {
                             return "" + src;
                         }
-                    }, roomType, source, countryStand, cityStand, bananLog, "Otpusk: "
+                    }, roomType, description, source, countryStand, cityStand, bananLog, "Otpusk: "
                             );
                     if (tObj != null) {
                         if (persons.contains("2"))

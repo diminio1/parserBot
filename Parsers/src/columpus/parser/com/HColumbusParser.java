@@ -143,6 +143,8 @@ public class HColumbusParser {
             	bananLog.write(null, "Price is null!\n");
             }
             
+            String description = tourDoc.select("div[class = main_text]").text();
+            
             tObj.setCountry(country.text().trim().toUpperCase(), countryStand, bananLog);
             
             tObj.setTown(city.text().trim().toUpperCase(), cityStand, "HColumbus: ", bananLog);
@@ -170,6 +172,7 @@ public class HColumbusParser {
 
             tObj.setLink(url);
             
+            tObj.setDescription(description);
             
             tours.add(tObj);
         }

@@ -239,7 +239,7 @@ public class Tur777Parser {
            							return "QDPL";
            						return "DBL";                    
            					}
-           				}, roomTypeStr, source, countryStand, cityStand, bananLog, "Tur777: ");
+           				}, roomTypeStr, null, source, countryStand, cityStand, bananLog, "Tur777: ");
                     
            				if (localTour != null) {
            					tours.add(localTour);
