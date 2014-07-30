@@ -6,6 +6,7 @@ import touravia.parser.com.TouraviaParser;
 import tui.parser.com.TuiParser;
 import tur777.parser.com.Tur777Parser;
 import turne.parser.com.TurneParser;
+import ittour.parser.com.IttourParser;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -68,6 +69,7 @@ public class Parsers {
 	private static OrionParser        orionParser;
 	private static SilverParser       silverParser;
 	private static NewstravelParser   newstravelParser;
+	private static IttourParser       ittourParser;
 	
 	private static TermFilter countryStand;
 	private static TermFilter cityStand;
@@ -174,6 +176,8 @@ public class Parsers {
 							System.out.println("silverParser finish!");
 							newstravelParser       = new NewstravelParser(countryStand, cityStand, bananLog);
 							System.out.println("newstravelParser finish!");
+							ittourParser       = new IttourParser(countryStand, cityStand, bananLog);
+							System.out.println("ittourParser finish!");
 							
 							ArrayList<TourObject> allTours = new ArrayList <TourObject> ();
 							
@@ -199,6 +203,7 @@ public class Parsers {
 							allTours.addAll(orionParser.tours);
 							allTours.addAll(silverParser.tours);
 							allTours.addAll(newstravelParser.tours);
+							allTours.addAll(ittourParser.tours);
 							
 							createBase(allTours, conn);
 						}
