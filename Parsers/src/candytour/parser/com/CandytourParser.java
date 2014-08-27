@@ -140,13 +140,15 @@ public class CandytourParser {
                     @Override
                     public Object get(String src) {
                         try {
-                            String res = "" + src;
-                            int k = res.charAt(0);
-                            while (!(k >= 48 && k <= 57)) {
-                                res = res.substring(1);
-                                k = res.charAt(0);
-                            }
-                            return Integer.parseInt(res) / 2;
+//                            String res = "" + src;
+//                            int k = res.charAt(0);
+//                            while (!(k >= 48 && k <= 57)) {
+//                                res = res.substring(1);
+//                                k = res.charAt(0);
+//                            }
+//                            return Integer.parseInt(res) / 2;
+                        	String resArr [] = src.split("\\s");
+                        	return Integer.parseInt(resArr[0]) / 2;
                         }
                         catch (IndexOutOfBoundsException ex) {
                             return 0;
