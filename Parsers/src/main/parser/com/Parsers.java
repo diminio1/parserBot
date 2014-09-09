@@ -595,8 +595,21 @@ public class Parsers {
 			       		if (HAS_COUNTRY) setToutToCountryConn(tours, tourId, select, i, conn);		       		
 			       		if (HAS_CITY)    setTourToCityConn(tours, tourId, select, i, conn);
 			       		
-		       		} catch (Exception e) {
-		       			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
+		       		}
+		       		catch (SQLException sqlEx){
+		       			try{
+		       				
+		       			 if(conn!=null) conn.rollback();
+		       			 
+		       			bananLog.write(null, "HERE WAS ROLLBACK " + " \n" + sqlEx.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(sqlEx) + " \n");
+		       			 
+		       	      }catch(SQLException se2){
+		       	    	  
+		       	    	bananLog.write(null, se2.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(se2) + " \n");
+		       	      }
+		       		}
+		       		catch (Exception e) {
+		       			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");		       			
 		       		}
 	
 			   	}
@@ -693,7 +706,20 @@ public class Parsers {
 			       		if (HAS_COUNTRY) setToutToCountryConn(tours, tourId, select, i, conn);		       		
 			       		if (HAS_CITY)    setTourToCityConn(tours, tourId, select, i, conn);
 			       		
-			   		} catch (Exception e) {
+			   		}
+		       		catch (SQLException sqlEx){
+		       			try{
+		       				
+		       			 if(conn!=null) conn.rollback();
+		       			 
+		       			bananLog.write(null, "HERE WAS ROLLBACK " + " \n" + sqlEx.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(sqlEx) + " \n");
+		       			 
+		       	      }catch(SQLException se2){
+		       	    	  
+		       	    	bananLog.write(null, se2.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(se2) + " \n");
+		       	      }
+		       		}
+					catch (Exception e) {
 			   			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
 			   		}
 			   	}
@@ -786,7 +812,20 @@ public class Parsers {
 		       		if (HAS_COUNTRY) setToutToCountryConn(tours, tourId, select, i, conn);		       		
 		       		if (HAS_CITY)    setTourToCityConn(tours, tourId, select, i, conn);
 		       		
-	       		} catch (Exception e) {
+	       		}
+	       		catch (SQLException sqlEx){
+	       			try{
+	       				
+	       			 if(conn!=null) conn.rollback();
+	       			 
+	       			bananLog.write(null, "HERE WAS ROLLBACK " + " \n" + sqlEx.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(sqlEx) + " \n");
+	       			 
+	       	      }catch(SQLException se2){
+	       	    	  
+	       	    	bananLog.write(null, se2.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(se2) + " \n");
+	       	      }
+	       		}
+	       		catch (Exception e) {
 	       			bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
 	       		}
 	
@@ -797,7 +836,20 @@ public class Parsers {
 		  conn.setAutoCommit(true);
 	      
 	      System.out.println("ALL IS DONE!");
-    } catch (Exception e) {
+    }
+	catch (SQLException sqlEx){
+		try{
+			
+		 if(conn!=null) conn.rollback();
+		 
+		bananLog.write(null, "HERE WAS ROLLBACK " + " \n" + sqlEx.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(sqlEx) + " \n");
+		 
+      }catch(SQLException se2){
+    	  
+    	bananLog.write(null, se2.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(se2) + " \n");
+      }
+	}
+    catch (Exception e) {
     	bananLog.write(null, e.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(e) + " \n");
     }	
           	
