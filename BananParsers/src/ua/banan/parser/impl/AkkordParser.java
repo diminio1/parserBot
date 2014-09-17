@@ -27,7 +27,7 @@ public class AkkordParser extends AbstractParser {
     
     public AkkordParser(DataOperator dataOperator) {
         super(dataOperator);
-    }    
+    }
             
     @Override
     public List<Tour> parseTours() {

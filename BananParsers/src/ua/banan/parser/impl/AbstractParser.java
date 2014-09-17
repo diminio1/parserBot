@@ -98,7 +98,7 @@ public abstract class AbstractParser implements Parser {
             
             if (hotel != null){
                 return hotel;
-            } else {
+            } else if (hotelName != null && !hotelName.isEmpty()){
                 hotel = new Hotel();
                 
                 hotel.setCityId(cityId);
@@ -194,4 +194,9 @@ public abstract class AbstractParser implements Parser {
             return null;
         }
     }
+
+    @Override
+    public int getSourceId() {
+        return sourceId;
+    }        
 }
