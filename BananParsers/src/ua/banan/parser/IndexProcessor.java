@@ -7,8 +7,6 @@
 package ua.banan.parser;
 
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import ua.banan.data.provider.DataOperator;
 import ua.banan.parser.impl.AkkordParser;
 
@@ -16,11 +14,24 @@ import ua.banan.parser.impl.AkkordParser;
  *
  * @author swat
  */
-public class ParserOperator {
-    private static final Logger LOGGER = LogManager.getLogger(ParserOperator.class.getName());    
+public class IndexProcessor implements Runnable {
 
+    /*
+        7200 000 milliseconds = 2hours
+    */
+    private static final int SLEEP_BETWEEN_INDEXATIONS = 7200000;
     
-    public void startIndexing(DataOperator dataOperator, List<Integer> idsOfTourOperatorsToIndex){
+    
+    private final DataOperator dataOperator;
+    private final List<Integer> idsOfTourOperatorsToIndex;
+
+    public IndexProcessor(DataOperator dataOperator, List<Integer> idsOfTourOperatorsToIndex) {
+        this.dataOperator = dataOperator;
+        this.idsOfTourOperatorsToIndex = idsOfTourOperatorsToIndex;
+    }        
+    
+    @Override
+    public void run() {
         if (dataOperator != null && idsOfTourOperatorsToIndex != null && !idsOfTourOperatorsToIndex.isEmpty()){
             
             Parser parser;
@@ -29,12 +40,9 @@ public class ParserOperator {
                 
                 parser = new AkkordParser(dataOperator);
                 
-                
+                //TODO ::
             }
         }
     }
     
-    public void stopIndexing(List<Integer> idsOfTourOperatorsToParse){
-        throw new UnsupportedOperationException("Haven't been implemented yet");
-    }
 }

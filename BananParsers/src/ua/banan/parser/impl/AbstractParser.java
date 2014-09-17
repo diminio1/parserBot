@@ -29,15 +29,15 @@ import ua.banan.parser.Parser;
 public abstract class AbstractParser implements Parser {
     private static final Logger LOGGER = LogManager.getLogger(AbstractParser.class.getName());    
         
+    public static int sourceId;    
+    
     protected static final int CONNECTION_TIMEOUT = 100000;
     
     protected final DataOperator dataOperator;
-    protected final CurrencyExchanger  currencyExchanger;
     
 
-    public AbstractParser(DataOperator dataOperator, CurrencyExchanger currencyExchanger) {
+    public AbstractParser(DataOperator dataOperator) {
         this.dataOperator          = dataOperator;
-        this.currencyExchanger     = currencyExchanger;
     }            
     
     
@@ -48,7 +48,7 @@ public abstract class AbstractParser implements Parser {
             try{
                 Integer price = Integer.parseInt(priceString.replaceAll("\\D", ""));
                 
-                return currencyExchanger != null ? currencyExchanger.exchangeToUah(currencyId, price) : price;
+                return CurrencyExchanger.exchangeToUah(currencyId, price);
             }
             catch (NumberFormatException nfe){
                 LOGGER.error("Error parsing price from string: " + priceString, nfe);

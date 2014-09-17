@@ -1,6 +1,5 @@
 package ua.banan.parser.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -12,7 +11,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import ua.banan.data.model.City;
-import ua.banan.data.model.CurrencyExchanger;
 import ua.banan.data.model.Tour;
 import ua.banan.data.model.TourOperator;
 import ua.banan.data.model.common.Utils;
@@ -22,11 +20,14 @@ public class AkkordParser extends AbstractParser {
     private static final Logger LOGGER = LogManager.getLogger(AkkordParser.class.getName());    
     
     private static final String website = "http://www.akkord-tour.com.ua/choose-me.php";
-    private static final int    sourceId = 20;
 
-    public AkkordParser(DataOperator dataOperator, CurrencyExchanger currencyExchanger) {
-        super(dataOperator, currencyExchanger);
+    static {
+        sourceId = 20;
     }
+    
+    public AkkordParser(DataOperator dataOperator) {
+        super(dataOperator);
+    }    
             
     @Override
     public List<Tour> parseTours() {
