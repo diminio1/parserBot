@@ -20,13 +20,13 @@ import ua.banan.data.model.CurrencyExchanger;
 import ua.banan.data.model.Hotel;
 import ua.banan.data.model.common.Pair;
 import ua.banan.data.provider.DataOperator;
-import ua.banan.parser.Parser;
+import ua.banan.parser.SourceIdHandler;
 
 /**
  *
  * @author swat
  */
-public abstract class AbstractParser implements Parser {
+public abstract class AbstractParser implements SourceIdHandler {
     private static final Logger LOGGER = LogManager.getLogger(AbstractParser.class.getName());    
         
     public static int sourceId;    
@@ -185,7 +185,7 @@ public abstract class AbstractParser implements Parser {
     }
        
     
-    protected Integer parseInt(String inputString){
+    public static Integer parseInt(String inputString){
         try{
             return Integer.parseInt(inputString.replaceAll("\\D", ""));
         } catch (NumberFormatException nfe){

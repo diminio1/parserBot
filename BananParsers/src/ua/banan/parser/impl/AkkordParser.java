@@ -1,5 +1,7 @@
 package ua.banan.parser.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -15,8 +17,9 @@ import ua.banan.data.model.Tour;
 import ua.banan.data.model.TourOperator;
 import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
+import ua.banan.parser.Parser;
 
-public class AkkordParser extends AbstractParser {
+public class AkkordParser extends AbstractParser implements Parser {
     private static final Logger LOGGER = LogManager.getLogger(AkkordParser.class.getName());    
     
     private static final String website = "http://www.akkord-tour.com.ua/choose-me.php";
@@ -73,6 +76,8 @@ public class AkkordParser extends AbstractParser {
                 
                 String previousPriceStr = x.select("span[class = currency_price_span]").select("span[rel = UAH]").first().ownText().trim();
                 
+                String descriptionStr = null;
+                
                 try {
                 	Document doc = Jsoup.connect(linkStr).timeout(100000).get();
                 	Elements hotels = doc.select("a:contains(Отель)").select("b");
@@ -81,6 +86,7 @@ public class AkkordParser extends AbstractParser {
                 	} else {
                             hotelStr = "";
                         }
+                        descriptionStr = doc.select("div[id = include]").text();
                 }
                 catch (Exception ex) {
                     LOGGER.error("Exception while reding hotel", ex);                                                	
@@ -91,11 +97,11 @@ public class AkkordParser extends AbstractParser {
                 tour.setUrl(linkStr);        
                 tour.setPrice(parsePrice(priceStr));
                 tour.setPreviousPrice(parsePrice(previousPriceStr));
-//                tour.setFeedPlan(feedPlanStr);
-                tour.setRoomType(roomTypeStr);
+//                tour.setFeedPlan(parseFeedPlan(feedPlanStr));
+                tour.setRoomType(parseRoomType(roomTypeStr));
                 tour.setNightsCount(parseNightCount(durationStr));
                 tour.setFlightDate(parseDate(dateStr));
-//                tour.setDescription(descriptionStr);
+                tour.setDescription(descriptionStr);
                 tour.setCountries(parseCountries(countryStr));
                 tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
                 
@@ -108,8 +114,10 @@ public class AkkordParser extends AbstractParser {
                 if (departCities != null && !departCities.isEmpty()){
                     tour.setDepartCity(departCities.get(0));                    
                 }
+                                                
+                tour.setTourOperator(tourOperator);  
                 
-                tour.setTourOperator(tourOperator);                                
+                tours.add(tour);
             }
         }
         catch(Exception ex) {                           
@@ -121,17 +129,23 @@ public class AkkordParser extends AbstractParser {
 
     @Override
     protected Date parseDate(String inputString) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return dateFormat.parse(inputString);
+        } catch (ParseException ex) {
+            LOGGER.error("Parsing date error " + ex.getMessage(), ex);
+            return null;
+        }
     }
 
     @Override
     protected String parseHotelName(String nameContainer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     protected Integer parseHotelStars(String starsContainer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
 

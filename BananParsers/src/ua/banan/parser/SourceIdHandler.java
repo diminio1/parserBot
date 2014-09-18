@@ -6,13 +6,10 @@
 
 package ua.banan.parser;
 
-import java.util.List;
-import ua.banan.data.model.Tour;
-
 /**
  *
  * @author swat
  */
-public interface Parser extends SourceIdHandler {
-    public List<Tour> parseTours();         
+public interface SourceIdHandler {
+    public int getSourceId();
 }

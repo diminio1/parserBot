@@ -4,280 +4,122 @@
  * and open the template in the editor.
  */
 
-package candytour.parser.com;
+package ua.banan.parser.impl;
 
-import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import main.parser.com.TourObject;
-
+import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.pmw.tinylog.writers.FileWriter;
-
-import banan.file.writer.BananFileWriter;
-import rita.blowup.com.DateEdit;
-import rita.blowup.com.Parsable;
-import rita.blowup.com.UniversalParser;
-import term.filter.parser.TermFilter;
+import ua.banan.data.model.City;
+import ua.banan.data.model.Tour;
+import ua.banan.data.model.TourOperator;
+import ua.banan.data.model.common.Utils;
+import ua.banan.data.provider.DataOperator;
+import ua.banan.parser.Parser;
 
 /**
  *
  * @author Маргарита
  */
-public class CandytourParser {
+public class CandytourParser extends AbstractParser implements Parser {
+    private static final Logger LOGGER = LogManager.getLogger(AkkordParser.class.getName());    
     
-    public ArrayList<TourObject> tours;
     private static final String website = "http://candytour.com.ua/cgi-bin/myAccount/myAccount.cgi?action=dp&vs=2/scId=6&p=hottour&showAll=1";
-    private static final int    source  = 14;
+
+    static {
+        sourceId = 14;
+    }
     
-    public CandytourParser(TermFilter countryStand, TermFilter cityStand, BananFileWriter bananLog) {
-        tours = new ArrayList<TourObject>();
-        Document tourDoc = null;
+    public CandytourParser(DataOperator dataOperator) {
+        super(dataOperator);
+    }
+
+    @Override
+    public List<Tour> parseTours() {
+        List<Tour> tours = new ArrayList<>();
+        
+        TourOperator tourOperator = dataOperator.getTourOperatorById(sourceId);
+        
         try {
-            tourDoc = Jsoup.connect(website).timeout(100000).get();
+            Document tourDoc = Jsoup.connect(website).timeout(CONNECTION_TIMEOUT).get();
+        
             Elements tourBlocks = tourDoc.select("div[class = news]");
             for (Element x: tourBlocks) {
+        
                 String destination = x.select("span").get(1).text().trim().toUpperCase(); // country + city
-                String departDate = x.select("div").get(1).ownText();
-                String price = x.select("div").get(1).select("span").text();
-                String hotel = x.select("span").get(2).text().trim().toUpperCase();
+                
+                String dateStr = x.select("div").get(1).ownText();
+                
+                String priceStr = x.select("div").get(1).select("span").text();
+                
+                String hotelStr = x.select("span").get(2).text().trim().toUpperCase();
+                
                 String info = x.select("span").get(3).text().trim().toUpperCase();
+                
                 String previousPriceStr = x.select("div").get(1).select("s").text(); 
-                String link = website; 
                 
-                TourObject localTour = UniversalParser.parseTour(new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        try {
-                            return src.substring(0, src.indexOf(","));
-                        }
-                        catch (IndexOutOfBoundsException ex) {
-                            return "" + src;
-                        }
-                    }
-                }, destination, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        try {
-                            return src.substring(src.indexOf(",")).trim();
-                        }
-                        catch (IndexOutOfBoundsException ex) {
-                            return "";
-                        }
-                    }
-                }, destination, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        String res = "" + src;
-                        try {
-                            if (res.contains("*"))
-                                res = res.substring(0, res.lastIndexOf(" "));
-                        }
-                        catch (IndexOutOfBoundsException ex) {
-                        }
-                        finally {
-                            return res.replace('\'', '"');
-                        }
-                    }
-                }, hotel, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        try {
-                            int n = src.length();
-                            return new Date(Integer.parseInt(src.substring(n - 4)) - 1900, Integer.parseInt(src.substring(3,5)) - 1, Integer.parseInt(src.substring(0,2)));                    
-                        }
-                        catch (Exception ex) {
-                            return new Date(0, 0, 1);
-                        }
-                    }
-                }, departDate, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        try {
-                            return src.substring(src.indexOf(":") + 1, src.indexOf("-")).trim();
-                        }
-                        catch (Exception ex) {
-                            return "";
-                        }
-                    }
-                    
-                }, info, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        try {
-                            String res = "" + src;
-                            int k = res.charAt(0);
-                            while (!(k >= 48 && k <= 57)) {
-                                res = res.substring(1);
-                                k = res.charAt(0);
-                            }
-                            int l = res.charAt(1);
-                            if ((l >= 48) && (l <= 57))
-                                res = res.substring(0,2);
-                            else
-                                res = res.substring(0,1);
-                            return Integer.parseInt(res);
-                        }
-                        catch (IndexOutOfBoundsException ex) {
-                            return 0;
-                        }
-                        catch (NumberFormatException ex) {
-                            return 0;
-                        }
-                    }
-                }, info, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        try {
-//                            String res = "" + src;
-//                            int k = res.charAt(0);
-//                            while (!(k >= 48 && k <= 57)) {
-//                                res = res.substring(1);
-//                                k = res.charAt(0);
-//                            }
-//                            return Integer.parseInt(res) / 2;
-                        	String resArr [] = src.split("\\s");
-                        	return Integer.parseInt(resArr[0]) / 2;
-                        }
-                        catch (IndexOutOfBoundsException ex) {
-                            return 0;
-                        }
-                        catch (NumberFormatException ex) {
-                            return 0;
-                        }
-                    }
-                }, price, new Parsable() {
-
-					@Override
-					public Object get(String src) {
-						try {
-							String res = src.substring(src.indexOf(" ") + 1);
-							return Integer.parseInt(res);
-						}
-						catch (Exception ex) {
-							return 0;
-						}
-					}
-                	
-                }, previousPriceStr, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        if (src.contains("3"))
-                            return 3;
-                        if (src.contains("4"))
-                            return 4;
-                        if (src.contains("5"))
-                            return 5;
-                        if (src.contains("2"))
-                            return 2;
-                        return 0;
-                    }
-                }, hotel, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        return "" + src;
-                   }
-                }, link, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        String res = "" + src;
-                        if (res.contains("RO") || res.contains("BO"))
-                            return "RO";
-                        if (res.contains("BB"))
-                            return "BB";
-                        if (res.contains("HB"))
-                            return "HB";
-                        if (res.contains("FB"))
-                            return "FB";
-                        if (res.contains("UAI") || res.contains("UAL") || res.contains("UAll"))
-                            return "UAI";
-                        if (res.contains("AI") || res.contains("AL") || res.contains("All"))
-                            return "AI";
-                        return "";
-                    }
-                }, info, new Parsable() {
-
-                    @Override
-                    public Object get(String src) {
-                        String res = "" + src;
-                        if (res.contains("DBL") || res.contains("DOUBLE"))
-                            return "DBL";
-                        if (res.contains("BG"))
-                            return "BGL";
-                        if (res.contains("SGL"))
-                            return "SGL";
-                        if (res.contains("TRPL"))
-                            return "TRPL";
-                        if (res.contains("QDPL"))
-                            return "QDPL";
-                        return "";                    
-                    }
-                }, info, null, source, countryStand, cityStand, bananLog, "CandyTour: "
-                        );
-                
-                if(localTour != null){
-                
-                	tours.add(localTour);
-                }
-                else{
-                	continue;
-                }
-            }
+                String linkStr = website; 
             
-//            for (int i = 0; i < tours.size(); ++i) {
-//                if (DateEdit.before(tours.get(i).departDate, new Date())) {
-//                    tours.remove(i);
-//                    --i;
-//                }
-//            }
+                String details = x.select("span[style = color:#666666;]").text();
+                
+                Tour tour = new Tour();
+                                
+                tour.setUrl(linkStr);        
+                tour.setPrice(parsePrice(priceStr));
+                tour.setPreviousPrice(parsePrice(previousPriceStr));
+                tour.setFeedPlan(parseFeedPlan(details));
+                tour.setNightsCount(parseNightCount(details));
+                tour.setFlightDate(parseDate(dateStr));
+                tour.setDescription(details);
+                tour.setCountries(parseCountries(destination));
+                tour.setCities(parseCities(destination, Utils.getIds(tour.getCountries())));
+                
+                List<City> cities = tour.getCities();
+                if (cities != null && cities.size() == 1){
+                    tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
+                }
+                                                
+                tour.setTourOperator(tourOperator);   
+                
+                tours.add(tour);
+            }
         }
-        catch(IOException ex) {
-//            System.out.println("IOException");
-        	if(ex.getMessage() != null){
-				
-				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
-			}
-			else{
-				
-				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
-			}
+        catch(Exception ex) {                           
+            LOGGER.error("Parsing error " + ex.getMessage(), ex);            
         }
-        catch(NullPointerException ex) {
-        	
-        	if(ex.getMessage() != null){
-				
-				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
-			}
-			else{
-				
-				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
-			}
+        
+        return tours.isEmpty() ? null : tours;
+    }
+
+    @Override
+    protected Date parseDate(String inputString) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            return dateFormat.parse(inputString);
+        } catch (ParseException ex) {
+            LOGGER.error("Parsing date error " + ex.getMessage(), ex);
+            return null;
         }
-        catch(Exception ex) {
-//            System.out.println("Exception"); 
-        	if(ex.getMessage() != null){
-				
-				bananLog.write(null, ex.getMessage().toString() + " \n" +  bananLog.bananStackTraceToString(ex) + " \n");
-			}
-			else{
-				
-				bananLog.write(null, bananLog.bananStackTraceToString(ex) + " \n");
-			}
-        }
+    }
+
+    @Override
+    protected String parseHotelName(String nameContainer) {
+        if (nameContainer.contains("*")) {
+            return nameContainer.substring(0, nameContainer.indexOf("*")).trim();
+        }        
+        return nameContainer;
+    }
+
+    @Override
+    protected Integer parseHotelStars(String starsContainer) {
+        return parseInt(starsContainer);
     }
 
 }

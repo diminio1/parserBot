@@ -14,6 +14,9 @@ import ua.banan.data.model.Tour;
 import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
 import ua.banan.parser.impl.AkkordParser;
+import ua.banan.parser.impl.CandytourParser;
+import ua.banan.parser.impl.HColumbusParser;
+import ua.banan.parser.impl.HTParser;
 
 /**
  *
@@ -52,9 +55,9 @@ public class IndexProcessor implements Runnable {
             if (idsOfTourOperatorsToIndex.contains(AkkordParser.sourceId)) {
                 parsers.add(new AkkordParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(ApltravelParser.sourceId)) {
-                parsers.add(new ApltravelParser(dataOperator));               
-            }
+//            if (idsOfTourOperatorsToIndex.contains(ApltravelParser.sourceId)) {
+//                parsers.add(new ApltravelParser(dataOperator));               
+//            }
             if (idsOfTourOperatorsToIndex.contains(CandytourParser.sourceId)) {
                 parsers.add(new CandytourParser(dataOperator));               
             }
@@ -64,54 +67,54 @@ public class IndexProcessor implements Runnable {
             if (idsOfTourOperatorsToIndex.contains(HTParser.sourceId)) {
                 parsers.add(new HTParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(HottoursInParser.sourceId)) {
-                parsers.add(new HottoursInParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(HottoursParser.sourceId)) {
-                parsers.add(new HottoursParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(IttourParser.sourceId)) {
-                parsers.add(new IttourParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(KazkamandrivParser.sourceId)) {
-                parsers.add(new KazkamandrivParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(KenarParser.sourceId)) {
-                parsers.add(new KenarParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(MansanaParser.sourceId)) {
-                parsers.add(new MansanaParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(NewstravelParser.sourceId)) {
-                parsers.add(new NewstravelParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(OrionParser.sourceId)) {
-                parsers.add(new OrionParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(PoehalisnamiParser.sourceId)) {
-                parsers.add(new PoehalisnamiParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(ShturmanParser.sourceId)) {
-                parsers.add(new ShturmanParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(SilverParser.sourceId)) {
-                parsers.add(new SilverParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(SmgpParser.sourceId)) {
-                parsers.add(new SmgpParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(TEZTourParser.sourceId)) {
-                parsers.add(new TEZTourParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(TouraviaParser.sourceId)) {
-                parsers.add(new TouraviaParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(TuiParser.sourceId)) {
-                parsers.add(new TuiParser(dataOperator));               
-            }
-            if (idsOfTourOperatorsToIndex.contains(Tur777Parser.sourceId)) {
-                parsers.add(new Tur777Parser(dataOperator));               
-            }
+//            if (idsOfTourOperatorsToIndex.contains(HottoursInParser.sourceId)) {
+//                parsers.add(new HottoursInParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(HottoursParser.sourceId)) {
+//                parsers.add(new HottoursParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(IttourParser.sourceId)) {
+//                parsers.add(new IttourParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(KazkamandrivParser.sourceId)) {
+//                parsers.add(new KazkamandrivParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(KenarParser.sourceId)) {
+//                parsers.add(new KenarParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(MansanaParser.sourceId)) {
+//                parsers.add(new MansanaParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(NewstravelParser.sourceId)) {
+//                parsers.add(new NewstravelParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(OrionParser.sourceId)) {
+//                parsers.add(new OrionParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(PoehalisnamiParser.sourceId)) {
+//                parsers.add(new PoehalisnamiParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(ShturmanParser.sourceId)) {
+//                parsers.add(new ShturmanParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(SilverParser.sourceId)) {
+//                parsers.add(new SilverParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(SmgpParser.sourceId)) {
+//                parsers.add(new SmgpParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(TEZTourParser.sourceId)) {
+//                parsers.add(new TEZTourParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(TouraviaParser.sourceId)) {
+//                parsers.add(new TouraviaParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(TuiParser.sourceId)) {
+//                parsers.add(new TuiParser(dataOperator));               
+//            }
+//            if (idsOfTourOperatorsToIndex.contains(Tur777Parser.sourceId)) {
+//                parsers.add(new Tur777Parser(dataOperator));               
+//            }
             
             if (!parsers.isEmpty()){
                 while (running) {
