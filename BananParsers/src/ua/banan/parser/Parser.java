@@ -13,6 +13,9 @@ import ua.banan.data.model.Tour;
  *
  * @author swat
  */
-public interface Parser extends SourceIdHandler {
-    public List<Tour> parseTours();         
+public interface Parser {
+    public List<Tour> parseTours();     
+    
+    public int getSourceId();
+
 }

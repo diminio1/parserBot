@@ -8,9 +8,7 @@ package ua.banan.parser.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,15 +16,13 @@ import ua.banan.data.model.City;
 import ua.banan.data.model.Country;
 import ua.banan.data.model.CurrencyExchanger;
 import ua.banan.data.model.Hotel;
-import ua.banan.data.model.common.Pair;
 import ua.banan.data.provider.DataOperator;
-import ua.banan.parser.SourceIdHandler;
 
 /**
  *
  * @author swat
  */
-public abstract class AbstractParser implements SourceIdHandler {
+public abstract class AbstractParser {
     private static final Logger LOGGER = LogManager.getLogger(AbstractParser.class.getName());    
         
     public static int sourceId;    
@@ -59,7 +55,7 @@ public abstract class AbstractParser implements SourceIdHandler {
         return null;
     }
     
-    protected String  parseFeedPlan(String inputString){
+    protected String parseFeedPlan(String inputString){
         inputString = inputString.toLowerCase();
 
         if (Pattern.compile("(включено)|(inclusive)|(ai)|(uai)").matcher(inputString).find()){
@@ -117,20 +113,13 @@ public abstract class AbstractParser implements SourceIdHandler {
     }
     
     protected List<Country> parseCountries(String inputString){
-        if (inputString != null && !inputString.isEmpty()){
-            /*
-                List<Pair<CountryID, 0>>
-            */
-            List<Pair<Integer, Integer>> countriesIDsPairs = dataOperator.getCountryTermFilter().filter(inputString.toUpperCase());
+        if (inputString != null && !inputString.isEmpty()){           
+            List<Integer> countriesIDs = dataOperator.getCountryTermFilter().filter(inputString);
 
-            if(countriesIDsPairs != null && !countriesIDsPairs.isEmpty()){
-                Set<Integer> setOfIds = new HashSet<>();
-
-                for(Pair<Integer, Integer> pairID : countriesIDsPairs){
-                    setOfIds.add(pairID.getFirst());
-                }
-
-                return dataOperator.getCountriesByIds(new ArrayList<>(setOfIds));
+            if(countriesIDs != null && !countriesIDs.isEmpty()){                
+                return dataOperator.getCountriesByIds(countriesIDs);
+            } else {
+                LOGGER.error("[NO_SYNONYMS] for country: " + inputString);            
             }
         }
         
@@ -138,24 +127,24 @@ public abstract class AbstractParser implements SourceIdHandler {
     }
     
     protected List<City> parseCities(String inputString, List<Integer> countriesIds){
-        if (inputString != null && countriesIds != null && !countriesIds.isEmpty()){
-            /*
-                List<Pair<CityID, CountryID>>
-            */
-            List<Pair<Integer, Integer>> citiesIDsPairs = dataOperator.getCityTermFilter().filter(inputString.toUpperCase());
+        if (inputString != null && countriesIds != null && !countriesIds.isEmpty()){           
+            List<Integer> citiesIDs = dataOperator.getCityTermFilter().filter(inputString);
 
-            if(citiesIDsPairs != null && !citiesIDsPairs.isEmpty()){                
-                Set<Integer> setOfCitiesIds = new HashSet<>();
+            if(citiesIDs != null && !citiesIDs.isEmpty()){                
+                List<City> res = new ArrayList<>();
 
-                for(Pair<Integer, Integer> pairID : citiesIDsPairs){                    
-                    Integer countryId = pairID != null ? pairID.getSecond() : null;
+                for(Integer id : citiesIDs){            
+                    City city = dataOperator.getCityById(id);
+                    Integer countryId = city != null ? city.getCountryId() : null;
                     
-                    if(countryId != null && countriesIds.contains(countryId)){                    
-                        setOfCitiesIds.add(pairID.getFirst());
-                    }
+                    if (countryId != null && countriesIds.contains(countryId)){
+                        res.add(city);
+                    }                    
                 }
 
-                return dataOperator.getCitiesByIds(new ArrayList<>(setOfCitiesIds));
+                return res;
+            } else {
+                LOGGER.error("[NO_SYNONYMS] for city: " + inputString);            
             }
         }
         
@@ -189,13 +178,12 @@ public abstract class AbstractParser implements SourceIdHandler {
         try{
             return Integer.parseInt(inputString.replaceAll("\\D", ""));
         } catch (NumberFormatException nfe){
-            LOGGER.error("Error parsing nights count from string: " + inputString, nfe);
+            LOGGER.error("Error parsing Integer from String: " + inputString, nfe);
             
             return null;
         }
     }
 
-    @Override
     public int getSourceId() {
         return sourceId;
     }        
