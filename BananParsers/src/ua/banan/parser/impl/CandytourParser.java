@@ -11,8 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,7 +29,7 @@ import ua.banan.parser.Parser;
  * @author Маргарита
  */
 public class CandytourParser extends AbstractParser implements Parser {
-    private static final Logger LOGGER = LogManager.getLogger(AkkordParser.class.getName());    
+    private static final Logger LOGGER = LoggerFactory.getLogger(AkkordParser.class.getName());    
     
     private static final String website = "http://candytour.com.ua/cgi-bin/myAccount/myAccount.cgi?action=dp&vs=2/scId=6&p=hottour&showAll=1";
 

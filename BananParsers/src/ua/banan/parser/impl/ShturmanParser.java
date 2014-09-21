@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -22,7 +22,7 @@ import ua.banan.data.provider.DataOperator;
 import ua.banan.parser.Parser;
 
 public class ShturmanParser extends AbstractParser implements Parser {
-    private static final Logger LOGGER = LogManager.getLogger(ShturmanParser.class.getName());    
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShturmanParser.class.getName());    
     
     private static final String website = "http://www.tour-shturman.com/main";
 

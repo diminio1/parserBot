@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import ua.banan.data.model.City;
@@ -23,7 +23,7 @@ import ua.banan.parser.Parser;
 
 
 public class NewstravelParser extends AbstractParser implements Parser {
-    private static final Logger LOGGER = LogManager.getLogger(NewstravelParser.class.getName());    
+    private static final Logger LOGGER = LoggerFactory.getLogger(NewstravelParser.class.getName());    
     
     private static final String website = "http://www.newstravel.com.ua/";
 

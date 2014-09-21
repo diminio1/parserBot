@@ -8,8 +8,8 @@ package ua.banan.parser;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.banan.data.model.Tour;
 import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
@@ -38,7 +38,7 @@ import ua.banan.parser.impl.Tur777Parser;
  * @author swat
  */
 public class IndexProcessor implements Runnable {
-    private static final Logger LOGGER = LogManager.getLogger(IndexProcessor.class.getName());    
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexProcessor.class.getName());    
     /*
         7200 000 milliseconds = 2hours
     */
@@ -61,6 +61,7 @@ public class IndexProcessor implements Runnable {
     
     @Override
     public void run() {
+        System.out.println("Parsers thread starting!");
         LOGGER.info("Parsers thread starting!");
         
         if (dataOperator != null && idsOfTourOperatorsToIndex != null && !idsOfTourOperatorsToIndex.isEmpty()){            
@@ -158,6 +159,7 @@ public class IndexProcessor implements Runnable {
                     }
 
                     LOGGER.info("Parse iteration finished, SLEEPING!");
+                    System.out.println("Parse iteration finished, SLEEPING!");
                     try {
                         Thread.sleep(SLEEP_BETWEEN_INDEXATIONS);                
                     } catch (InterruptedException e) {

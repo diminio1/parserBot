@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,7 +26,7 @@ import ua.banan.parser.Parser;
 
 
 public class MansanaParser extends AbstractParser implements Parser {
-    private static final Logger LOGGER = LogManager.getLogger(MansanaParser.class.getName());    
+    private static final Logger LOGGER = LoggerFactory.getLogger(MansanaParser.class.getName());    
     
     private static final String website = "http://www.mansana.com/hot_propositions.html";
 

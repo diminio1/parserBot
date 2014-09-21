@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.banan.data.model.City;
 import ua.banan.data.model.Country;
 import ua.banan.data.model.CurrencyExchanger;
@@ -23,7 +23,7 @@ import ua.banan.data.provider.DataOperator;
  * @author swat
  */
 public abstract class AbstractParser {
-    private static final Logger LOGGER = LogManager.getLogger(AbstractParser.class.getName());    
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractParser.class.getName());    
         
     public static int sourceId;    
     
