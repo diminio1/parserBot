@@ -42,7 +42,7 @@ public class IndexProcessor implements Runnable {
     /*
         7200 000 milliseconds = 2hours
     */
-    private static final int SLEEP_BETWEEN_INDEXATIONS = 7200000;
+    private static final long SLEEP_BETWEEN_INDEXATIONS = 7200000;
     
     private final DataOperator dataOperator;
     private final List<Integer> idsOfTourOperatorsToIndex;
@@ -161,19 +161,33 @@ public class IndexProcessor implements Runnable {
             if (!parsers.isEmpty()){
                 while (running) {
                     for(Parser parser : parsers){
-                        LOGGER.error("Parse iteration : id " + parser.getSourceId());
-                        System.out.println("Parse iteration : id " + parser.getSourceId());
-                        saveParsedTours(parser.parseTours(), parser.getSourceId());
+                        if (running){
+                            LOGGER.error("Parse iteration : id " + parser.getSourceId());
+                            System.out.println("Parse iteration : id " + parser.getSourceId());
+                            
+                            List<Tour> tours = parser.parseTours();
+                            System.out.println("Parsed tours : " + tours != null ? tours.size() : "'null'");
+                            saveParsedTours(tours, parser.getSourceId());
+                        } else {
+                            break;
+                        }
                     }
 
                     LOGGER.error("Parse iteration finished, SLEEPING!");
                     System.out.println("Parse iteration finished, SLEEPING!");
-                    try {
-                        Thread.sleep(SLEEP_BETWEEN_INDEXATIONS);                
-                    } catch (InterruptedException e) {
-                        LOGGER.error("Exception ", e);
-                        running = false;
-                    }
+                    
+                    long alreadySlept = 0;
+                    
+                    while(alreadySlept < SLEEP_BETWEEN_INDEXATIONS && running){
+                        try {
+                            Thread.sleep(5000);                
+                        } catch (InterruptedException e) {
+                            LOGGER.error("Exception ", e);
+                            running = false;
+                        }
+                        
+                        alreadySlept += 5000;
+                    }                                        
                 }
             }
         }        
@@ -187,10 +201,11 @@ public class IndexProcessor implements Runnable {
             List<Tour> toursInDB = dataOperator.getToursByTourOperator(sourceId, null);
             
             List<Tour> intersection = Utils.intersection(tours, toursInDB);
+            if (toursInDB != null && intersection != null){
+                //remove old tours
+                toursInDB.removeAll(intersection);
+            }
             
-            //remove old tours
-            toursInDB.removeAll(intersection);
-                    
             dataOperator.deleteTours(toursInDB);
             
             dataOperator.saveTours(tours);            
