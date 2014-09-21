@@ -25,7 +25,7 @@ import ua.banan.data.provider.DataOperator;
 public abstract class AbstractParser {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractParser.class.getName());    
         
-    public static int sourceId;    
+    public int sourceId;    
     
     protected static final int CONNECTION_TIMEOUT = 100000;
     

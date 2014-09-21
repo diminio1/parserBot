@@ -23,13 +23,12 @@ public class AkkordParser extends AbstractParser implements Parser {
     private static final Logger LOGGER = LoggerFactory.getLogger(AkkordParser.class.getName());    
     
     private static final String website = "http://www.akkord-tour.com.ua/choose-me.php";
-
-    static {
-        sourceId = 20;
-    }
+    public static final int SOURCE_ID = 20;
+    
     
     public AkkordParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

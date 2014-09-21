@@ -26,12 +26,11 @@ public class OrionParser extends AbstractParser implements Parser {
     
     private static final String website = "http://orion-intour.com/topic_tours/hottur/";
 
-    static {
-        sourceId = 21;
-    }
+    public static final int SOURCE_ID = 21;
     
     public OrionParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

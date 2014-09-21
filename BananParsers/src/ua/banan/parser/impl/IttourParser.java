@@ -26,12 +26,11 @@ public class IttourParser extends AbstractParser implements Parser {
     
     private static final String   userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36";
 
-    static {
-        sourceId = 25;
-    }
+    public static final int SOURCE_ID = 24;
     
     public IttourParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

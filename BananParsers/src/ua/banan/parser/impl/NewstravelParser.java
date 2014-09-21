@@ -27,12 +27,11 @@ public class NewstravelParser extends AbstractParser implements Parser {
     
     private static final String website = "http://www.newstravel.com.ua/";
 
-    static {
-        sourceId = 23;
-    }
+    public static final int SOURCE_ID = 23;
     
     public NewstravelParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

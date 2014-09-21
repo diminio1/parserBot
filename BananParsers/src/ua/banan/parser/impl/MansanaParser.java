@@ -30,12 +30,11 @@ public class MansanaParser extends AbstractParser implements Parser {
     
     private static final String website = "http://www.mansana.com/hot_propositions.html";
 
-    static {
-        sourceId = 13;
-    }
+    public static final int SOURCE_ID = 13;
     
     public MansanaParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

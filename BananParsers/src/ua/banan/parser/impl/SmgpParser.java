@@ -25,12 +25,11 @@ public class SmgpParser extends AbstractParser implements Parser {
     
     private static final String website = "http://smgp.com.ua/last-minute-tours/from-city/0/";
 
-    static {
-        sourceId = 11;
-    }
+    public static final int SOURCE_ID = 11;
     
     public SmgpParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

@@ -26,12 +26,11 @@ public class PoehalisnamiParser extends AbstractParser implements Parser {
     
     private static final String website = "http://www.poehalisnami.ua/";
 
-    static {
-        sourceId = 8;
-    }
+    public static final int SOURCE_ID = 8;
     
     public PoehalisnamiParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

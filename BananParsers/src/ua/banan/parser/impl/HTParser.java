@@ -26,12 +26,11 @@ public class HTParser extends AbstractParser implements Parser {
     
     private static final String website = "http://ht.kiev.ua/tours/type1.html";
 
-    static {
-        sourceId = 3;
-    }
+    public static final int SOURCE_ID = 3;
     
     public HTParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

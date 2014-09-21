@@ -24,12 +24,11 @@ public class KenarParser extends AbstractParser implements Parser {
     
     private static final String website = "http://kenar.com.ua/ru/trip/type/goryashchiy.html?Trip_page=1";
 
-    static {
-        sourceId = 16;
-    }
+    public static final int SOURCE_ID = 16;
     
     public KenarParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

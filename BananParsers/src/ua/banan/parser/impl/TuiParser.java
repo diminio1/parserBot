@@ -28,12 +28,11 @@ public class TuiParser extends AbstractParser implements Parser{
     
     private static final String website = "http://www.tui.ua/";
 
-    static {
-        sourceId = 1;
-    }
+    public static final int SOURCE_ID = 1;
     
     public TuiParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
 
         @Override

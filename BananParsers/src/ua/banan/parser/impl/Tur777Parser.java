@@ -29,12 +29,11 @@ public class Tur777Parser extends AbstractParser implements Parser {
     
     private static final String website = "http://xn-----flcbkcrfr7aphd1admd3hyb7d.777tur.com/";
 
-    static {
-        sourceId = 19;
-    }
+    public static final int SOURCE_ID = 19;
     
     public Tur777Parser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
 
         @Override

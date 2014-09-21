@@ -24,12 +24,11 @@ public class HColumbusParser extends AbstractParser implements Parser {
     
     private static final String website = "http://www.hcolumbus.com.ua/hot_tours/";
 
-    static {
-        sourceId = 2;
-    }
+    public static final int SOURCE_ID = 2;
     
     public HColumbusParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

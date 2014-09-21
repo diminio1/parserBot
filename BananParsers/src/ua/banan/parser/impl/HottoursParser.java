@@ -24,12 +24,11 @@ public class HottoursParser extends AbstractParser implements Parser {
     
     private static final String website = "http://www.hottour.com.ua/tours";
 
-    static {
-        sourceId = 5;
-    }
+    public static final int SOURCE_ID = 5;
     
     public HottoursParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

@@ -33,12 +33,11 @@ public class CandytourParser extends AbstractParser implements Parser {
     
     private static final String website = "http://candytour.com.ua/cgi-bin/myAccount/myAccount.cgi?action=dp&vs=2/scId=6&p=hottour&showAll=1";
 
-    static {
-        sourceId = 14;
-    }
+    public static final int SOURCE_ID = 14;
     
     public CandytourParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
 
     @Override

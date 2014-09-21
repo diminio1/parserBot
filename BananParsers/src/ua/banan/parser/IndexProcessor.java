@@ -62,103 +62,111 @@ public class IndexProcessor implements Runnable {
     @Override
     public void run() {
         System.out.println("Parsers thread starting!");
-        LOGGER.info("Parsers thread starting!");
+        LOGGER.error("Parsers thread starting!");
         
         if (dataOperator != null && idsOfTourOperatorsToIndex != null && !idsOfTourOperatorsToIndex.isEmpty()){            
+            System.out.println("Parsers thread starting!");
+            System.out.println(idsOfTourOperatorsToIndex.toString());
+            LOGGER.error("Parsers thread starting!");
             
             List<Parser> parsers = new ArrayList<>();
-            
-            if (idsOfTourOperatorsToIndex.contains(AkkordParser.sourceId)) {
-                LOGGER.info("Akkord is included to index!");
+                                                
+            if (idsOfTourOperatorsToIndex.contains(AkkordParser.SOURCE_ID)) {
+                LOGGER.error("Akkord is included to index!");
+                System.out.println("Akkord starting!");
+                
                 parsers.add(new AkkordParser(dataOperator));               
             }
-//            if (idsOfTourOperatorsToIndex.contains(ApltravelParser.sourceId)) {
+//            if (idsOfTourOperatorsToIndex.contains(ApltravelParser.SOURCE_ID)) {
 //                parsers.add(new ApltravelParser(dataOperator));               
 //            }
-            if (idsOfTourOperatorsToIndex.contains(CandytourParser.sourceId)) {
-                LOGGER.info("CandytourParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(CandytourParser.SOURCE_ID)) {
+                LOGGER.error("CandytourParser is included to index!");
+                System.out.println("CandytourParser starting!");
                 parsers.add(new CandytourParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(HColumbusParser.sourceId)) {
-                LOGGER.info("HColumbusParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(HColumbusParser.SOURCE_ID)) {
+                LOGGER.error("HColumbusParser is included to index!");
                 parsers.add(new HColumbusParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(HTParser.sourceId)) {
-                LOGGER.info("HTParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(HTParser.SOURCE_ID)) {
+                LOGGER.error("HTParser is included to index!");
                 parsers.add(new HTParser(dataOperator));               
             }
-//            if (idsOfTourOperatorsToIndex.contains(HottoursInParser.sourceId)) {
-//                LOGGER.info("HottoursInParser is included to index!");
+//            if (idsOfTourOperatorsToIndex.contains(HottoursInParser.SOURCE_ID)) {
+//                LOGGER.error("HottoursInParser is included to index!");
 //                parsers.add(new HottoursInParser(dataOperator));               
 //            }
-            if (idsOfTourOperatorsToIndex.contains(HottoursParser.sourceId)) {
-                LOGGER.info("HottoursParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(HottoursParser.SOURCE_ID)) {
+                LOGGER.error("HottoursParser is included to index!");
                 parsers.add(new HottoursParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(IttourParser.sourceId)) {
-                LOGGER.info("IttourParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(IttourParser.SOURCE_ID)) {
+                LOGGER.error("IttourParser is included to index!");
                 parsers.add(new IttourParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(KazkamandrivParser.sourceId)) {
-                LOGGER.info("KazkamandrivParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(KazkamandrivParser.SOURCE_ID)) {
+                LOGGER.error("KazkamandrivParser is included to index!");
                 parsers.add(new KazkamandrivParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(KenarParser.sourceId)) {
-                LOGGER.info("KenarParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(KenarParser.SOURCE_ID)) {
+                LOGGER.error("KenarParser is included to index!");
                 parsers.add(new KenarParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(MansanaParser.sourceId)) {
-                LOGGER.info("MansanaParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(MansanaParser.SOURCE_ID)) {
+                LOGGER.error("MansanaParser is included to index!");
                 parsers.add(new MansanaParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(NewstravelParser.sourceId)) {
-                LOGGER.info("NewstravelParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(NewstravelParser.SOURCE_ID)) {
+                LOGGER.error("NewstravelParser is included to index!");
                 parsers.add(new NewstravelParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(OrionParser.sourceId)) {
-                LOGGER.info("OrionParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(OrionParser.SOURCE_ID)) {
+                LOGGER.error("OrionParser is included to index!");
                 parsers.add(new OrionParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(PoehalisnamiParser.sourceId)) {
-                LOGGER.info("PoehalisnamiParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(PoehalisnamiParser.SOURCE_ID)) {
+                LOGGER.error("PoehalisnamiParser is included to index!");
                 parsers.add(new PoehalisnamiParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(ShturmanParser.sourceId)) {
-                LOGGER.info("ShturmanParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(ShturmanParser.SOURCE_ID)) {
+                LOGGER.error("ShturmanParser is included to index!");
                 parsers.add(new ShturmanParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(SilverParser.sourceId)) {
-                LOGGER.info("SilverParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(SilverParser.SOURCE_ID)) {
+                LOGGER.error("SilverParser is included to index!");
                 parsers.add(new SilverParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(SmgpParser.sourceId)) {
-                LOGGER.info("SmgpParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(SmgpParser.SOURCE_ID)) {
+                LOGGER.error("SmgpParser is included to index!");
                 parsers.add(new SmgpParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(TEZTourParser.sourceId)) {
-                LOGGER.info("TEZTourParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(TEZTourParser.SOURCE_ID)) {
+                LOGGER.error("TEZTourParser is included to index!");
                 parsers.add(new TEZTourParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(TouraviaParser.sourceId)) {
-                LOGGER.info("TouraviaParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(TouraviaParser.SOURCE_ID)) {
+                LOGGER.error("TouraviaParser is included to index!");
                 parsers.add(new TouraviaParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(TuiParser.sourceId)) {
-                LOGGER.info("TuiParser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(TuiParser.SOURCE_ID)) {
+                LOGGER.error("TuiParser is included to index!");
                 parsers.add(new TuiParser(dataOperator));               
             }
-            if (idsOfTourOperatorsToIndex.contains(Tur777Parser.sourceId)) {
-                LOGGER.info("Tur777Parser is included to index!");
+            if (idsOfTourOperatorsToIndex.contains(Tur777Parser.SOURCE_ID)) {
+                LOGGER.error("Tur777Parser is included to index!");
                 parsers.add(new Tur777Parser(dataOperator));               
             }
             
             if (!parsers.isEmpty()){
                 while (running) {
                     for(Parser parser : parsers){
+                        LOGGER.error("Parse iteration : id " + parser.getSourceId());
+                        System.out.println("Parse iteration : id " + parser.getSourceId());
                         saveParsedTours(parser.parseTours(), parser.getSourceId());
                     }
 
-                    LOGGER.info("Parse iteration finished, SLEEPING!");
+                    LOGGER.error("Parse iteration finished, SLEEPING!");
                     System.out.println("Parse iteration finished, SLEEPING!");
                     try {
                         Thread.sleep(SLEEP_BETWEEN_INDEXATIONS);                

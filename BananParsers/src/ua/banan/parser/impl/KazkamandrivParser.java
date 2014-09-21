@@ -26,12 +26,11 @@ public class KazkamandrivParser extends AbstractParser implements Parser {
     
     private static final String website = "http://kazkamandriv.ua/";
 
-    static {
-        sourceId = 18;
-    }
+    public static final int SOURCE_ID = 18;
     
     public KazkamandrivParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

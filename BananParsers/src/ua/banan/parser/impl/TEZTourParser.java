@@ -25,12 +25,11 @@ public class TEZTourParser extends AbstractParser implements Parser {
     
     private static final String website = "http://www.teztour.ua/hots.html";
 
-    static {
-        sourceId = 12;
-    }
+    public static final int SOURCE_ID = 12;
     
     public TEZTourParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
             
     @Override

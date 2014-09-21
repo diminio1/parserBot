@@ -30,12 +30,11 @@ public class SilverParser extends AbstractParser implements Parser{
     
     private static final String website = "http://silver-tour.com.ua";
 
-    static {
-        sourceId = 22;
-    }
+    public static final int SOURCE_ID = 22;
     
     public SilverParser(DataOperator dataOperator) {
         super(dataOperator);
+        sourceId = SOURCE_ID;
     }
 
         @Override
