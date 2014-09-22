@@ -40,10 +40,10 @@ public class NewstravelParser extends AbstractParser implements Parser {
         
         TourOperator tourOperator = dataOperator.getTourOperatorById(sourceId);
         Document tourDoc = null;
-        int p = 0;
-        while (true) {
+
+        for (int p = 0; p < 50; p++) {
             String site = "http://besthotels.org.ua/api/get_offers/?t=tours&f=p&d=0&c=0&r=0&p=" + p + "&pp=100";
-            p++;
+
             try {
                 tourDoc = Jsoup.connect(site).ignoreContentType(true).timeout(CONNECTION_TIMEOUT).get();
 
@@ -51,7 +51,7 @@ public class NewstravelParser extends AbstractParser implements Parser {
         	JsonElement jElem = new JsonParser().parse(jsonLine);
         	JsonObject jObject = jElem. getAsJsonObject();
         	JsonArray jTours = jObject.getAsJsonArray("data");
-        	if (jTours.toString().equals("[]") || p > 50) {
+        	if (jTours.toString().equals("[]")) {
                     break;
                 }
         	for (JsonElement jTour: jTours) {

@@ -9,6 +9,7 @@ package ua.banan.parser.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,14 @@ public abstract class AbstractParser {
             int currencyId = CurrencyExchanger.findMoneyCurrency(priceString);
                         
             try{
-                Integer price = Integer.parseInt(priceString.replaceAll("\\D", ""));
+                priceString = priceString.replaceAll("\\s", "");
+               
+                Pattern pattern = Pattern.compile("\\d+");
+                
+                Matcher matcher = pattern.matcher(priceString);
+                                                
+                Integer price = matcher.groupCount() > 0 ? Integer.parseInt(matcher.group(0)) : null;                                
+                
                 
                 return CurrencyExchanger.exchangeToUah(currencyId, price);
             }
