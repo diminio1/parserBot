@@ -52,17 +52,17 @@ public class CandytourParser extends AbstractParser implements Parser {
             Elements tourBlocks = tourDoc.select("div[class = news]");
             for (Element x: tourBlocks) {
         
-                String destination = x.select("span").get(1).text().trim().toUpperCase(); // country + city
+                String destination = x.select("span").get(1).text().trim(); // country + city
                 
                 String dateStr = x.select("div").get(1).ownText();
                 
                 String priceStr = x.select("div").get(1).select("span").text();
                 
-                String hotelStr = x.select("span").get(2).text().trim().toUpperCase();
+                String hotelStr = x.select("span").get(2).text().trim();
                 
-                String info = x.select("span").get(3).text().trim().toUpperCase();
+                String info = x.select("span").get(3).text().trim();
                 
-                String previousPriceStr = x.select("div").get(1).select("s").text(); 
+//                String previousPriceStr = x.select("div").get(1).select("s").text(); 
                 
                 String linkStr = website; 
             
@@ -72,7 +72,7 @@ public class CandytourParser extends AbstractParser implements Parser {
                                 
                 tour.setUrl(linkStr);        
                 tour.setPrice(parsePrice(priceStr));
-                tour.setPreviousPrice(parsePrice(previousPriceStr));
+  //              tour.setPreviousPrice(parsePrice(previousPriceStr));
                 tour.setFeedPlan(parseFeedPlan(details));
                 tour.setNightsCount(parseNightCount(details));
                 tour.setFlightDate(parseDate(dateStr));

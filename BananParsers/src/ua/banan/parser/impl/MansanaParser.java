@@ -48,7 +48,7 @@ public class MansanaParser extends AbstractParser implements Parser {
             
             Elements tables = tourDoc.select("table[width = 99%]");
             for (Element x: tables) {
-                String countryStr = x.select("td").first().select("b").text().trim().toUpperCase(); 
+                String countryStr = x.select("td").first().select("b").text().trim(); 
                 
                 Elements toursElems = x.select("table[width = 100%]").select("tr");  
                 toursElems.remove(toursElems.size() - 1);

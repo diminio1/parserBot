@@ -56,15 +56,15 @@ public class SilverParser extends AbstractParser implements Parser{
                 	
                     Elements infos = doc.select("table[class = tour-info]").first().select("tr");
                 	
-                    String countryStr = infos.get(2).select("td").get(1).text().trim().toUpperCase();
+                    String countryStr = infos.get(2).select("td").get(1).text().trim();
                 	
-                    String townStr = infos.get(3).select("td").get(1).text().trim().toUpperCase();
+                    String townStr = infos.get(3).select("td").get(1).text().trim();
                 	
-                    String departCityStr = infos.get(4).select("td").get(1).text().trim().toUpperCase();
+                    String departCityStr = infos.get(4).select("td").get(1).text().trim();
                     
-                    String durationStr = infos.get(7).select("td").get(1).text().trim().toUpperCase();
+                    String durationStr = infos.get(7).select("td").get(1).text().trim();
                     
-                    String nutritionStr = infos.get(8).select("td").get(1).text().trim().toUpperCase();
+                    String nutritionStr = infos.get(8).select("td").get(1).text().trim();
             	    
                     String dateStr = infos.get(12).select("td[class = dates]").select("tr").select("td").first().text();
                 	    

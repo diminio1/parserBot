@@ -60,9 +60,9 @@ public class Tur777Parser extends AbstractParser implements Parser {
             		
                     for (int i = 0; i < tables.size(); ++i) {
 
-                        String countryStr = headers.get(i).select("tbody").select("tr").select("td").text().trim().toUpperCase();
+                        String countryStr = headers.get(i).select("tbody").select("tr").select("td").text().trim();
             		
-            		String nutritionStr = tables.get(i).select("ul").text().toUpperCase();
+            		String nutritionStr = tables.get(i).select("ul").text();
             			
             		String dateStr = tables.get(i).select("tbody").select("tr").select("td").get(2).select("strong").text();
             		

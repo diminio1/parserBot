@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
@@ -56,7 +57,7 @@ public class HTParser extends AbstractParser implements Parser {
                     String townStr = tourDoc.select("div[class = desc]").get(2).text();
                     String hotelStr = tourDoc.select("div[class = desc]").get(3).text();
                     String departCityStr = tourDoc.select("td:eq(1)").first().text();
-                    String starsStr = tourDoc.select("img.t_star").text();
+                    String starsStr = hotelStr;
                     String dateStr = tourDoc.select("td:eq(1)").get(2).text();
                     if(dateStr.equals("")) {
                         dateStr = tourDoc.select("option[value = 0]").first().text();            
@@ -108,7 +109,7 @@ public class HTParser extends AbstractParser implements Parser {
     @Override
     protected Date parseDate(String inputString) {
         inputString = inputString.substring(0, 5) + ".";
-        int year = Calendar.YEAR;
+        int year = Calendar.getInstance().get(Calendar.YEAR);
         inputString += year;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
@@ -130,7 +131,10 @@ public class HTParser extends AbstractParser implements Parser {
 
     @Override
     protected Integer parseHotelStars(String starsContainer) {
-        return parseInt(starsContainer);
+        if (starsContainer.contains("*")) {
+            return parseInt(starsContainer);
+        }
+        return 0;
     }
 
 }

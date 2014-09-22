@@ -43,6 +43,7 @@ public class NewstravelParser extends AbstractParser implements Parser {
         int p = 0;
         while (true) {
             String site = "http://besthotels.org.ua/api/get_offers/?t=tours&f=p&d=0&c=0&r=0&p=" + p + "&pp=100";
+            p++;
             try {
                 tourDoc = Jsoup.connect(site).ignoreContentType(true).timeout(CONNECTION_TIMEOUT).get();
 
@@ -50,7 +51,7 @@ public class NewstravelParser extends AbstractParser implements Parser {
         	JsonElement jElem = new JsonParser().parse(jsonLine);
         	JsonObject jObject = jElem. getAsJsonObject();
         	JsonArray jTours = jObject.getAsJsonArray("data");
-        	if (jTours.toString().equals("[]")) {
+        	if (jTours.toString().equals("[]") || p > 50) {
                     break;
                 }
         	for (JsonElement jTour: jTours) {
@@ -63,7 +64,7 @@ public class NewstravelParser extends AbstractParser implements Parser {
                 
                     String countryStr = jsonTour.get("country_name").toString().trim();
                     
-                    String townStr = jsonTour.get("city_name").toString().trim().toUpperCase();
+                    String townStr = jsonTour.get("city_name").toString().trim();
                     
                     String roomTypeStr = "";
                     
@@ -109,9 +110,11 @@ public class NewstravelParser extends AbstractParser implements Parser {
                         tour.setDepartCity(departCities.get(0));                    
                     }
                 
-                    tours.add(tour);
-                
-                    tour.setTourOperator(tourOperator);                                
+                    tour.setTourOperator(tourOperator);               
+                    
+                    if(!tours.contains(tour)){
+                        tours.add(tour);
+                    }                                                                                             
                 }
             }
             catch(Exception ex) {                           
@@ -125,6 +128,7 @@ public class NewstravelParser extends AbstractParser implements Parser {
 
     @Override
     protected Date parseDate(String inputString) {
+        inputString = inputString.replace("" + '"', "");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
             return dateFormat.parse(inputString);

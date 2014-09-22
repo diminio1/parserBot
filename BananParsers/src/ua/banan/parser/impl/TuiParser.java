@@ -48,7 +48,7 @@ public class TuiParser extends AbstractParser implements Parser{
             
             for (Element x: tourElems) {
                 
-                String countryStr = x.select("div[class = country]").text().trim().toUpperCase();
+                String countryStr = x.select("div[class = country]").text().trim();
                 
                 String timeStr =  x.select("div[class = time]").first().ownText(); // depCity + duration
                 
@@ -56,9 +56,9 @@ public class TuiParser extends AbstractParser implements Parser{
                 
                 int stars = x.select("span[class = stars]").select("img").size();
                 
-                String townStr = x.select("div[class = way]").select("a[class = item]").first().ownText().trim().toUpperCase();
+                String townStr = x.select("div[class = way]").select("a[class = item]").first().ownText().trim();
                 
-                String hotelStr = x.select("a[class = name]").first().ownText().trim().toUpperCase();
+                String hotelStr = x.select("a[class = name]").first().ownText().trim();
                 
                 String priceStr = x.select("a[class= price]").first().ownText().trim();
                 

@@ -57,7 +57,7 @@ public class KazkamandrivParser extends AbstractParser implements Parser {
             		countryStr = countryStr + c.attr("title") + "-";
                     }
             			
-                    String townStr = x.select("a[class = tRoute]").text().replace('—', '-').replace('–', '-').trim().toUpperCase();
+                    String townStr = x.select("a[class = tRoute]").text().replace('—', '-').replace('–', '-').trim();
                     if (townStr.length() > 60) {
             		townStr = townStr.substring(0, 60);
             		townStr = townStr.substring(0, townStr.lastIndexOf("-"));

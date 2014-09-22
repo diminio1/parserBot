@@ -74,17 +74,19 @@ public class IttourParser extends AbstractParser implements Parser {
     				
         	Document document = Jsoup.connect(linkStr).userAgent(userAgent).timeout(CONNECTION_TIMEOUT).get();
         			
-                String countryStr = document.select("span[class = country_popup]").text().trim().toUpperCase();
+                String countryStr = document.select("span[class = country_popup]").text().trim();
         			
         	String townStr = countryStr;
     				
         	String dateStr = document.select("li").get(6).select("b").text().trim();
     				        			
-        	String departCityStr = document.select("li").get(5).select("b").text().trim().toUpperCase();
+        	String departCityStr = document.select("li").get(5).select("b").text().trim();
 
-        	String hotelStr = document.select("a[class = tour_popup_hotel_url]").text().trim().toUpperCase().replace('\'', '"');
+        	String hotelStr = document.select("a[class = tour_popup_hotel_url]").text().trim().replace('\'', '"');
 
-        	String feedPlanStr = document.select("li").get(11).select("b").text().toUpperCase();                	    
+                String persons = document.select("li").get(10).select("b").text();
+                
+        	String feedPlanStr = document.select("li").get(11).select("b").text();                	    
     				
         	String durationStr = document.select("li").get(12).select("b").text();
     				
@@ -100,7 +102,7 @@ public class IttourParser extends AbstractParser implements Parser {
                 Tour tour = new Tour();
                                 
                 tour.setUrl(linkStr);        
-                tour.setPrice(parsePrice(priceStr));
+                tour.setPrice(parsePrice(priceStr) / parseInt(persons));
                 tour.setFeedPlan(parseFeedPlan(feedPlanStr));
                 tour.setNightsCount(parseNightCount(durationStr));
                 tour.setFlightDate(parseDate(dateStr));

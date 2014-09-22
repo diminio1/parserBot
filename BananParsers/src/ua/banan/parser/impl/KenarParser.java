@@ -45,19 +45,19 @@ public class KenarParser extends AbstractParser implements Parser {
         	
                 for (Element x: tables) {
             	
-                    String linkStr = "kenar.com.ua" + x.select("div[class = image]").select("a").attr("href");
+                    String linkStr = "http://kenar.com.ua" + x.select("div[class = image]").select("a").attr("href");
 
-                    String countryStr = x.select("div[class = info]").select("h2").text().trim().toUpperCase(); 
+                    String countryStr = x.select("div[class = info]").select("h2").text().trim(); 
             	        
                     String dateStr = x.select("div[class = desc]").select("div[class = date]").select("div").get(2).ownText();
             	    
-                    String hotelStr = x.select("div[class = desc]").select("div[class = hotel]").text().trim().toUpperCase();
+                    String hotelStr = x.select("div[class = desc]").select("div[class = hotel]").text().trim();
             	
                     String starsStr = x.select("div[class = desc]").select("div[class = stars]").text();
             	
                     String townStr = countryStr;
             		
-                    String feedPlanStr = x.select("div[class = desc]").select("div[class = food]").text().trim().toUpperCase();
+                    String feedPlanStr = x.select("div[class = desc]").select("div[class = food]").text().trim();
             	    
                     String durationStr = x.select("div[class = desc]").select("div[class = date]").select("div").get(1).ownText();
                     

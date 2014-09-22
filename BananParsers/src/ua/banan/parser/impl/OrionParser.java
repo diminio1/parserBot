@@ -52,11 +52,11 @@ public class OrionParser extends AbstractParser implements Parser {
             	
             	String linkStr = "http://orion-intour.com" + x.select("td[class = name]").select("a").attr("href");
                 
-            	String countryStr = x.select("td[class = name]").first().ownText().toUpperCase();
+            	String countryStr = x.select("td[class = name]").first().ownText();
             	
             	String dateStr = x.select("td[class = dt]").first().ownText();
             	
-               	String feedPlanStr = x.select("td[class = food]").text().toUpperCase();
+               	String feedPlanStr = x.select("td[class = food]").text();
 
             	if (dateStr == null || dateStr.equals("") || dateStr.contains("ЛЮБЫЕ"))
                     continue;
@@ -68,9 +68,9 @@ public class OrionParser extends AbstractParser implements Parser {
                 
                     String roomTypeStr = "";
                 	               	
-                    String townStr = doc.select("table[class = tour-params]").select("tr").get(1).select("h2").text().trim().toUpperCase();
+                    String townStr = doc.select("table[class = tour-params]").select("tr").get(1).select("h2").text().trim();
                 	
-                    String departCityStr = doc.select("table[class = tour-params]").select("tr").get(2).select("td").get(1).text().trim().toUpperCase();
+                    String departCityStr = doc.select("table[class = tour-params]").select("tr").get(2).select("td").get(1).text().trim();
                 	                    	    
                     String durationStr = doc.select("table[class = tour-params]").select("tr").get(4).select("td").get(1).text();
                         

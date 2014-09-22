@@ -54,15 +54,15 @@ public class TouraviaParser extends AbstractParser implements Parser{
                 String site = "http://touravia.info" + x.attr("href");
                 Document xDoc = Jsoup.connect(site).timeout(CONNECTION_TIMEOUT).userAgent(userAgent).get();
             
-                String countryStr = xDoc.select("li[class=active]").select("a").first().ownText().trim().toUpperCase();
+                String countryStr = xDoc.select("li[class=active]").select("a").first().ownText().trim();
             
                 Elements tourInfo = xDoc.select("div[class = thumbnail text-center]");
                 
                 for (Element y: tourInfo) {
                     
-                    String hotelStr = y.select("div").get(3).select("a").select("strong").text().trim().toUpperCase();
+                    String hotelStr = y.select("div").get(3).select("a").select("strong").text().trim();
                    
-                    String dateStr = y.select("div").get(5).select("i").text().trim().toUpperCase();
+                    String dateStr = y.select("div").get(5).select("i").text().trim();
                     if (dateStr.startsWith("ВЫЛЕТ"))
                         dateStr = dateStr.substring(7);
                     
@@ -72,7 +72,7 @@ public class TouraviaParser extends AbstractParser implements Parser{
                     
                     String durationStr = y.select("div").get(6).select("i").text().trim();
                     
-                    String nutritionStr = y.select("div").get(7).select("strong").text().trim().toUpperCase();
+                    String nutritionStr = y.select("div").get(7).select("strong").text().trim();
                 
                     String linkStr = y.select("div").get(4).select("a").first().attr("href");
                 

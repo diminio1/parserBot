@@ -49,7 +49,7 @@ public class AkkordParser extends AbstractParser implements Parser {
             	String countryStr = "";
             	
             	for (Element country: countries) {
-            		countryStr += country.attr("title").toUpperCase();
+            		countryStr += country.attr("title");
             		countryStr += " - ";
             	}
             	countryStr = countryStr.substring(0, countryStr.length() - 3);
@@ -60,9 +60,9 @@ public class AkkordParser extends AbstractParser implements Parser {
             	    
             	String hotelStr = "";
             	            	
-            	String townStr = x.select("td").get(1).select("div").get(4).text().trim().toUpperCase();
+            	String townStr = x.select("td").get(1).select("div").get(4).text().trim();
             	if (townStr.isEmpty())
-            		townStr = x.select("td").get(1).select("div").get(3).text().trim().toUpperCase();
+            		townStr = x.select("td").get(1).select("div").get(3).text().trim();
             	
             	String departCityStr = "";
             	if (!townStr.isEmpty()){
@@ -81,7 +81,7 @@ public class AkkordParser extends AbstractParser implements Parser {
                 	Document doc = Jsoup.connect(linkStr).timeout(100000).get();
                 	Elements hotels = doc.select("a:contains(Отель)").select("b");
                 	if (hotels.size() == 1) {
-                            hotelStr = hotels.text().trim().toUpperCase();
+                            hotelStr = hotels.text().replaceAll("(Отель|отель)", "").trim();
                 	} else {
                             hotelStr = "";
                         }

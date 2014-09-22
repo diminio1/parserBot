@@ -166,7 +166,9 @@ public class IndexProcessor implements Runnable {
                             System.out.println("Parse iteration : id " + parser.getSourceId());
                             
                             List<Tour> tours = parser.parseTours();
-                            System.out.println("Parsed tours : " + tours != null ? tours.size() : "'null'");
+
+                            LOGGER.error("Parsed tours id : " + parser.getSourceId() + "; Parsed tours : " + (tours != null ? tours.size() : "'null'"));
+
                             saveParsedTours(tours, parser.getSourceId());
                         } else {
                             break;

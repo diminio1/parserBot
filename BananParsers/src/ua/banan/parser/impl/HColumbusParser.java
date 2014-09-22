@@ -33,18 +33,22 @@ public class HColumbusParser extends AbstractParser implements Parser {
             
     @Override
     public List<Tour> parseTours() {
-        List<Tour> tours = new ArrayList<>();
+            List<Tour> tours = new ArrayList<>();
         
         TourOperator tourOperator = dataOperator.getTourOperatorById(sourceId);
         
         try {
-            Document tourDoc = Jsoup.connect(website).timeout(CONNECTION_TIMEOUT).get();
-      
-            Elements tourElems = tourDoc.select("a[class = index_tour_href]");
+            Document document = Jsoup.connect(website).timeout(CONNECTION_TIMEOUT).get();
+            
+            Elements prices = document.select("div[class = index_tour_price]");
+            
+            Elements tourElems = document.select("a[class = index_tour_href]");
+            
+            int index = 0;
             for (Element x: tourElems) {
                 String linkStr = x.attr("href");
                 try {
-                    tourDoc = Jsoup.connect(linkStr).timeout(5000).get();
+                    Document tourDoc = Jsoup.connect(linkStr).timeout(5000).get();
 
                     String dateStr = tourDoc.select("div[class *= tcategory_name]:containsOwn(Дат)").select("span").text();
                     if(dateStr.contains(";")) {
@@ -62,7 +66,8 @@ public class HColumbusParser extends AbstractParser implements Parser {
             
                     String roomTypeStr = tourDoc.select("span:contains(Проживание)").text();
             
-                    String priceStr = tourDoc.select("div[class = tour_price]").select("span").text();
+                    String priceStr = prices.get(index).text();
+                    index++;
             
                     String descriptionStr = tourDoc.select("div[class = main_text]").text();
              
