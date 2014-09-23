@@ -64,9 +64,13 @@ public class SilverParser extends AbstractParser implements Parser{
                     
                     String durationStr = infos.get(7).select("td").get(1).text().trim();
                     
+                    if (durationStr.contains("/")) {
+                        durationStr = durationStr.substring(0, durationStr.indexOf("/"));
+                    }
+                    
                     String nutritionStr = infos.get(8).select("td").get(1).text().trim();
             	    
-                    String dateStr = infos.get(12).select("td[class = dates]").select("tr").select("td").first().text();
+                    String dateStr = infos.select("td[class = dates]")/*.select("tr").select("td").first()*/.text();
                 	    
                     String priceStr = infos.get(9).select("td").get(1).text().trim();
                     
@@ -111,6 +115,9 @@ public class SilverParser extends AbstractParser implements Parser{
 
     @Override
     protected Date parseDate(String inputString) {
+        if (inputString.contains(",")) {
+            inputString = inputString.substring(0, inputString.indexOf(",")).trim();
+        }
         SimpleDateFormat dateFormat1 = new SimpleDateFormat("MMMM yyyydd");
         SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd.MM.yyyy");
         try {
@@ -135,6 +142,17 @@ public class SilverParser extends AbstractParser implements Parser{
     @Override
     protected Integer parseHotelStars(String starsContainer) {
         return parseInt(starsContainer);
+    }
+    
+    @Override
+    protected Integer parsePrice(String priceString) {
+        if(priceString.contains("(")) {
+            priceString = priceString.substring(0, priceString.indexOf("("));
+        }
+        
+        priceString = priceString.replaceAll(",", "");
+        
+        return super.parsePrice(priceString);
     }
 
 }

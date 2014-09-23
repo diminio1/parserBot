@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
@@ -62,8 +64,8 @@ public class PoehalisnamiParser extends AbstractParser implements Parser {
 
                 try {
                     Document document = Jsoup.connect(linkStr).timeout(CONNECTION_TIMEOUT).get();
-                    departCityStr = document.select("span[class = label-bs]").text();
-                    roomTypeStr = departCityStr;
+                    departCityStr = document.select("span[class = label-bs]").get(4).text();
+                    roomTypeStr = document.select("span[class = label-bs]").get(1).text();
                     descriptionStr = document.select("div[class = b-card-inclusive green-border clearfix]").text();
                     
                 } catch(IOException ex) {
@@ -71,7 +73,7 @@ public class PoehalisnamiParser extends AbstractParser implements Parser {
                 }
                 
                            	    
-                String durationStr = countryStr;
+                String durationStr = x.select("div[class = gray777]").first().select("nobr").text();
                 
                 String feedPlanStr = x.select("span[class = blue13_b]").first().ownText();
                     

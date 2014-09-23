@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Locale;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.banan.data.model.City;
 import ua.banan.data.model.Tour;
 import ua.banan.data.model.TourOperator;
@@ -41,7 +42,7 @@ public class TEZTourParser extends AbstractParser implements Parser {
         try {
             Document tourDoc = Jsoup.connect(website).timeout(CONNECTION_TIMEOUT).get();
             
-            Elements tables = tourDoc.select("div[class = slider_item");
+            Elements tables = tourDoc.select("div[class = slider-item");
             for (Element x: tables) {
             	
             	String linkStr = x.select("a[class = button-link]").first().attr("href");
@@ -68,9 +69,9 @@ public class TEZTourParser extends AbstractParser implements Parser {
                 
                 Tour tour = new Tour();
                                 
-                tour.setUrl(linkStr);        
-                tour.setPrice(parsePrice(priceStr));
-                tour.setPreviousPrice(parsePrice(previousPriceStr));
+                tour.setUrl(website);        
+                tour.setPrice(parsePrice(priceStr) / 2);
+                tour.setPreviousPrice(parsePrice(previousPriceStr) / 2);
                 tour.setFeedPlan(parseFeedPlan(feedPlanStr));
                 tour.setNightsCount(parseNightCount(durationStr));
                 tour.setFlightDate(parseDate(dateStr));
@@ -98,11 +99,16 @@ public class TEZTourParser extends AbstractParser implements Parser {
     @Override
     protected Date parseDate(String inputString) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        if (inputString.startsWith( "Заезд")) {
+        if (inputString.startsWith("Заезд")) {
             inputString = inputString.substring(inputString.indexOf(" "), inputString.indexOf("/")).trim();
         }
         inputString += year;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMyyyy");
+
+        Locale locale = new Locale("ru");
+        
+        inputString = inputString.toLowerCase(locale);
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMyyyy", locale);
         try {
             return dateFormat.parse(inputString);
         } catch (ParseException ex) {
@@ -118,7 +124,9 @@ public class TEZTourParser extends AbstractParser implements Parser {
 
     @Override
     protected Integer parseHotelStars(String starsContainer) {
-        return (parseInt((starsContainer) + 2) / 14);
+        Integer stars = parseInt(starsContainer);
+        
+        return stars != null ? ((stars + 2) / 14) : null;
     }
 
 }

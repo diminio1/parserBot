@@ -58,7 +58,7 @@ public class HottoursParser extends AbstractParser implements Parser {
                 
             	String roomTypeStr = x.select("span[class = room]").text();
                 
-            	String dateStr = x.select("span[class = date]").text().trim();
+            	String dateStr = x.select("span[class = data]").text().trim();
             	    
             	String townStr = x.select("span[class = region]").text();
                 
@@ -110,7 +110,7 @@ public class HottoursParser extends AbstractParser implements Parser {
 
     @Override
     protected Date parseDate(String inputString) {
-        inputString = inputString.substring(0, 10);
+        inputString = inputString.length() > 10 ? inputString.substring(0, 10) : "";
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
             return dateFormat.parse(inputString);

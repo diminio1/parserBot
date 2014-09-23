@@ -15,5 +15,5 @@ import ua.banan.data.model.TourOperator;
  * @author swat
  */
 public interface FileParser {
-    public FileParsingResult parseTours(File file, TourOperator tourOperator);        
+    public FileParsingResult parseTours(File file, String extension, TourOperator tourOperator);        
 }

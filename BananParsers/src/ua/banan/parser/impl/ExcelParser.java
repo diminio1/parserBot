@@ -53,12 +53,55 @@ public class ExcelParser extends AbstractParser implements FileParser {
 
     @Override
     protected Integer parseHotelStars(String starsContainer) {
-        return parseInt(starsContainer);
+        Integer res = parseIntFromDouble(starsContainer);                
+        
+        return res != null && res <= 5 ? res : null;
     }
       
+    @Override
+    protected Integer parseNightCount(String inputString){
+        return parseIntFromDouble(inputString);
+    }
+    
+    private Integer parseIntFromDouble(String intString) {
+        if (intString != null && !intString.isEmpty()){
+            int pointIndex = intString.indexOf('.');
+            Integer res;
+            
+            if (pointIndex != -1){
+                res = parseInt(intString.substring(0, pointIndex));
+            } else {
+                res = parseInt(intString);
+            }
+            
+            return (res != null && res > 0) ? res : null;
+        }
+        
+        return null;
+    }
     
     @Override
-    public FileParsingResult parseTours(File file, TourOperator tourOperator) {
+    protected Integer parsePrice(String inputString){
+        if (inputString != null && !inputString.isEmpty()){
+            int pointIndex = inputString.indexOf('.');
+            Integer res;
+            
+            if (pointIndex != -1){
+                res = super.parsePrice(inputString.substring(0, pointIndex));
+            } else {
+                res = super.parsePrice(inputString);
+            }
+            
+            return (res != null && res > 0) ? res : null;
+        }
+        
+        return null;        
+    }
+    
+    
+    
+    @Override
+    public FileParsingResult parseTours(File file, String extension, TourOperator tourOperator) {
         FileParsingResult parsingResult = new FileParsingResult();
         
         if (file != null && tourOperator != null) {
@@ -67,12 +110,12 @@ public class ExcelParser extends AbstractParser implements FileParser {
 
                 Workbook wb;
                 Row row;
-
-                if (file.getAbsolutePath().toLowerCase().contains(".xlsx")) {
+                                
+                if (extension != null && extension.equalsIgnoreCase("xlsx")) {
                     try (OPCPackage pkg = OPCPackage.open(file)) {
                         wb = new XSSFWorkbook(pkg);
                     }
-                } else if (file.getAbsolutePath().toLowerCase().contains(".xls")) {
+                } else if (extension != null && extension.equalsIgnoreCase("xls")){
                     POIFSFileSystem fileSystem = new POIFSFileSystem(new FileInputStream(file));
                     wb = new HSSFWorkbook(fileSystem);
                 } else {                    
@@ -109,8 +152,9 @@ public class ExcelParser extends AbstractParser implements FileParser {
                         String description = safeToString(safeGetCell(row, 11));
 
 
-                        Tour tour = new Tour();
-
+                        Tour tour = new Tour();                       
+                        
+                        tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
                         tour.setPrice(parsePrice(price));
                         tour.setPreviousPrice(parsePrice(oldPrice));
                         tour.setFeedPlan(parseFeedPlan(nutrition));
@@ -192,5 +236,7 @@ public class ExcelParser extends AbstractParser implements FileParser {
     
     private static String safeToString(Object object) {
         return object != null ? object.toString() : "";
-    }
+    }        
+    
+    
 }

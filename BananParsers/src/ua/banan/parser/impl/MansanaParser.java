@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ua.banan.parser.impl;
 
 import java.text.ParseException;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
@@ -117,9 +120,13 @@ public class MansanaParser extends AbstractParser implements Parser {
 
     @Override
     protected Date parseDate(String inputString) {
+        
+        Pattern p = Pattern.compile("\\d+ \\p{L}+");
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMMyyyy");
         try {
-            return dateFormat.parse(inputString + Calendar.getInstance().get(Calendar.YEAR));
+            Matcher m = p.matcher(inputString);
+            return m.find() ? (dateFormat.parse(m.group() + Calendar.getInstance().get(Calendar.YEAR))) : null;
         } catch (ParseException ex) {
             LOGGER.error("Parsing date error " + ex.getMessage(), ex);
             return null;

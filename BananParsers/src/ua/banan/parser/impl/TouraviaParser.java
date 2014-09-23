@@ -71,6 +71,9 @@ public class TouraviaParser extends AbstractParser implements Parser{
                     String previousPriceStr = y.select("div").get(1).text().trim();
                     
                     String durationStr = y.select("div").get(6).select("i").text().trim();
+                    if (durationStr.contains("/")) {
+                        durationStr = durationStr.substring(durationStr.indexOf("/"));
+                    }
                     
                     String nutritionStr = y.select("div").get(7).select("strong").text().trim();
                 
@@ -132,7 +135,7 @@ public class TouraviaParser extends AbstractParser implements Parser{
     @Override
     protected String parseHotelName(String nameContainer) {
         if (nameContainer != null && !(nameContainer.equals(""))) {
-            if (nameContainer.startsWith("ОТЕЛЬ")) {
+            if (nameContainer.startsWith("ОТЕЛЬ") || nameContainer.startsWith("Отель") || nameContainer.startsWith("отель")) {
                 nameContainer = nameContainer.substring(6);
             }
             

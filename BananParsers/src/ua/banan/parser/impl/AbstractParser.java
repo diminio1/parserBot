@@ -44,13 +44,14 @@ public abstract class AbstractParser {
                         
             try{
                 priceString = priceString.replaceAll("\\s", "");
+     
+                priceString = priceString.replaceAll("\u00a0", "");
                
                 Pattern pattern = Pattern.compile("\\d+");
                 
                 Matcher matcher = pattern.matcher(priceString);
-                                                
-                Integer price = matcher.groupCount() > 0 ? Integer.parseInt(matcher.group(0)) : null;                                
-                
+
+                Integer price = matcher.find() ? parseInt(matcher.group()) : null;                                                
                 
                 return CurrencyExchanger.exchangeToUah(currencyId, price);
             }
@@ -74,7 +75,7 @@ public abstract class AbstractParser {
             return "HB";
         }
 
-        if (Pattern.compile("(завтрак)|(bb)").matcher(inputString).find()){
+        if (Pattern.compile("(завтрак)|(bb)|(вв)").matcher(inputString).find()){
             return "BB";
         }
 

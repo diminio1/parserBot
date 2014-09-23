@@ -125,5 +125,10 @@ public class TuiParser extends AbstractParser implements Parser{
     protected Integer parseHotelStars(String starsContainer) {
         return parseInt(starsContainer);
     }
+    
+    @Override
+    protected Integer parsePrice(String priceString) {
+        return super.parsePrice(priceString.replaceAll("\u00a0", ""));
+    }
 
 }

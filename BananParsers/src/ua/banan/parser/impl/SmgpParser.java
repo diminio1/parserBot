@@ -67,19 +67,24 @@ public class SmgpParser extends AbstractParser implements Parser {
                     
                     Elements tourBlocks = countryBlock.select("dd[style = white-space:wrap;]");
                     
+                    int index = 0;
                     for (Element tourBlock: tourBlocks) {
                         
                         String townStr = tourBlock.select("div[class = city]").text();
 			
-                        String hotelStr = countryBlock.select("div[class = hotel]").text();
-			
-                        String linkStr = "http://smgp.com.ua" + countryBlock.select("div[class = hotel]").attr("href");
+                        townStr += " " + countryBlock.select("span[class = place]").get(index).text();
                         
-                        String dateStr = countryBlock.select("div[class = date]").text();
+                        index++;
+                        
+                        String hotelStr = tourBlock.select("div[class = hotel]").text();
 			
-                        String durationStr = countryBlock.select("div[class = nights]").text();
+                        String linkStr = "http://smgp.com.ua" + tourBlock.select("div[class = hotel]").select("a").attr("href");
+                        
+                        String dateStr = tourBlock.select("div[class = date]").text();
 			
-                        String priceStr = countryBlock.select("div[class = price]").text();
+                        String durationStr = tourBlock.select("div[class = nights]").text();
+			
+                        String priceStr = tourBlock.select("div[class = price]").text();
 				
                         Tour tour = new Tour();
                                 

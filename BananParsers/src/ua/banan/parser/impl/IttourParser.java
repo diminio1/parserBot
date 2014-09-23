@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.slf4j.Logger;
@@ -44,7 +45,7 @@ public class IttourParser extends AbstractParser implements Parser {
             
             String html = tourDoc.html();
             int beginIndex  = html.indexOf("<table"); 
-            int stopIndex  = html.lastIndexOf("&quot;,&quot;results_count&quot;:30");
+            int stopIndex  = html.lastIndexOf("&quot;,&quot;results_count&quot;");
         		
             html = html.substring(beginIndex, stopIndex);
         		
@@ -134,7 +135,13 @@ public class IttourParser extends AbstractParser implements Parser {
 
     @Override
     protected Date parseDate(String inputString) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy EEE");
+        
+        Pattern p = Pattern.compile("\\d\\d.\\d\\d.\\d\\d");
+        Matcher m = p.matcher(inputString);
+        
+        inputString = m.find() ? m.group() : "";
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy");
         try {
             return dateFormat.parse(inputString);
         } catch (ParseException ex) {

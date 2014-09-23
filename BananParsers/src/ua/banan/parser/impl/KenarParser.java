@@ -61,6 +61,10 @@ public class KenarParser extends AbstractParser implements Parser {
             	    
                     String durationStr = x.select("div[class = desc]").select("div[class = date]").select("div").get(1).ownText();
                     
+                    if (durationStr.contains("/")) {
+                        durationStr = durationStr.substring(0, durationStr.indexOf("/"));
+                    }
+                    
                     String priceStr = x.select("div[class = info]").select("div[class = price]").select("span[class = uah]").text();
                     
                     String roomTypeStr = "";
@@ -114,6 +118,7 @@ public class KenarParser extends AbstractParser implements Parser {
 
     @Override
     protected String parseHotelName(String nameContainer) {
+        nameContainer = nameContainer.replace("отель -", "").trim();
         if (nameContainer.contains("*"))
             nameContainer = nameContainer.substring(0, nameContainer.indexOf("*") - 1);
         return nameContainer;

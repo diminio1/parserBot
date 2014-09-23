@@ -36,7 +36,7 @@ public class Tur777Parser extends AbstractParser implements Parser {
         sourceId = SOURCE_ID;
     }
 
-        @Override
+    @Override
     public List<Tour> parseTours() {
         List<Tour> tours = new ArrayList<>();
         
@@ -64,7 +64,7 @@ public class Tur777Parser extends AbstractParser implements Parser {
             		
             		String nutritionStr = tables.get(i).select("ul").text();
             			
-            		String dateStr = tables.get(i).select("tbody").select("tr").select("td").get(2).select("strong").text();
+            		String dateStr = tables.get(i).select("tbody").select("tr").select("td").get(2).select("strong").first().text();
             		
             		String durationStr = tables.get(i).select("tbody").select("tr").select("td").get(3).select("span").first().ownText();
             			
