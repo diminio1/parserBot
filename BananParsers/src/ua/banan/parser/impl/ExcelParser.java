@@ -52,7 +52,9 @@ public class ExcelParser extends AbstractParser implements FileParser {
     }
 
     @Override
-    protected Integer parseHotelStars(String starsContainer) {
+    protected Integer parseHotelStars(String starsContainer) {        
+        starsContainer = starsContainer != null ? starsContainer.replace("*", "") : null;
+        
         Integer res = parseIntFromDouble(starsContainer);                
         
         return res != null && res <= 5 ? res : null;
@@ -179,13 +181,23 @@ public class ExcelParser extends AbstractParser implements FileParser {
 
                         String tourWarnings = tour.getWarningsString();
                         if (tourWarnings != null && !tourWarnings.isEmpty()){
-                            warningsString += "Строка " + rowIndex + ": " + tourWarnings + "\n";
+                            warningsString += "Строка " + (rowIndex + 1) + ". " + tourWarnings + "\n";
                         }
 
                         if(tour.isValid()){
-                            res.add(tour);                           
+                            int indexOfTheSameTour = res.indexOf(tour);
+                            
+                            if (indexOfTheSameTour == -1){
+                                if(tour.isActual()) {
+                                    res.add(tour);       
+                                } else {
+                                    warningsString += "Строка " + (rowIndex + 1) + ". Дата выезда завтра или раньше - турист на этот тур не успеет! \n";
+                                }
+                            } else {
+                                warningsString += "Строка " + (rowIndex + 1) + ". " + "Такой тур уже есть в этом документе! Где-то в районе строки " + (indexOfTheSameTour + 2) + " :) \n";
+                            }
                         } else {
-                            errorsString += "Строка " + rowIndex + ": " + tour.getErrorsString() + "\n";
+                            errorsString += "Строка " + (rowIndex + 1) + ". " + tour.getErrorsString() + "\n";
                         }              
                     }
                 }                         
@@ -237,6 +249,5 @@ public class ExcelParser extends AbstractParser implements FileParser {
     private static String safeToString(Object object) {
         return object != null ? object.toString() : "";
     }        
-    
-    
+        
 }

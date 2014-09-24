@@ -6,7 +6,9 @@
 
 package ua.banan.parser.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -17,6 +19,9 @@ import ua.banan.data.model.City;
 import ua.banan.data.model.Country;
 import ua.banan.data.model.CurrencyExchanger;
 import ua.banan.data.model.Hotel;
+import ua.banan.data.model.Tour;
+import ua.banan.data.model.TourOperator;
+import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
 
 /**
@@ -26,6 +31,9 @@ import ua.banan.data.provider.DataOperator;
 public abstract class AbstractParser {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractParser.class.getName());    
         
+    public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+    
+    
     public int sourceId;    
     
     protected static final int CONNECTION_TIMEOUT = 100000;
@@ -196,4 +204,53 @@ public abstract class AbstractParser {
     public int getSourceId() {
         return sourceId;
     }        
+    
+    
+    public Tour createTour(Integer id,
+                            String countries,
+                            String citiesString,
+                            String hotel,
+                            String stars,
+                            String room,
+                            String feed,
+                            String price,
+                            String oldPrice,
+                            String date,
+                            String departCityString,
+                            String description, 
+                            TourOperator tourOperator){
+        Tour tour = new Tour();                       
+                        
+        tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
+        tour.setPrice(parsePrice(price));
+        tour.setPreviousPrice(parsePrice(oldPrice));
+        tour.setFeedPlan(parseFeedPlan(feed));
+        tour.setRoomType(parseRoomType(room));
+//        tour.setNightsCount(parseNightCount(duration));
+//        tour.setFlightDate(departDate);
+        tour.setDescription(description);
+        tour.setCountries(parseCountries(countries));
+        tour.setCities(parseCities(citiesString, Utils.getIds(tour.getCountries())));
+
+        List<City> cities = tour.getCities();
+        if (cities != null && cities.size() == 1){
+            tour.setHotel(parseHotel(hotel, stars, cities.get(0).getId()));
+        }
+
+        List<City> departCities = parseCities(departCityString, Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
+        if (departCities != null && !departCities.isEmpty()){
+            tour.setDepartCity(departCities.get(0));                    
+        }
+        
+//        String[] dates = date != null ? date.split("-") : null;
+//        if (dates != null && dates.length == 2){
+//            Da
+//        }
+        
+
+        tour.setTourOperator(tourOperator);  
+        tour.setId(id);
+        
+        return tour;
+    }
 }
