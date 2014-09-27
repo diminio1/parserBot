@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
@@ -73,6 +75,9 @@ public class OrionParser extends AbstractParser implements Parser {
                     String departCityStr = doc.select("table[class = tour-params]").select("tr").get(2).select("td").get(1).text().trim();
                 	                    	    
                     String durationStr = doc.select("table[class = tour-params]").select("tr").get(4).select("td").get(1).text();
+                    Pattern p = Pattern.compile("\\d++");
+                    Matcher m = p.matcher(durationStr);
+                    durationStr = m.find() ? m.group() : "";
                         
                     String priceStr = doc.select("span[class = price").text().trim();
                 
@@ -115,31 +120,44 @@ public class OrionParser extends AbstractParser implements Parser {
 
     @Override
     protected Date parseDate(String inputString) {
-        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yyyy");
-        SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd.MM.yy");
-        SimpleDateFormat dateFormat3 = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            return dateFormat1.parse(inputString);
-        } catch (ParseException ex) {
+        inputString = inputString.replace("/", ".");
+        String toParse;
+        
+        Pattern p;
+        Matcher m;
+        SimpleDateFormat dateFormat;
+                
+        p = Pattern.compile("\\d\\d.\\d\\d.\\d\\d\\d\\d");
+        m = p.matcher(inputString);
+        toParse = m.find() ? m.group() : null;
+        
+        if (toParse == null) {
+            p = Pattern.compile("\\d\\d\\.\\d\\d\\.\\d\\d");
+            m = p.matcher(inputString);
+            toParse = m.find() ? m.group() : null;        
         }
-        try {
-            return dateFormat2.parse(inputString);
-        }catch (ParseException ex) {
+        
+        if (toParse == null) {
+            LOGGER.error("Parsing date error in Orion Parser");
+            return null;
         }
+        
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        
         try {
-            return dateFormat3.parse(inputString);
+            return dateFormat.parse(toParse);
         }
         catch (ParseException ex) {
-            int year = Calendar.getInstance().get(Calendar.YEAR);
-            inputString += "." + year;
+            dateFormat = new SimpleDateFormat("dd.MM.yy");            
         }
         try {
-            return dateFormat1.parse(inputString);
+            return dateFormat.parse(toParse);            
         }
-        catch (Exception ex) {
+        catch (ParseException ex) {
             LOGGER.error("Parsing date error " + ex.getMessage(), ex);
             return null;
         }
+        
     }
 
     @Override

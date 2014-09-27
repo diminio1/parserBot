@@ -36,7 +36,7 @@ public class Tur777Parser extends AbstractParser implements Parser {
         sourceId = SOURCE_ID;
     }
 
-    @Override
+        @Override
     public List<Tour> parseTours() {
         List<Tour> tours = new ArrayList<>();
         
@@ -71,7 +71,11 @@ public class Tur777Parser extends AbstractParser implements Parser {
             		String priceStr = tables.get(i).select("tbody").select("tr").select("td").get(3).select("span").get(1).ownText();
             			
             		String linkStr = tables.get(i).select("tbody").select("tr").get(1).select("td").get(1).select("a").attr("href");
-            		
+
+                        if (!linkStr.contains("http://")) {
+                            linkStr = "http://xn-----flcbkcrfr7aphd1admd3hyb7d.777tur.com" + linkStr;
+                        }
+                        
                         String roomTypeStr = "";
                         
                         Tour tour = new Tour();

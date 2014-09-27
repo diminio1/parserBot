@@ -135,7 +135,7 @@ public class TouraviaParser extends AbstractParser implements Parser{
     @Override
     protected String parseHotelName(String nameContainer) {
         if (nameContainer != null && !(nameContainer.equals(""))) {
-            if (nameContainer.startsWith("ОТЕЛЬ") || nameContainer.startsWith("Отель") || nameContainer.startsWith("отель")) {
+            if (nameContainer.startsWith("ОТЕЛЬ")) {
                 nameContainer = nameContainer.substring(6);
             }
             

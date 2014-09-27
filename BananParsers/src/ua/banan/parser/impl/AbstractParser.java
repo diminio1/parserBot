@@ -6,6 +6,7 @@
 
 package ua.banan.parser.impl;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,7 @@ public abstract class AbstractParser {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractParser.class.getName());    
         
     public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+    public static final SimpleDateFormat DATE_FORMATTER2 = new SimpleDateFormat("dd.MM.yy");
     
     
     public int sourceId;    
@@ -116,7 +118,7 @@ public abstract class AbstractParser {
                 
                 hotel.setCityId(cityId);
                 hotel.setName(hotelName);
-                hotel.setStars(stars);
+                hotel.setStars((stars != null && stars <= 5 && stars > 0) ? stars : null);
                 
                 return hotel;
             }
@@ -215,7 +217,8 @@ public abstract class AbstractParser {
                             String feed,
                             String price,
                             String oldPrice,
-                            String date,
+                            String dateStart,
+                            String dateEnd,
                             String departCityString,
                             String description, 
                             TourOperator tourOperator){
@@ -224,10 +227,20 @@ public abstract class AbstractParser {
         tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
         tour.setPrice(parsePrice(price));
         tour.setPreviousPrice(parsePrice(oldPrice));
-        tour.setFeedPlan(parseFeedPlan(feed));
-        tour.setRoomType(parseRoomType(room));
-//        tour.setNightsCount(parseNightCount(duration));
-//        tour.setFlightDate(departDate);
+        tour.setFeedPlan(feed);
+        tour.setRoomType(room);
+        
+        Date startDate = null;
+        Date endDate = null;
+        try{
+            startDate = DATE_FORMATTER2.parse(dateStart);
+            endDate = DATE_FORMATTER2.parse(dateEnd);
+        } catch (ParseException pe) {}
+        
+        if (endDate != null && startDate != null){
+            tour.setNightsCount((int)(endDate.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000));
+        }
+        tour.setFlightDate(startDate);
         tour.setDescription(description);
         tour.setCountries(parseCountries(countries));
         tour.setCities(parseCities(citiesString, Utils.getIds(tour.getCountries())));
@@ -242,12 +255,6 @@ public abstract class AbstractParser {
             tour.setDepartCity(departCities.get(0));                    
         }
         
-//        String[] dates = date != null ? date.split("-") : null;
-//        if (dates != null && dates.length == 2){
-//            Da
-//        }
-        
-
         tour.setTourOperator(tourOperator);  
         tour.setId(id);
         

@@ -71,8 +71,10 @@ public class KenarParser extends AbstractParser implements Parser {
                     
                     Tour tour = new Tour();
                                 
-                    tour.setUrl(linkStr);        
-                    tour.setPrice(parsePrice(priceStr));
+                    tour.setUrl(linkStr);       
+                    
+                    Integer price = parsePrice(priceStr);
+                    tour.setPrice(price != null ? price / 2 : null);
                     tour.setFeedPlan(parseFeedPlan(feedPlanStr));
                     tour.setNightsCount(parseNightCount(durationStr));
                     tour.setFlightDate(parseDate(dateStr));
@@ -107,7 +109,7 @@ public class KenarParser extends AbstractParser implements Parser {
     @Override
     protected Date parseDate(String inputString) {
         inputString = inputString.substring(0, 10);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
             return dateFormat.parse(inputString);
         } catch (ParseException ex) {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.jsoup.Jsoup;
@@ -70,7 +71,7 @@ public class SilverParser extends AbstractParser implements Parser{
                     
                     String nutritionStr = infos.get(8).select("td").get(1).text().trim();
             	    
-                    String dateStr = infos.select("td[class = dates]")/*.select("tr").select("td").first()*/.text();
+                    String dateStr = infos.select("td[class = dates]").select("tr").select("td").first().text();
                 	    
                     String priceStr = infos.get(9).select("td").get(1).text().trim();
                     
@@ -118,7 +119,7 @@ public class SilverParser extends AbstractParser implements Parser{
         if (inputString.contains(",")) {
             inputString = inputString.substring(0, inputString.indexOf(",")).trim();
         }
-        SimpleDateFormat dateFormat1 = new SimpleDateFormat("MMMM yyyydd");
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("MMMM yyyydd", new Locale("ru"));
         SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd.MM.yyyy");
         try {
             return dateFormat1.parse(inputString);

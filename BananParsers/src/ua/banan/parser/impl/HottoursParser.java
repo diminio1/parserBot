@@ -40,7 +40,7 @@ public class HottoursParser extends AbstractParser implements Parser {
         try {
             Document tourDoc = Jsoup.connect(website).timeout(CONNECTION_TIMEOUT).get();
             
-            Elements tables = tourDoc.select("td[class = tour]");
+            Elements tables = tourDoc.select("td[class ^= tour]");
             
             Elements links = tourDoc.select("a[href ^= /tour?]");
 				
@@ -51,54 +51,60 @@ public class HottoursParser extends AbstractParser implements Parser {
             int index = 0;
             
             for (Element x: tables) {
-	
-                String countryStr = x.select("span[class = country]").text();
-            	
-                String hotelStr = x.select("span[class = hotel]").text();
                 
-            	String roomTypeStr = x.select("span[class = room]").text();
-                
-            	String dateStr = x.select("span[class = data]").text().trim();
-            	    
-            	String townStr = x.select("span[class = region]").text();
-                
-            	String departCityStr = x.select("span[class = departure]").text();
-                
-                String feedPlanStr = roomTypeStr;
-                
-                String durationStr = x.select("span[class = night]").text();
-                
-                String linkStr = "http://www.hottour.com.ua" + links.get(index).attr("href");
-                
-                String priceStr = prices.get(index).text();
-                
-                String previousPriceStr = previousPrices.get(index).text();
-                
-                Tour tour = new Tour();
-                                
-                tour.setUrl(linkStr);        
-                tour.setPrice(parsePrice(priceStr));
-                tour.setFeedPlan(parseFeedPlan(feedPlanStr));
-                tour.setRoomType(parseRoomType(roomTypeStr));
-                tour.setNightsCount(parseNightCount(durationStr));
-                tour.setFlightDate(parseDate(dateStr));
-                tour.setPreviousPrice(parsePrice(previousPriceStr));
-                tour.setCountries(parseCountries(countryStr));
-                tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
-                
-                List<City> cities = tour.getCities();
-                if (cities != null && cities.size() == 1){
-                    tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
-                }
+                if (x.hasClass("tour-stop")){
+                    index++;
+                } else if (x.hasClass("tour")){                
+                    String countryStr = x.select("span[class = country]").text();
 
-                List<City> departCities = parseCities(departCityStr, Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
-                if (departCities != null && !departCities.isEmpty()){
-                    tour.setDepartCity(departCities.get(0));                    
-                }
-                
-                tours.add(tour);
-                
-                tour.setTourOperator(tourOperator);                                
+                    String hotelStr = x.select("span[class = hotel]").text();
+
+                    String roomTypeStr = x.select("span[class = room]").text();
+
+                    String dateStr = x.select("span[class = data]").text().trim();
+
+                    String townStr = x.select("span[class = region]").text();
+
+                    String departCityStr = x.select("span[class = departure]").text();
+
+                    String feedPlanStr = roomTypeStr;
+
+                    String durationStr = x.select("span[class = night]").text();
+
+                    String linkStr = "http://www.hottour.com.ua" + links.get(index).attr("href");
+
+                    String priceStr = prices.get(index).text();
+
+                    String previousPriceStr = previousPrices.get(index).text();
+
+                    Tour tour = new Tour();
+
+                    tour.setUrl(linkStr);        
+                    tour.setPrice(parsePrice(priceStr));
+                    tour.setFeedPlan(parseFeedPlan(feedPlanStr));
+                    tour.setRoomType(parseRoomType(roomTypeStr));
+                    tour.setNightsCount(parseNightCount(durationStr));
+                    tour.setFlightDate(parseDate(dateStr));
+                    tour.setPreviousPrice(parsePrice(previousPriceStr));
+                    tour.setCountries(parseCountries(countryStr));
+                    tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
+
+                    List<City> cities = tour.getCities();
+                    if (cities != null && cities.size() == 1){
+                        tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
+                    }
+
+                    List<City> departCities = parseCities(departCityStr, Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
+                    if (departCities != null && !departCities.isEmpty()){
+                        tour.setDepartCity(departCities.get(0));                    
+                    }
+
+                    tours.add(tour);
+
+                    tour.setTourOperator(tourOperator);     
+
+                    index++;
+                }                                
             }
         }
         catch(Exception ex) {                           

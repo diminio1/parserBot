@@ -8,16 +8,21 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import ua.banan.data.model.Comment;
 import ua.banan.data.model.FileParsingResult;
+import ua.banan.data.model.Tour;
 import ua.banan.data.provider.impl.DataOperatorImpl;
+import ua.banan.parser.Parser;
 import ua.banan.parser.impl.ExcelParser;
+import ua.banan.parser.impl.HottoursParser;
+import ua.banan.parser.impl.TuiParser;
 
 /**
  *
@@ -61,11 +66,15 @@ public class NewEmptyJUnitTest {
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/banan_db","postgres", "postgres")) {
                 DataOperatorImpl data = new DataOperatorImpl(connection);
                 
-                ExcelParser parser = new ExcelParser(data);
+                Parser parser = new HottoursParser(data);//new TuiParser(data);
                 
-                FileParsingResult parsingResult = parser.parseTours(new File("1.xlsx"), "xlsx", data.getTourOperatorByCredentials("kenar", "kenar"));
-                
-                parsingResult.getErrors();
+                List<Tour> tours = parser.parseTours();
+                tours.size();
+//                ExcelParser parser = new ExcelParser(data);
+//                
+//                FileParsingResult parsingResult = parser.parseTours(new File("1.xlsx"), "xlsx", data.getTourOperatorByCredentials("kenar", "kenar"));
+//                
+//                parsingResult.getErrors();
 //                data.savePartnerComment(comment);
             }
         }

@@ -18,6 +18,7 @@ import org.jsoup.select.Elements;
 import ua.banan.data.model.City;
 import ua.banan.data.model.Tour;
 import ua.banan.data.model.TourOperator;
+import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
 import ua.banan.parser.Parser;
 
@@ -87,10 +88,19 @@ public class ShturmanParser extends AbstractParser implements Parser {
                         tour.setPrice(parsePrice(priceStr));
                         tour.setFeedPlan(parseFeedPlan(feedPlanStr));
                         tour.setRoomType(parseRoomType(roomTypeStr));
-                        tour.setNightsCount(parseNightCount(durationStr));
+                        
+                        
+                        tour.setNightsCount(parseNightCount(durationStr.substring(0, durationStr.indexOf('й'))));
                         tour.setFlightDate(parseDate(dateStr));
                         tour.setCountries(parseCountries(countryStr));
-                                        
+                        
+                        List<City> cities = parseCities(hotelStr, Utils.getIds(tour.getCountries()));
+                        tour.setCities(cities);                        
+                        
+                        if(cities != null && !cities.isEmpty()){
+                            tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
+                        }
+                        
                         List<City> departCities = parseCities(departCityStr, Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
                         if (departCities != null && !departCities.isEmpty()){
                             tour.setDepartCity(departCities.get(0));                    
@@ -115,6 +125,9 @@ public class ShturmanParser extends AbstractParser implements Parser {
 
     @Override
     protected Date parseDate(String inputString) {
+        inputString = inputString.replace(" ", "");
+        inputString = inputString.replace("\u00a0", "");
+        inputString = inputString.replace(",", ".");
         Pattern pattern = Pattern.compile("\\d\\d.\\d\\d.\\d\\d\\d\\d");
         Matcher matcher = pattern.matcher(inputString);
         if (matcher.find()) {
@@ -130,12 +143,24 @@ public class ShturmanParser extends AbstractParser implements Parser {
      }
 
     @Override
-    protected String parseHotelName(String nameContainer) {
-        return null;
+    protected String parseHotelName(String nameContainer) {        
+        if (nameContainer != null && nameContainer.contains("*")) {
+            return nameContainer.substring(0, nameContainer.indexOf("*") - 1).trim();
+        }
+        
+        return nameContainer;
     }
 
     @Override
-    protected Integer parseHotelStars(String starsContainer) {
+    protected Integer parseHotelStars(String nameContainer) {
+        if (nameContainer != null && nameContainer.contains("*")) {
+            nameContainer = nameContainer.replace(" ", "");
+            
+            int indexOfStar = nameContainer.indexOf('*');
+            Integer stars = parseInt(nameContainer.substring(indexOfStar - 2, indexOfStar).trim());
+            return (stars != null && stars > 0 && stars <= 5) ? stars : null;
+        }
+        
         return null;
     }
 

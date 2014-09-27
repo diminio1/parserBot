@@ -35,7 +35,7 @@ public class TuiParser extends AbstractParser implements Parser{
         sourceId = SOURCE_ID;
     }
 
-        @Override
+    @Override
     public List<Tour> parseTours() {
         List<Tour> tours = new ArrayList<>();
         
@@ -126,9 +126,4 @@ public class TuiParser extends AbstractParser implements Parser{
         return parseInt(starsContainer);
     }
     
-    @Override
-    protected Integer parsePrice(String priceString) {
-        return super.parsePrice(priceString.replaceAll("\u00a0", ""));
-    }
-
 }
