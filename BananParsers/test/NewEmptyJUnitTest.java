@@ -20,6 +20,7 @@ import ua.banan.data.model.FileParsingResult;
 import ua.banan.data.model.Tour;
 import ua.banan.data.provider.impl.DataOperatorImpl;
 import ua.banan.parser.Parser;
+import ua.banan.parser.impl.CandytourParser;
 import ua.banan.parser.impl.ExcelParser;
 import ua.banan.parser.impl.HottoursParser;
 import ua.banan.parser.impl.TuiParser;
@@ -66,7 +67,7 @@ public class NewEmptyJUnitTest {
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/banan_db","postgres", "postgres")) {
                 DataOperatorImpl data = new DataOperatorImpl(connection);
                 
-                Parser parser = new HottoursParser(data);//new TuiParser(data);
+                Parser parser = new CandytourParser(data);//new TuiParser(data);
                 
                 List<Tour> tours = parser.parseTours();
                 tours.size();

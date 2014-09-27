@@ -195,7 +195,9 @@ public abstract class AbstractParser {
     
     public static Integer parseInt(String inputString){
         try{
-            return Integer.parseInt(inputString.replaceAll("\\D", ""));
+            inputString = inputString.replaceAll("\\D", "");
+            
+            return !inputString.isEmpty() ? Integer.parseInt(inputString) : null;
         } catch (NumberFormatException nfe){
             LOGGER.error("Error parsing Integer from String: " + inputString, nfe);
             

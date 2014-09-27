@@ -71,7 +71,9 @@ public class CandytourParser extends AbstractParser implements Parser {
                 Tour tour = new Tour();
                                 
                 tour.setUrl(linkStr);        
-                tour.setPrice(parsePrice(priceStr));
+                Integer price = parsePrice(priceStr);
+                
+                tour.setPrice(price != null ? price / 2 : null);
   //              tour.setPreviousPrice(parsePrice(previousPriceStr));
                 tour.setFeedPlan(parseFeedPlan(details));
                 tour.setNightsCount(parseNightCount(details));
@@ -86,6 +88,7 @@ public class CandytourParser extends AbstractParser implements Parser {
                 }
                                                 
                 tour.setTourOperator(tourOperator);   
+                tour.setDescription(info);
                 
                 tours.add(tour);
             }
@@ -111,7 +114,7 @@ public class CandytourParser extends AbstractParser implements Parser {
     @Override
     protected String parseHotelName(String nameContainer) {
         if (nameContainer.contains("*")) {
-            return nameContainer.substring(0, nameContainer.indexOf("*")).trim();
+            return nameContainer.substring(0, nameContainer.indexOf("*") - 1).trim();
         }        
         return nameContainer;
     }
