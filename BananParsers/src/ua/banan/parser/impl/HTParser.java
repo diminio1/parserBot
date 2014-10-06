@@ -129,12 +129,6 @@ public class HTParser extends AbstractParser implements Parser {
         return nameContainer;
     }
 
-    @Override
-    protected Integer parseHotelStars(String starsContainer) {
-        if (starsContainer.contains("*")) {
-            return parseInt(starsContainer);
-        }
-        return 0;
-    }
+    
 
 }

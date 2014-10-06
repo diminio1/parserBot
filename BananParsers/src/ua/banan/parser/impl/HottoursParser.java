@@ -136,11 +136,6 @@ public class HottoursParser extends AbstractParser implements Parser {
             return null;
         }
         return nameContainer;
-    }
-
-    @Override
-    protected Integer parseHotelStars(String starsContainer) {
-        return parseInt(starsContainer);
-    }
+    }    
 
 }

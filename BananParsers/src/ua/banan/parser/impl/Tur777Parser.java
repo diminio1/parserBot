@@ -131,11 +131,6 @@ public class Tur777Parser extends AbstractParser implements Parser {
             return nameContainer.substring(0, nameContainer.indexOf("*") - 1).trim();
         }        
         return nameContainer;
-    }
-
-    @Override
-    protected Integer parseHotelStars(String starsContainer) {
-        return parseInt(starsContainer);
-    }
+    }   
 
 }

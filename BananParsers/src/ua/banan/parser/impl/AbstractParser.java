@@ -102,7 +102,17 @@ public abstract class AbstractParser {
     
     protected abstract Date    parseDate(String inputString);
     protected abstract String  parseHotelName(String nameContainer);
-    protected abstract Integer parseHotelStars(String starsContainer);
+    protected Integer parseHotelStars(String starsContainer){
+        if (starsContainer != null && starsContainer.contains("*")) {
+            starsContainer = starsContainer.replace(" ", "");
+            
+            int indexOfStar = starsContainer.indexOf('*');
+            Integer stars = parseInt(starsContainer.substring(Math.max(0, indexOfStar - 2), indexOfStar).trim());
+            return (stars != null && stars > 0 && stars <= 5) ? stars : null;
+        }
+        
+        return null;
+    }
     
     protected Hotel parseHotel(String nameContainer, String starsContainer, Integer cityId) {
         if (cityId != null){            
@@ -262,4 +272,5 @@ public abstract class AbstractParser {
         
         return tour;
     }
+    
 }

@@ -149,19 +149,6 @@ public class ShturmanParser extends AbstractParser implements Parser {
         }
         
         return nameContainer;
-    }
-
-    @Override
-    protected Integer parseHotelStars(String nameContainer) {
-        if (nameContainer != null && nameContainer.contains("*")) {
-            nameContainer = nameContainer.replace(" ", "");
-            
-            int indexOfStar = nameContainer.indexOf('*');
-            Integer stars = parseInt(nameContainer.substring(indexOfStar - 2, indexOfStar).trim());
-            return (stars != null && stars > 0 && stars <= 5) ? stars : null;
-        }
-        
-        return null;
-    }
+    }  
 
 }

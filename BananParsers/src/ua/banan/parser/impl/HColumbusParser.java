@@ -122,10 +122,5 @@ public class HColumbusParser extends AbstractParser implements Parser {
         }
         return nameContainer;
     }
-
-    @Override
-    protected Integer parseHotelStars(String starsContainer) {
-        return parseInt(starsContainer);
-    }
-
+   
 }

@@ -97,7 +97,7 @@ public class SilverParser extends AbstractParser implements Parser{
                     if (departCities != null && !departCities.isEmpty()){
                         tour.setDepartCity(departCities.get(0));                    
                     }
-
+                    
                     tours.add(tour);
                 
                     tour.setTourOperator(tourOperator);                                

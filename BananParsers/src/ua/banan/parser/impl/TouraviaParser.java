@@ -151,11 +151,6 @@ public class TouraviaParser extends AbstractParser implements Parser{
             return nameContainer;
         }        
         return null;
-    }
-
-    @Override
-    protected Integer parseHotelStars(String starsContainer) {
-        return parseInt(starsContainer);
-    }
+    }    
 
 }

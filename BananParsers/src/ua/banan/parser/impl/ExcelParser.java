@@ -249,8 +249,5 @@ public class ExcelParser extends AbstractParser implements FileParser {
     private static String safeToString(Object object) {
         return object != null ? object.toString() : "";
     }        
-        
-    
-    
-    
+                    
 }
