@@ -82,7 +82,7 @@ public class PoehalisnamiParser extends AbstractParser implements Parser {
                 
                 Tour tour = new Tour();
                                 
-                tour.setUrl(linkStr);        
+                tour.setUrl(linkStr + "&ito=1509&itc=4460");        
                 tour.setPrice(parsePrice(priceStr));
                 tour.setFeedPlan(parseFeedPlan(feedPlanStr));
                 tour.setRoomType(parseRoomType(roomTypeStr));

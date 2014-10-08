@@ -233,10 +233,20 @@ public abstract class AbstractParser {
                             String dateEnd,
                             String departCityString,
                             String description, 
+                            String url,
                             TourOperator tourOperator){
         Tour tour = new Tour();                       
-                        
-        tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
+        
+        if(url != null){
+            if(!url.contains("http")){
+                url = "http://" + url;
+            }
+            
+            tour.setUrl(url);
+        } else {
+            tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
+        }
+                
         tour.setPrice(parsePrice(price));
         tour.setPreviousPrice(parsePrice(oldPrice));
         tour.setFeedPlan(feed);

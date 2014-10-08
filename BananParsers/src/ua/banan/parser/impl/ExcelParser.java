@@ -152,11 +152,19 @@ public class ExcelParser extends AbstractParser implements FileParser {
                         String duration = safeToString(safeGetCell(row, 9));
                         String departCity = safeToString(safeGetCell(row, 10));
                         String description = safeToString(safeGetCell(row, 11));
-
+                        String url = safeToString(safeGetCell(row, 12));
 
                         Tour tour = new Tour();                       
                         
-                        tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
+                        if(url != null){
+                            if(!url.contains("http")){
+                                url = "http://" + url;
+                            }
+
+                            tour.setUrl(url);
+                        } else {
+                            tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
+                        }
                         tour.setPrice(parsePrice(price));
                         tour.setPreviousPrice(parsePrice(oldPrice));
                         tour.setFeedPlan(parseFeedPlan(nutrition));
@@ -224,7 +232,7 @@ public class ExcelParser extends AbstractParser implements FileParser {
     
     private static boolean isEmpty(Row row) {
         for (int i = row.getFirstCellNum(); i <= row.getLastCellNum(); i++){
-            Cell cell = row.getCell(i);
+            Cell cell = i >= 0 ? row.getCell(i) : null;
 
             if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK){
                 return false;
