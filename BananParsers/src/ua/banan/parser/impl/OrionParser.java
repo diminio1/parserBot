@@ -138,7 +138,7 @@ public class OrionParser extends AbstractParser implements Parser {
         }
         
         if (toParse == null) {
-            LOGGER.error("Parsing date error in Orion Parser");
+            LOGGER.error("Parsing date error in Orion Parser input: " + inputString);
             return null;
         }
         

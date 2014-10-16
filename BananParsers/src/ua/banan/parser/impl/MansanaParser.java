@@ -6,6 +6,7 @@
 
 package ua.banan.parser.impl;
 
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,7 +77,7 @@ public class MansanaParser extends AbstractParser implements Parser {
                     String linkStr = website;
                     
                     Elements idiotism = y.select("td[colspan = 2]");
-                    if (idiotism.size() != 0) {
+                    if (!idiotism.isEmpty()) {
                         townStr = "";
                         hotelStr = "";
                     }
@@ -101,7 +102,9 @@ public class MansanaParser extends AbstractParser implements Parser {
                     tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
                 
                     List<City> cities = tour.getCities();
-                    if (cities != null && cities.size() == 1){
+                    if (cities != null && cities.size() == 1){                        
+                        hotelStr = hotelStr.replace(",", "");
+                        
                         tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
                     }
                                 
@@ -119,11 +122,10 @@ public class MansanaParser extends AbstractParser implements Parser {
     }
 
     @Override
-    protected Date parseDate(String inputString) {
-        
+    protected Date parseDate(String inputString) {        
         Pattern p = Pattern.compile("\\d+ \\p{L}+");
         
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMMyyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMMyyyy", russianDateFormatSymbols);
         try {
             Matcher m = p.matcher(inputString);
             return m.find() ? (dateFormat.parse(m.group() + Calendar.getInstance().get(Calendar.YEAR))) : null;
@@ -143,4 +145,13 @@ public class MansanaParser extends AbstractParser implements Parser {
   
     }   
 
+    private static final DateFormatSymbols russianDateFormatSymbols = new DateFormatSymbols(){
+
+        @Override
+        public String[] getMonths() {
+            return new String[]{"января", "февраля", "марта", "апреля", "мая", "июня",
+                "июля", "августа", "сентября", "октября", "ноября", "декабря"};
+        }
+        
+    };
 }

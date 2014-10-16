@@ -69,7 +69,10 @@ public class Tur777Parser extends AbstractParser implements Parser {
             		String durationStr = tables.get(i).select("tbody").select("tr").select("td").get(3).select("span").first().ownText();
             			
             		String priceStr = tables.get(i).select("tbody").select("tr").select("td").get(3).select("span").get(1).ownText();
-            			
+            		if (!(priceStr.contains("&") || priceStr.contains("€"))) {
+                            priceStr += "$";
+                        }
+                        
             		String linkStr = tables.get(i).select("tbody").select("tr").get(1).select("td").get(1).select("a").attr("href");
 
                         if (!linkStr.contains("http://")) {
@@ -131,6 +134,11 @@ public class Tur777Parser extends AbstractParser implements Parser {
             return nameContainer.substring(0, nameContainer.indexOf("*") - 1).trim();
         }        
         return nameContainer;
-    }   
+    }
+
+    @Override
+    protected Integer parseHotelStars(String starsContainer) {
+        return parseInt(starsContainer);
+    }
 
 }

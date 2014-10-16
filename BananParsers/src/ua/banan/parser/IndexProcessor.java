@@ -30,6 +30,7 @@ import ua.banan.parser.impl.SilverParser;
 import ua.banan.parser.impl.SmgpParser;
 import ua.banan.parser.impl.TEZTourParser;
 import ua.banan.parser.impl.TouraviaParser;
+import ua.banan.parser.impl.TravelhitParser;
 import ua.banan.parser.impl.TuiParser;
 import ua.banan.parser.impl.Tur777Parser;
 
@@ -156,6 +157,10 @@ public class IndexProcessor implements Runnable {
             if (idsOfTourOperatorsToIndex.contains(Tur777Parser.SOURCE_ID)) {
                 LOGGER.error("Tur777Parser is included to index!");
                 parsers.add(new Tur777Parser(dataOperator));               
+            }
+            if (idsOfTourOperatorsToIndex.contains(TravelhitParser.SOURCE_ID)) {
+                LOGGER.error("TravelhitParser is included to index!");
+                parsers.add(new TravelhitParser(dataOperator));               
             }
             
             if (!parsers.isEmpty()){
