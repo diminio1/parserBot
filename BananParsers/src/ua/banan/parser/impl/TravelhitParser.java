@@ -5,11 +5,13 @@
  */
 package ua.banan.parser.impl;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -22,6 +24,7 @@ import ua.banan.data.model.TourOperator;
 import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
 import ua.banan.parser.Parser;
+import static ua.banan.parser.impl.AbstractParser.CONNECTION_TIMEOUT;
 
 /**
  *
@@ -30,7 +33,7 @@ import ua.banan.parser.Parser;
 public class TravelhitParser extends AbstractParser implements Parser{
     private static final Logger LOGGER = LoggerFactory.getLogger(TravelhitParser.class.getName());    
     
-    private static final String website = "http://www.travelhit.com.ua/";
+    private static String website = "http://www.travelhit.com.ua";
     public static final int SOURCE_ID = 1605;
     
     
@@ -41,43 +44,111 @@ public class TravelhitParser extends AbstractParser implements Parser{
             
     @Override
     public List<Tour> parseTours() {
-        List<Tour> tours = new ArrayList<>();
         
+        List<Tour> tours = new ArrayList<>();
+            
         TourOperator tourOperator = dataOperator.getTourOperatorById(sourceId);
         
-        try {
-            Document tourDoc = Jsoup.connect(website).timeout(CONNECTION_TIMEOUT).get();
+        ArrayList<String> pages = new ArrayList<>();
             
-            Elements tables = tourDoc.select("table[class = hot");
-            for (Element x: tables) {
-            	
-            	String linkStr = website;
+        
+        try {
+            Document document = Jsoup.connect(website).timeout(CONNECTION_TIMEOUT).get();
+            
+            Elements elements = document.select("div[class = block]").select("a[class = light]");
+            
+            try {
+                for (Element e: elements) {
+                    String site = website + e.attr("href");
+                    Document tourDoc = Jsoup.connect(site).timeout(CONNECTION_TIMEOUT).get();
+                    
+                    Elements tables = tourDoc.select("table[class = hot");
+                    for (Element x: tables) {
+                        
+                        String linkStr = site;
+                        
+                        String countryStr = x.select("td").get(1).text();
+                        
+                        String durationStr = countryStr;
+                        
+                        String roomTypeStr = "";
+                        
+                        String dateStr = x.select("table[class = nopad]").select("tr").get(2).select("td").get(1).text();
+                        
+                        String hotelStr = x.select("table[class = nopad]").select("tr").first().select("a").text();
+                        
+                        int stars = x.select("table[class = nopad]").select("tr").first().select("nobr").select("img").size();
+                        
+                        String townStr = x.select("table[class = nopad]").select("tr").get(1).select("td").get(1).text();
+                        
+                        String feedPlanStr = x.select("table[class = nopad]").select("tr").get(3).select("td").get(1).text();
+                        
+                        String priceStr = x.select("tr").first().select("td").get(2).select("a").text();
+                        
+                        String descriptionStr = null;
+                        
+                        Tour tour = new Tour();
+                        
+                        tour.setUrl(linkStr);
+                        tour.setPrice(parsePrice(priceStr));
+                        tour.setFeedPlan(parseFeedPlan(feedPlanStr));
+                        tour.setRoomType(parseRoomType(roomTypeStr));
+                        tour.setNightsCount(parseNightCount(durationStr));
+                        tour.setFlightDate(parseDate(dateStr));
+                        tour.setDescription(descriptionStr);
+                        tour.setCountries(parseCountries(countryStr));
+                        tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
+                        
+                        List<City> cities = tour.getCities();
+                        if (cities != null && cities.size() == 1){
+                            tour.setHotel(parseHotel(hotelStr, "" + stars, cities.get(0).getId()));
+                        }
+                        
+                        tour.setTourOperator(tourOperator);
+                        
+                        tours.add(tour);
+                    }
+                }
+            }
+            catch(Exception ex) {
+                LOGGER.error("Parsing error " + ex.getMessage(), ex);
+            }
+            
+            Elements excursions = document.select("table[class = results]").select("tr");
+            int counter = 0;
+            for(Element excursion: excursions) {
                 
-            	String countryStr = x.select("td").get(1).text();
-            		
-            	String durationStr = countryStr;
+                if (counter == 0) {
+                    counter++;
+                    continue;
+                }
                 
+                String site = website + excursion.select("a").attr("href");
+                
+                String durationStr = excursion.select("td").get(1).text();
+                
+                Document doc = Jsoup.connect(site).timeout(CONNECTION_TIMEOUT).get();
+                
+                String linkStr = site;
+                        
+                String countryStr = doc.select("div[class = minibr]").text();
+                        
                 String roomTypeStr = "";
+                        
+                String dateStr = doc.select("table[class = prices]").select("td").first().text();
+                        
+                String townStr = countryStr;
+                        
+                String priceStr = doc.select("table[class = prices]").select("td").get(1).text();
                 
-            	String dateStr = x.select("table[class = nopad]").select("tr").get(2).select("td").get(1).text();
-                
-            	String hotelStr = x.select("table[class = nopad]").select("tr").first().select("a").text();
-            	
-                int stars = x.select("table[class = nopad]").select("tr").first().select("nobr").select("img").size();
-                
-            	String townStr = x.select("table[class = nopad]").select("tr").get(1).select("td").get(1).text();
-                
-                String feedPlanStr = x.select("table[class = nopad]").select("tr").get(3).select("td").get(1).text();
-            	                    
-                String priceStr = x.select("tr").first().select("td").get(2).select("a").text();
+                String departCityStr = doc.select("div:contains(Отправление)").text();
                 
                 String descriptionStr = null;
-                
+                        
                 Tour tour = new Tour();
-                                
-                tour.setUrl(linkStr);        
-                tour.setPrice(parsePrice(priceStr) / 2);
-                tour.setFeedPlan(parseFeedPlan(feedPlanStr));
+                        
+                tour.setUrl(linkStr);
+                tour.setPrice(parsePrice(priceStr));
                 tour.setRoomType(parseRoomType(roomTypeStr));
                 tour.setNightsCount(parseNightCount(durationStr));
                 tour.setFlightDate(parseDate(dateStr));
@@ -85,27 +156,25 @@ public class TravelhitParser extends AbstractParser implements Parser{
                 tour.setCountries(parseCountries(countryStr));
                 tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
                 
-                List<City> cities = tour.getCities();
-                if (cities != null && cities.size() == 1){
-                    tour.setHotel(parseHotel(hotelStr, "" + stars, cities.get(0).getId()));
-                }
-                
-                tour.setTourOperator(tourOperator);  
-                
+                tour.setTourOperator(tourOperator);
+                        
                 tours.add(tour);
+                
             }
+            
         }
-        catch(Exception ex) {                           
-            LOGGER.error("Parsing error " + ex.getMessage(), ex);            
+        catch(IOException ex) {                           
+            java.util.logging.Logger.getLogger(TravelhitParser.class.getName()).log(Level.SEVERE, null, ex);            
         }
-        
         return tours.isEmpty() ? null : tours;
+ 
     }
 
     @Override
     protected Date parseDate(String inputString) {
         inputString = inputString.replace("\u00a0", "");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        
         try {
             return dateFormat.parse(inputString);
         } catch (ParseException ex) {
@@ -124,6 +193,4 @@ public class TravelhitParser extends AbstractParser implements Parser{
         return parseInt(starsContainer);
     }
 
-
-    
 }

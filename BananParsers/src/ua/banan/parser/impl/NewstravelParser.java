@@ -112,7 +112,7 @@ public class NewstravelParser extends AbstractParser implements Parser {
                 
                     tour.setTourOperator(tourOperator);               
                     
-                    if(!tours.contains(tour)){
+                    if(!tours.contains(tour) && tour.getDepartCity() != null){
                         tours.add(tour);
                     }                                                                                             
                 }

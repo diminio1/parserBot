@@ -6,6 +6,7 @@
 
 package ua.banan.parser.impl;
 
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,6 +36,15 @@ public abstract class AbstractParser {
     public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     public static final SimpleDateFormat DATE_FORMATTER2 = new SimpleDateFormat("dd.MM.yy");
     
+    protected static final DateFormatSymbols russianDateFormatSymbols = new DateFormatSymbols(){
+
+        @Override
+        public String[] getMonths() {
+            return new String[]{"января", "февраля", "марта", "апреля", "мая", "июня",
+                "июля", "августа", "сентября", "октября", "ноября", "декабря"};
+        }
+        
+    };
     
     public int sourceId;    
     
@@ -237,7 +247,7 @@ public abstract class AbstractParser {
                             TourOperator tourOperator){
         Tour tour = new Tour();                       
         
-        if(url != null){
+        if(url != null && !url.isEmpty()){
             if(!url.contains("http")){
                 url = "http://" + url;
             }

@@ -83,8 +83,9 @@ public class SilverParser extends AbstractParser implements Parser{
                     
                     Tour tour = new Tour();
                                 
-                    tour.setUrl(linkStr);        
-                    tour.setPrice(parsePrice(priceStr) / persons);
+                    tour.setUrl(linkStr);   
+                    Integer priceDoubled = parsePrice(priceStr);
+                    tour.setPrice(priceDoubled != null ? (priceDoubled / persons) : null);
                     tour.setFeedPlan(parseFeedPlan(nutritionStr));
                     tour.setNightsCount(parseNightCount(durationStr));
                     tour.setFlightDate(parseDate(dateStr));

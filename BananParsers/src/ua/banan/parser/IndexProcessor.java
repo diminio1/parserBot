@@ -14,6 +14,7 @@ import ua.banan.data.model.Tour;
 import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
 import ua.banan.parser.impl.AkkordParser;
+import ua.banan.parser.impl.AplParser;
 import ua.banan.parser.impl.CandytourParser;
 import ua.banan.parser.impl.HColumbusParser;
 import ua.banan.parser.impl.HTParser;
@@ -22,6 +23,7 @@ import ua.banan.parser.impl.IttourParser;
 import ua.banan.parser.impl.KazkamandrivParser;
 import ua.banan.parser.impl.KenarParser;
 import ua.banan.parser.impl.MansanaParser;
+import ua.banan.parser.impl.MouzenidisParser;
 import ua.banan.parser.impl.NewstravelParser;
 import ua.banan.parser.impl.OrionParser;
 import ua.banan.parser.impl.PoehalisnamiParser;
@@ -78,9 +80,11 @@ public class IndexProcessor implements Runnable {
                 
                 parsers.add(new AkkordParser(dataOperator));               
             }
-//            if (idsOfTourOperatorsToIndex.contains(ApltravelParser.SOURCE_ID)) {
-//                parsers.add(new ApltravelParser(dataOperator));               
-//            }
+            if (idsOfTourOperatorsToIndex.contains(AplParser.SOURCE_ID)) {
+                LOGGER.error("AplParser is included to index!");
+                System.out.println("AplParser starting!");
+                parsers.add(new AplParser(dataOperator));     
+            }
             if (idsOfTourOperatorsToIndex.contains(CandytourParser.SOURCE_ID)) {
                 LOGGER.error("CandytourParser is included to index!");
                 System.out.println("CandytourParser starting!");
@@ -161,6 +165,10 @@ public class IndexProcessor implements Runnable {
             if (idsOfTourOperatorsToIndex.contains(TravelhitParser.SOURCE_ID)) {
                 LOGGER.error("TravelhitParser is included to index!");
                 parsers.add(new TravelhitParser(dataOperator));               
+            }
+            if (idsOfTourOperatorsToIndex.contains(MouzenidisParser.SOURCE_ID)) {
+                LOGGER.error("Mouzenidis is included to index!");
+                parsers.add(new MouzenidisParser(dataOperator));               
             }
             
             if (!parsers.isEmpty()){
