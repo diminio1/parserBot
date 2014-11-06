@@ -151,6 +151,23 @@ public abstract class AbstractParser {
         return parseInt(inputString);
     }
     
+    private List<Integer> parseTourTypes(String inputString){
+        if (inputString != null && !inputString.isEmpty()){           
+            String[] strArray = inputString.split(",");
+            
+            List<Integer> intList = new ArrayList<>();
+            for (String strInt : strArray) {
+                try {
+                    intList.add(Integer.parseInt(strInt.trim()));
+                } catch (NumberFormatException ignore) {}
+            }
+            
+            return intList;
+        }
+        
+        return null;
+    }
+    
     protected List<Country> parseCountries(String inputString){
         if (inputString != null && !inputString.isEmpty()){           
             List<Integer> countriesIDs = dataOperator.getCountryTermFilter().filter(inputString);
@@ -214,11 +231,11 @@ public abstract class AbstractParser {
        
     
     public static Integer parseInt(String inputString){
-        try{
+        try {
             inputString = inputString.replaceAll("\\D", "");
             
             return !inputString.isEmpty() ? Integer.parseInt(inputString) : null;
-        } catch (NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             LOGGER.error("Error parsing Integer from String: " + inputString, nfe);
             
             return null;
@@ -231,6 +248,7 @@ public abstract class AbstractParser {
     
     
     public Tour createTour(Integer id,
+                            String types,
                             String countries,
                             String citiesString,
                             String hotel,
@@ -257,6 +275,7 @@ public abstract class AbstractParser {
             tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
         }
                 
+        tour.setTypes(parseTourTypes(types));
         tour.setPrice(parsePrice(price));
         tour.setPreviousPrice(parsePrice(oldPrice));
         tour.setFeedPlan(feed);

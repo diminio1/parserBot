@@ -23,6 +23,7 @@ import ua.banan.parser.impl.IttourParser;
 import ua.banan.parser.impl.KazkamandrivParser;
 import ua.banan.parser.impl.KenarParser;
 import ua.banan.parser.impl.MansanaParser;
+import ua.banan.parser.impl.MixTourParser;
 import ua.banan.parser.impl.MouzenidisParser;
 import ua.banan.parser.impl.NewstravelParser;
 import ua.banan.parser.impl.OrionParser;
@@ -169,6 +170,10 @@ public class IndexProcessor implements Runnable {
             if (idsOfTourOperatorsToIndex.contains(MouzenidisParser.SOURCE_ID)) {
                 LOGGER.error("Mouzenidis is included to index!");
                 parsers.add(new MouzenidisParser(dataOperator));               
+            }
+            if (idsOfTourOperatorsToIndex.contains(MixTourParser.SOURCE_ID)) {
+                LOGGER.error("MixTourParser is included to index!");
+                parsers.add(new MixTourParser(dataOperator));               
             }
             
             if (!parsers.isEmpty()){

@@ -8,8 +8,11 @@ package ua.banan.parser.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
@@ -28,6 +31,7 @@ import ua.banan.data.model.Tour;
 import ua.banan.data.model.TourOperator;
 import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
+import ua.banan.data.provider.impl.DataOperatorImpl;
 import ua.banan.parser.FileParser;
 
 /**
@@ -39,12 +43,7 @@ public class ExcelParser extends AbstractParser implements FileParser {
 
     public ExcelParser(DataOperator dataOperator) {
         super(dataOperator);
-    }
-
-    @Override
-    protected Date parseDate(String inputString) {
-        return null;//already parsed by Excel
-    }
+    }   
 
     @Override
     protected String parseHotelName(String nameContainer) {
@@ -138,75 +137,111 @@ public class ExcelParser extends AbstractParser implements FileParser {
                 Sheet sheet = wb.getSheetAt(0);
 
                 for(int rowIndex = 1; rowIndex < sheet.getPhysicalNumberOfRows(); rowIndex++) {
-                    row = sheet.getRow(rowIndex);                
-                    if (!isEmpty(row)) {                                                                  
-                        String country = safeToString(safeGetCell(row, 0));
-                        String town = safeToString(safeGetCell(row, 1));
-                        String hotel = safeToString(safeGetCell(row, 2));
-                        String stars = safeToString(safeGetCell(row, 3));
-                        String roomType = safeToString(safeGetCell(row, 4));
-                        String nutrition = safeToString(safeGetCell(row, 5));
-                        String oldPrice = safeToString(safeGetCell(row, 6));
-                        String price = safeToString(safeGetCell(row, 7));
-                        Date departDate = safeGetCell(row, 8).getDateCellValue();
-                        String duration = safeToString(safeGetCell(row, 9));
-                        String departCity = safeToString(safeGetCell(row, 10));
-                        String description = safeToString(safeGetCell(row, 11));
-                        String url = safeToString(safeGetCell(row, 12));
-
-                        Tour tour = new Tour();                       
-                        
-                        if(url != null){
-                            if(!url.contains("http")){
-                                url = "http://" + url;
-                            }
-
-                            tour.setUrl(url);
-                        } else {
-                            tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
-                        }
-                        tour.setPrice(parsePrice(price));
-                        tour.setPreviousPrice(parsePrice(oldPrice));
-                        tour.setFeedPlan(parseFeedPlan(nutrition));
-                        tour.setRoomType(parseRoomType(roomType));
-                        tour.setNightsCount(parseNightCount(duration));
-                        tour.setFlightDate(departDate);
-                        tour.setDescription(description);
-                        tour.setCountries(parseCountries(country));
-                        tour.setCities(parseCities(town, Utils.getIds(tour.getCountries())));
-
-                        List<City> cities = tour.getCities();
-                        if (cities != null && cities.size() == 1){
-                            tour.setHotel(parseHotel(hotel, stars, cities.get(0).getId()));
-                        }
-
-                        List<City> departCities = parseCities(departCity, Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
-                        if (departCities != null && !departCities.isEmpty()){
-                            tour.setDepartCity(departCities.get(0));                    
-                        }
-
-                        tour.setTourOperator(tourOperator);  
-
-                        String tourWarnings = tour.getWarningsString();
-                        if (tourWarnings != null && !tourWarnings.isEmpty()){
-                            warningsString += "Строка " + (rowIndex + 1) + ". " + tourWarnings + "\n";
-                        }
-
-                        if(tour.isValid()){
-                            int indexOfTheSameTour = res.indexOf(tour);
+                    try{
+                        row = sheet.getRow(rowIndex);                
+                        if (!isEmpty(row)) {                                                                  
+                            String country = safeToString(safeGetCell(row, 0));
+                            String town = safeToString(safeGetCell(row, 1));
+                            String hotel = safeToString(safeGetCell(row, 2));
+                            String stars = safeToString(safeGetCell(row, 3));
+                            String roomType = safeToString(safeGetCell(row, 4));
+                            String nutrition = safeToString(safeGetCell(row, 5));
+                            String oldPrice = safeToString(safeGetCell(row, 6));
+                            String price = safeToString(safeGetCell(row, 7));
                             
-                            if (indexOfTheSameTour == -1){
-                                if(tour.isActual()) {
-                                    res.add(tour);       
-                                } else {
-                                    warningsString += "Строка " + (rowIndex + 1) + ". Дата выезда завтра или раньше - турист на этот тур не успеет! \n";
+                            List<Date> departDates;
+                            
+                            try {
+                                departDates = Arrays.asList(row.getCell(8).getDateCellValue());
+                            } catch (Exception e){
+                                departDates = parseDates(safeToString(safeGetCell(row, 8)));
+                            }
+                            String duration = safeToString(safeGetCell(row, 9));
+                            String departCity = safeToString(safeGetCell(row, 10));
+                            String description = safeToString(safeGetCell(row, 11));
+                            String url = safeToString(safeGetCell(row, 12));
+                            String types = safeToString(safeGetCell(row, 13));
+
+                            if(departDates != null && !departDates.isEmpty()){
+                            for(Date departDate : departDates){
+                                    Tour tour = new Tour();                       
+
+                                    if(url != null){
+                                        if(!url.contains("http")){
+                                            url = "http://" + url;
+                                        }
+
+                                        tour.setUrl(url);
+                                    } else {
+                                        tour.setUrl(Utils.prepandHttpIfNotExists(tourOperator.getUrl()));
+                                    }
+                                    tour.setPrice(parsePrice(price));
+                                    tour.setPreviousPrice(parsePrice(oldPrice));
+                                    tour.setFeedPlan(parseFeedPlan(nutrition));
+                                    tour.setRoomType(parseRoomType(roomType));
+                                    tour.setNightsCount(parseNightCount(duration));
+                                    tour.setFlightDate(departDate);
+                                    tour.setDescription(description);
+                                    tour.setCountries(parseCountries(country));
+                                    tour.setCities(parseCities(town, Utils.getIds(tour.getCountries())));
+                                    tour.setTypes(parseTypes(types));
+
+                                    List<City> cities = tour.getCities();
+                                    if (cities != null && cities.size() == 1){
+                                        tour.setHotel(parseHotel(hotel, stars, cities.get(0).getId()));
+                                    }
+
+                                    List<City> departCities = parseCities(departCity, Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
+                                    if (departCities != null && !departCities.isEmpty()){
+                                        tour.setDepartCity(departCities.get(0));                    
+                                    }
+
+                                    tour.setTourOperator(tourOperator);  
+
+                                    String tourWarnings = tour.getWarningsString();
+                                    if (tourWarnings != null && !tourWarnings.isEmpty()){
+                                        warningsString += "Строка " + (rowIndex + 1) + ". " + tourWarnings + "\n";
+                                    }
+
+                                    if(tour.isValid()){
+                                        int indexOfTheSameTour = res.indexOf(tour);
+
+                                        if (indexOfTheSameTour == -1){
+                                            if(tour.isActual()) {
+
+                                                if(tour.getTypes() == null || tour.getTypes().isEmpty()){
+                                                    List<Integer> typesIds = new ArrayList<>();
+
+                                                    if(((DataOperatorImpl) dataOperator).isBusTour(tour)){
+                                                        typesIds.add(Tour.TYPE_EXCURSION);
+                                                    }
+
+                                                    if(((DataOperatorImpl) dataOperator).isSeaTour(tour)){
+                                                        typesIds.add(Tour.TYPE_SEA);
+                                                    }
+
+                                                    tour.setTypes(typesIds);
+                                                }
+
+                                                res.add(tour);       
+                                            } else {
+                                                warningsString += "Строка " + (rowIndex + 1) + ". Дата выезда завтра или раньше - турист на этот тур не успеет! \n";
+                                            }
+                                        } else {
+                                            warningsString += "Строка " + (rowIndex + 1) + ". " + "Такой тур уже есть в этом документе! Где-то в районе строки " + (indexOfTheSameTour + 2) + " :) \n";
+                                        }
+                                    } else {
+                                        errorsString += "Строка " + (rowIndex + 1) + ". " + tour.getErrorsString() + "\n";
+                                    } 
                                 }
                             } else {
-                                warningsString += "Строка " + (rowIndex + 1) + ". " + "Такой тур уже есть в этом документе! Где-то в районе строки " + (indexOfTheSameTour + 2) + " :) \n";
+                                errorsString += "Строка " + (rowIndex + 1) + ". Неправильно заполнены даты выезда  \n";
                             }
-                        } else {
-                            errorsString += "Строка " + (rowIndex + 1) + ". " + tour.getErrorsString() + "\n";
-                        }              
+                        }
+                    } catch (Exception e){                        
+                        LOGGER.error("Error parsing Excel file", e);
+                        
+                        errorsString += "Строка " + (rowIndex + 1) + ". Ошибка. Проверьте правильность заполнения\n";
                     }
                 }                         
 
@@ -215,6 +250,7 @@ public class ExcelParser extends AbstractParser implements FileParser {
                 parsingResult.setTours(res);
                 
                 return parsingResult;
+                
 
             } catch(Exception e) {
                 LOGGER.error("Error parsing Excel file", e);
@@ -257,5 +293,83 @@ public class ExcelParser extends AbstractParser implements FileParser {
     private static String safeToString(Object object) {
         return object != null ? object.toString() : "";
     }        
+
+    private List<Integer> parseTypes(String types) {
+        if(types != null && !types.isEmpty()){
+            List<Integer> res = new ArrayList<>();
+            
+            types = types.toLowerCase();
+            
+            if(types.contains("пляжный")){
+                res.add(Tour.TYPE_SEA);
+            }
+            
+            if(types.contains("экскурсионный") || types.contains("автобусный")){
+                res.add(Tour.TYPE_EXCURSION);
+            }
+            
+            if(types.contains("детский")){
+                res.add(Tour.TYPE_CHILDREN);
+            }
+            
+            if(types.contains("гастрономический")){
+                res.add(Tour.TYPE_GASTRONOMIC);
+            }
+            
+            if(types.contains("шоп")){
+                res.add(Tour.TYPE_SHOP);
+            }
+            
+            if(types.contains("индивидуальный")){
+                res.add(Tour.TYPE_INDIVIDUAL);
+            }
+            
+            if(types.contains("выходного")){
+                res.add(Tour.TYPE_WEEKEND);
+            }
+            
+            if(types.contains("экстрим")){
+                res.add(Tour.TYPE_EXTREME);
+            }
+            
+            return res;
+        }
+        
+        return null;
+    }
+
+    private List<Date> parseDates(String datesString) {
+        if(datesString != null && !datesString.isEmpty()){
+            String[] split = datesString.split(";");
+            
+            if(split != null && split.length > 0){
+                List<Date> res = new ArrayList<>();
+                
+                for(String dateStr : split){
+                    Date d = parseDate(dateStr.trim());
+                    if(d != null){
+                        res.add(d);
+                    }
+                }
+                
+                return res.isEmpty() ? null : res;
+            } else {
+                return Arrays.asList(parseDate(datesString));
+            }                    
+        }
+        
+        return null;
+    }
+    
+    @Override
+    protected Date parseDate(String inputString) {        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            return dateFormat.parse(inputString);
+        } catch (ParseException ex) {
+            LOGGER.error("Parsing date error " + ex.getMessage(), ex);
+            return null;
+        }
+    }
                     
 }
