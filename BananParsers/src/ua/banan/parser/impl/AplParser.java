@@ -23,6 +23,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.banan.data.model.City;
+import ua.banan.data.model.Country;
 import ua.banan.data.model.Tour;
 import ua.banan.data.model.TourOperator;
 import ua.banan.data.model.common.Utils;
@@ -58,93 +59,110 @@ public class AplParser extends AbstractParser implements Parser {
             Elements paragraphs = tourDoc/*.select("text")*/.select("p");
             
             String countryStr = "";
-            if (paragraphs != null && paragraphs.size() > 5) {
+            if (paragraphs != null && !paragraphs.isEmpty()) {                
                 
-                countryStr = paragraphs.get(2).text();
+                List<Country> countries = null;
                 
-                for (int i = 3; i < paragraphs.size() - 5; i += 4) {
-                
-                    Element info = paragraphs.get(i);
-                 
-                    while (!info.text().contains("вылет")) {
-                        countryStr = info.text();
-                        ++i;
-                        info = paragraphs.get(i);
-                    }
+                for (int i = 0; i < paragraphs.size(); i++) {
+//                    countryStr = paragraphs.get(2).text();                    
                     
-                    while (info.text().equals("")) {
-                        i++;
-                        info = paragraphs.get(i);
-                    }
-                    
-                    String descriptionStr = paragraphs.get(i + 1).text();
-    
-                    String townStr = descriptionStr;
-                    
-                    String linkStr = "http://www.apltravel.ua" + paragraphs.get(i + 2).select("a").attr("href");
-                    
-                    String hotelStr = info.select("a").text();
-                    
-                    String priceStr = info.select("span[style = color: #ff0000;]").text();
-                    
-                    String [] inf = new String[3];
-                    
-                    inf = info.select("strong").first().ownText().split(",");
-                    
-                    String feedPlanStr = inf[2];
-                    
-                    String durationStr = inf[1];
-                    
-                    Pattern p = Pattern.compile("\\d+ \\p{L}+");
-                    Matcher m = p.matcher(inf[0]);
-                    
-                    String dateStr = "";
-                    
-                    String roomTypeStr = "";
-                    
-                    if (m.find()) {
-                        dateStr = m.group();
-                    }
-                    
-                    String departCityStr = inf[0];
-                    
-                    try {
-                        Document forTown = Jsoup.connect(linkStr).timeout(CONNECTION_TIMEOUT).get();
-                        townStr = forTown.select("span[class = lineData]").first().text();
-                    }
-                    catch (IOException exception) {
-                        LOGGER.error("Parsing error " + exception.getMessage(), exception);
-                    }
-                    
-                    Tour tour = new Tour();
-                                
-                    tour.setUrl(linkStr);        
-                    tour.setPrice(parsePrice(priceStr));
-                    tour.setFeedPlan(parseFeedPlan(feedPlanStr));
-                    tour.setRoomType(parseRoomType(roomTypeStr));
-                    tour.setNightsCount(parseNightCount(durationStr));
-                    tour.setFlightDate(parseDate(dateStr));
-                    tour.setCountries(parseCountries(countryStr));
-                    tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
-                    tour.setDescription(descriptionStr);
-                    
-                    List<City> cities = tour.getCities();
-                    if (cities != null && cities.size() == 1){
-                        tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
-                    }
+                    try{              
+                        Element info = paragraphs.get(i);
+                                                                       
+                        String infoStr = info.text();
+                        
+                        List<Country> countriesNew = parseCountries(infoStr);
+                        
+                        if(infoStr.length() < 20 && !countriesNew.isEmpty()){
+                            countries = countriesNew;
+                            continue;
+                        }
+                        
+                        if(infoStr.contains("вылет")){
 
-                    List<City> departCities = parseCities(departCityStr, Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
-                    if (departCities != null && !departCities.isEmpty()){
-                        tour.setDepartCity(departCities.get(0));                    
+//                            while (!info.text().contains()) {
+//                                countryStr = info.text();
+//                                ++i;
+//                                info = paragraphs.get(i);
+//                            }
+//
+//                            while (info.text().isEmpty()) {
+//                                i++;
+//                                info = paragraphs.get(i);
+//                            }
+
+                            String descriptionStr = paragraphs.size() < (i + 1) ? paragraphs.get(i + 1).text() : null;
+
+                            String townStr = descriptionStr;
+
+                            String linkStr = "http://www.apltravel.ua" + paragraphs.get(i + 2).select("a").attr("href");
+
+                            String hotelStr = info.select("a").text();
+
+                            infoStr = infoStr.replace(hotelStr, "").toLowerCase().replace("вылет", "").trim();
+
+
+                            int fromIndex = infoStr.indexOf("из");
+
+                            String dateStr = infoStr.substring(0, fromIndex != -1 ? fromIndex : 0).replace(' ', ' ').replaceAll("\\s+", "");
+
+                            Pattern p = Pattern.compile("\\d+\\s?(ночи|ночей)");
+                            Matcher m = p.matcher(infoStr);
+
+                            String durationStr = "";
+                            if(m.find()){
+                                durationStr = m.group();
+                            }
+
+                            p = Pattern.compile("\\d+\\s?\\$");
+                            m = p.matcher(infoStr);
+
+                            String priceStr = "";
+                            if(m.find()){
+                                priceStr = m.group();
+                            }
+
+                            try {
+                                Document forTown = Jsoup.connect(linkStr).timeout(CONNECTION_TIMEOUT).get();
+                                townStr = forTown.select("span[class = lineData]").first().text();
+                            }
+                            catch (IOException exception) {
+                                LOGGER.error("Parsing error " + exception.getMessage(), exception);
+                            }
+
+                            Tour tour = new Tour();
+
+                            tour.setUrl(linkStr);        
+                            tour.setPrice(parsePrice(priceStr));
+                            tour.setFeedPlan(parseFeedPlan(infoStr));
+                            tour.setNightsCount(parseNightCount(durationStr));
+                            tour.setFlightDate(parseDate(dateStr));
+                            tour.setCountries(countries);
+                            tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
+                            tour.setDescription(descriptionStr);
+
+                            List<City> cities = tour.getCities();
+                            if (cities != null && cities.size() == 1){
+                                tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
+                            }
+
+                            List<City> departCities = parseCities(infoStr, Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
+                            if (departCities != null && !departCities.isEmpty()){
+                                tour.setDepartCity(departCities.get(0));                    
+                            }
+
+                            tour.setTourOperator(tourOperator);       
+
+                            tours.add(tour);
+                        }
                     }
-                
-                    tours.add(tour);
-                
-                    tour.setTourOperator(tourOperator);                                
+                    catch(Exception ex){
+                        LOGGER.error("Parsing error " + ex.getMessage(), ex);   
+                    }
                 }
             }
         }
-        catch(Exception ex) {                           
+        catch(IOException ex) {                           
             LOGGER.error("Parsing error " + ex.getMessage(), ex);            
         }
         
@@ -159,7 +177,7 @@ public class AplParser extends AbstractParser implements Parser {
         int year = Calendar.getInstance().get(Calendar.YEAR);
   
         inputString += year;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMMyyyy", russianDateFormatSymbols);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMMyyyy", russianDateFormatSymbols);
         try {
             return dateFormat.parse(inputString);
         } catch (ParseException ex) {

@@ -46,6 +46,16 @@ public abstract class AbstractParser {
         
     };
     
+    protected static final DateFormatSymbols russianDateFormatSymbolsShort = new DateFormatSymbols(){
+
+        @Override
+        public String[] getMonths() {
+            return new String[]{"яна", "фев", "мар", "апр", "мая", "июн",
+                "июл", "авг", "сен", "окт", "ноя", "дек"};
+        }
+        
+    };
+    
     public int sourceId;    
     
     protected static final int CONNECTION_TIMEOUT = 100000;

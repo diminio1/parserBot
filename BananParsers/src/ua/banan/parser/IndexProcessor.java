@@ -15,6 +15,7 @@ import ua.banan.data.model.common.Utils;
 import ua.banan.data.provider.DataOperator;
 import ua.banan.parser.impl.AkkordParser;
 import ua.banan.parser.impl.AplParser;
+import ua.banan.parser.impl.AsiaParser;
 import ua.banan.parser.impl.CandytourParser;
 import ua.banan.parser.impl.HColumbusParser;
 import ua.banan.parser.impl.HTParser;
@@ -28,14 +29,17 @@ import ua.banan.parser.impl.MouzenidisParser;
 import ua.banan.parser.impl.NewstravelParser;
 import ua.banan.parser.impl.OrionParser;
 import ua.banan.parser.impl.PoehalisnamiParser;
+import ua.banan.parser.impl.SagaParser;
 import ua.banan.parser.impl.ShturmanParser;
 import ua.banan.parser.impl.SilverParser;
+import ua.banan.parser.impl.SitistravelParser;
 import ua.banan.parser.impl.SmgpParser;
 import ua.banan.parser.impl.TEZTourParser;
 import ua.banan.parser.impl.TouraviaParser;
 import ua.banan.parser.impl.TravelhitParser;
 import ua.banan.parser.impl.TuiParser;
 import ua.banan.parser.impl.Tur777Parser;
+import ua.banan.parser.impl.UnicondorParser;
 
 /**
  *
@@ -44,9 +48,9 @@ import ua.banan.parser.impl.Tur777Parser;
 public class IndexProcessor implements Runnable {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexProcessor.class.getName());    
     /*
-        7200 000 milliseconds = 2hours
+        3000 000 milliseconds ~ 1hour
     */
-    private static final long SLEEP_BETWEEN_INDEXATIONS = 7200000;
+    private static final long SLEEP_BETWEEN_INDEXATIONS = 3000000;
     
     private final DataOperator dataOperator;
     private final List<Integer> idsOfTourOperatorsToIndex;
@@ -69,7 +73,6 @@ public class IndexProcessor implements Runnable {
         LOGGER.error("Parsers thread starting!");
         
         if (dataOperator != null && idsOfTourOperatorsToIndex != null && !idsOfTourOperatorsToIndex.isEmpty()){            
-            System.out.println("Parsers thread starting!");
             System.out.println(idsOfTourOperatorsToIndex.toString());
             LOGGER.error("Parsers thread starting!");
             
@@ -77,18 +80,15 @@ public class IndexProcessor implements Runnable {
                                                 
             if (idsOfTourOperatorsToIndex.contains(AkkordParser.SOURCE_ID)) {
                 LOGGER.error("Akkord is included to index!");
-                System.out.println("Akkord starting!");
                 
                 parsers.add(new AkkordParser(dataOperator));               
             }
             if (idsOfTourOperatorsToIndex.contains(AplParser.SOURCE_ID)) {
                 LOGGER.error("AplParser is included to index!");
-                System.out.println("AplParser starting!");
                 parsers.add(new AplParser(dataOperator));     
             }
             if (idsOfTourOperatorsToIndex.contains(CandytourParser.SOURCE_ID)) {
                 LOGGER.error("CandytourParser is included to index!");
-                System.out.println("CandytourParser starting!");
                 parsers.add(new CandytourParser(dataOperator));               
             }
             if (idsOfTourOperatorsToIndex.contains(HColumbusParser.SOURCE_ID)) {
@@ -174,6 +174,22 @@ public class IndexProcessor implements Runnable {
             if (idsOfTourOperatorsToIndex.contains(MixTourParser.SOURCE_ID)) {
                 LOGGER.error("MixTourParser is included to index!");
                 parsers.add(new MixTourParser(dataOperator));               
+            }
+            if (idsOfTourOperatorsToIndex.contains(AsiaParser.SOURCE_ID)) {
+                LOGGER.error("AsiaParser is included to index!");
+                parsers.add(new AsiaParser(dataOperator));               
+            }
+            if (idsOfTourOperatorsToIndex.contains(SagaParser.SOURCE_ID)) {
+                LOGGER.error("SagaParser is included to index!");
+                parsers.add(new SagaParser(dataOperator));               
+            }
+            if (idsOfTourOperatorsToIndex.contains(SitistravelParser.SOURCE_ID)) {
+                LOGGER.error("SitistravelParser is included to index!");
+                parsers.add(new SitistravelParser(dataOperator));               
+            }
+            if (idsOfTourOperatorsToIndex.contains(UnicondorParser.SOURCE_ID)) {
+                LOGGER.error("UnicondorParser is included to index!");
+                parsers.add(new UnicondorParser(dataOperator));               
             }
             
             if (!parsers.isEmpty()){
