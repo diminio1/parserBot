@@ -78,7 +78,7 @@ public class SagaParser extends AbstractParser implements Parser {
                     hotels.add(m.group());
                 } 
                 
-                p = Pattern.compile("(\\d[\\d ]+(EUR|USD|долл|евро))");
+                p = Pattern.compile("((( \\d \\d+)|\\d+) (EUR|USD|долл|евро))");
                 m = p.matcher(info);
                 
                 ArrayList<String> prices = new ArrayList<>();
@@ -101,6 +101,8 @@ public class SagaParser extends AbstractParser implements Parser {
                     if (!(price == null)) {
                         price = price.replace("евро", "€");
                         tour.setPrice(parsePrice(price.replace("долл", "USD")) / 2);
+                        
+                        
                     }
                     tour.setNightsCount(parseNightCount(durationStr));
                     tour.setCountries(parseCountries(countryStr));

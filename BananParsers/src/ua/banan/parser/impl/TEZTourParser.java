@@ -106,7 +106,8 @@ public class TEZTourParser extends AbstractParser implements Parser {
 
         Locale locale = new Locale("ru");
         
-        inputString = inputString.toLowerCase(locale).replace("нбр", "ноя");
+        inputString = inputString.toLowerCase(locale).replace("нбр", "ноя").replace("dec", "дек");
+        
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMyyyy", russianDateFormatSymbolsShort);
         try {

@@ -51,120 +51,91 @@ public class MixTourParser extends AbstractParser implements Parser {
         
         TourOperator tourOperator = dataOperator.getTourOperatorById(sourceId);
         
-        String page = website;
-        
-        do {
-            
-            try {    
-                Document tourDoc = Jsoup.connect(page).timeout(CONNECTION_TIMEOUT).get();
+        try {    
+            Document tourDoc = Jsoup.connect(website).timeout(CONNECTION_TIMEOUT).get();
                 
-                Elements blocks = tourDoc.select("div[class = djcat_blog_item_in]");
+            Elements blocks = tourDoc.select("div[class = modopprod_item]");
 
-                for (Element tourBlock: blocks) {
+            for (Element tourBlock: blocks) {
+
+                String info = tourBlock.select("div[class = modopprod_item_sd]").text();
                     
-                    String countryStr = tourBlock.select("span[class = djcat_producer]").text().replace("/", " ");
+                Pattern duration = Pattern.compile("Ночей - \\d+");
+                Pattern date = Pattern.compile("\\d\\d\\.\\d\\d\\.\\d\\d");
+                    
+                String hotelStr = tourBlock.select("div[class = modopprod_item_name]").select("a").text();
+                    
+                String priceStr = tourBlock.select("div[class = modopprod_item_price]").text().replace(".00", "");
+                    
+                String linkStr = "http://mix-tour.com.ua" + tourBlock.select("div[class = modopprod_item_name]").select("a").attr("href");
+                    
+                String feedPlanStr = info;
+                    
+                String dateStr = "";
+                    
+                String durationStr = "";
+                    
+                String roomTypeStr = "";
+                    
+                Matcher m = date.matcher(info);
+                if (m.find()) {
+                    dateStr = m.group();
+                }
+                    
+                m = duration.matcher(info);
+                if (m.find()) {
+                    durationStr = m.group();
+                }
+                    
+                try {
+                    Document doc = Jsoup.connect(linkStr).timeout(CONNECTION_TIMEOUT).get();
+                    
+                    String countryStr = doc.text();
                     
                     String townStr = countryStr;
-                    
-                    String tmp = tourBlock.select("span[style = color: #ff0000;]").text().replace("\u00a0", "");
-                    
-                    String priceStr = null;
-                    
-                    String durationStr = null;
-                    
-                    Pattern price = Pattern.compile("\\d+ +у.е.");
-                    Pattern duration = Pattern.compile("\\d+ ноч");
-                    
-                    Matcher m = price.matcher(tmp);
-                    if (m.find()) {
-                        priceStr = m.group();
-                    }
-                    priceStr = priceStr.replace("у.е.", "$");
-                    
-                    m = duration.matcher(tmp);
-                    if (m.find()) {
-                        durationStr = m.group();
-                    }
-                    
-                    String link = tourBlock.select("div[class = djcat_intro_readmore]").select("a").attr("href");
-                    link = link.substring(1);
-                    
-                    String text = link.substring(0, link.indexOf('/'));
-                    link = link.substring(link.indexOf('/'));
-                    
-                    String linkStr = website + "/" + URLEncoder.encode(text, "UTF-8") + link;
-                    
-                    try {
-                        Document document = Jsoup.connect(linkStr)/*.ignoreHttpErrors(true)*/.timeout(CONNECTION_TIMEOUT).get();
-                        
-                        String hotelStr = document.select("h3").first().text();
-                        
-                        String dateStr = null;
-                        
-                        String feedPlanStr = null;
-                        
-                        String roomTypeStr = "";
-                        
-                        String inf = document.select("div[class = djcat_description]")/*.select("p").first()*/.text();
-                        
-                        Pattern date = Pattern.compile("\\d\\d.\\d\\d.\\d\\d\\d\\d");
-                        Pattern feed = Pattern.compile("итание: \\p{L}+");
-                        
-                        m = date.matcher(inf);
-                        if(m.find()) {
-                            dateStr = m.group();
-                        }
-                        
-                        m = feed.matcher(inf);
-                        if(m.find()) {
-                            feedPlanStr = m.group();
-                        }
-                        
-                        Tour tour = new Tour();
+       
+                    Tour tour = new Tour();
                                 
-                        tour.setUrl(linkStr);        
-                        tour.setPrice(parsePrice(priceStr) / 2);
-                        tour.setFeedPlan(parseFeedPlan(feedPlanStr));
-                        tour.setRoomType(parseRoomType(roomTypeStr));
-                        tour.setNightsCount(parseNightCount(durationStr));
-                        tour.setFlightDate(parseDate(dateStr));
-                        tour.setCountries(parseCountries(countryStr));
-                        tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
+                    tour.setUrl(linkStr);        
+                    tour.setPrice(parsePrice(priceStr) / 2);
+                    tour.setFeedPlan(parseFeedPlan(feedPlanStr));
+                    tour.setRoomType(parseRoomType(roomTypeStr));
+                    tour.setNightsCount(parseNightCount(durationStr));
+                    tour.setFlightDate(parseDate(dateStr));
+                    tour.setCountries(parseCountries(countryStr));
+                    tour.setCities(parseCities(townStr, Utils.getIds(tour.getCountries())));
                    
-                        List<City> cities = tour.getCities();
-                        if (cities != null && cities.size() == 1){
-                            tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
-                        }
-    
-                        List<City> departCities = parseCities("Киев", Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
-                        if (departCities != null && !departCities.isEmpty()){
-                            tour.setDepartCity(departCities.get(0));                    
-                        }
- 
-                        tours.add(tour);
-                
-                        tour.setTourOperator(tourOperator);                                
-                
-                    }   
-                    catch (IOException ioe) {
-                        LOGGER.error("Parsing error " + ioe.getMessage(), ioe);            
+                    List<City> cities = tour.getCities();
+                    if (cities != null && cities.size() == 1){
+                        tour.setHotel(parseHotel(hotelStr, hotelStr, cities.get(0).getId()));
                     }
-                }     
+    
+                    List<City> departCities = parseCities("Киев", Arrays.asList(new Integer[]{112}));//ID OF UKRAINE == 112
+                    if (departCities != null && !departCities.isEmpty()){
+                        tour.setDepartCity(departCities.get(0));                    
+                    }
+ 
+                    tours.add(tour);
+                
+                    tour.setTourOperator(tourOperator);                                
+                
+                }   
+                catch (IOException ioe) {
+                    LOGGER.error("Parsing error " + ioe.getMessage(), ioe);            
+                }
+            }     
         
-                page = website + tourDoc.select("li:contains(Следующая)").select("a").attr("href");
-            }
-            catch (Exception e) {
-                LOGGER.error("Parsing error " + e.getMessage(), e);            
-            }
         }
-        while(!page.equals(website));
+        catch (Exception e) {
+            LOGGER.error("Parsing error " + e.getMessage(), e);            
+        }
             
         return tours.isEmpty() ? null : tours;
     }
 
     @Override
     protected Date parseDate(String inputString) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy");
         try {
             return dateFormat.parse(inputString);
         } catch (ParseException ex) {
